@@ -20,6 +20,16 @@ public class Submission {
     @JoinColumn(name = "provider_id")
     private Provider provider;
 
+    @ManyToOne
+    @JoinColumn(name = "campus_id")
+    private Campus campus;
+
+    @ManyToOne
+    @JoinColumn(name = "program_id")
+    private Program program;
+
+
+
     public Submission(){};
 
     public long getId() {
