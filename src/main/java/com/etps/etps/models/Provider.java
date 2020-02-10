@@ -11,6 +11,7 @@ public class Provider {
     @Column(columnDefinition = ("INT UNSIGNED"))
     private long id;
 
+    @Column(unique = true)
     private String providerName;
 
     private String description;
