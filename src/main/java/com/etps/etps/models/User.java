@@ -22,8 +22,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(columnDefinition = "INT UNSIGNED")
-    private long providerId;
+    @ManyToOne
+    @JoinColumn(name = "provider_id")
+    private Provider provider;
 
     private boolean isAdmin;
 
@@ -67,12 +68,12 @@ public class User {
         this.password = password;
     }
 
-    public long getProviderId() {
-        return providerId;
+    public Provider getProvider() {
+        return provider;
     }
 
-    public void setProviderId(long providerId) {
-        this.providerId = providerId;
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 
     public boolean isAdmin() {

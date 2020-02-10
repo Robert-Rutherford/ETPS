@@ -12,7 +12,7 @@ public class Message {
     @Column(columnDefinition = ("INT UNSIGNED"))
     private long id;
 
-    private Date date_sent;
+    private Date dateSent;
 
     @Column(nullable = false, length = 50)
     private String title;
@@ -41,11 +41,11 @@ public class Message {
     }
 
     public Date getDate_sent() {
-        return date_sent;
+        return dateSent;
     }
 
     public void setDate_sent(Date date_sent) {
-        this.date_sent = date_sent;
+        this.dateSent = date_sent;
     }
 
     public String getTitle() {
