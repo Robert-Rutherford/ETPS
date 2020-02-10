@@ -2,6 +2,7 @@ package com.etps.etps.models;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "programs")
@@ -20,6 +21,9 @@ public class Program {
     @ManyToOne
     @JoinColumn(name = "campus_id")
     private Campus campus;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "program")
+    private List<Submission> submissions;
 
     public Program(){};
 
