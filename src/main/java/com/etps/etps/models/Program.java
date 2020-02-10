@@ -16,7 +16,7 @@ public class Program {
 
     private String description;
 
-    private long etpCodeId;
+    private String etpCodeId;
 
     @ManyToOne
     @JoinColumn(name = "campus_id")
@@ -51,12 +51,20 @@ public class Program {
         this.description = description;
     }
 
-    public long getEtpCodeId() {
+    public String getEtpCodeId() {
         return etpCodeId;
     }
 
-    public void setEtpCodeId(long etpCodeId) {
+    public void setEtpCodeId(String etpCodeId) {
         this.etpCodeId = etpCodeId;
+    }
+
+    public List<Submission> getSubmissions() {
+        return submissions;
+    }
+
+    public void setSubmissions(List<Submission> submissions) {
+        this.submissions = submissions;
     }
 
     public Campus getCampus() {
