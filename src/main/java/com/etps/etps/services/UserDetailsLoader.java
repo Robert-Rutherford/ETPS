@@ -3,6 +3,9 @@ package com.etps.etps.services;
 import com.etps.etps.models.User;
 import com.etps.etps.models.UserWithRoles;
 import com.etps.etps.repositories.Users;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service

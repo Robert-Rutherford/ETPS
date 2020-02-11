@@ -1,6 +1,7 @@
 package com.etps.etps.controllers;
 
 import com.etps.etps.repositories.Users;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 @Controller
