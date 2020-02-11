@@ -1,8 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head('Login')"></head>
+<style>
+    .extra-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+    .extra-buttons span {
+        text-align: center;
+    }
+</style>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
+<main>
+    <div class="mx-auto" style="width: 20em">
+        <form>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+            <button type="submit" name="forgot" class="btn btn-success btn-block">Login</button>
+        </form>
+        <div class="card-body">
+            <div class="extra-buttons">
+                <span>Forgot your password?</span>
+                <a href="/resetpassword"><button class="btn btn-primary btn-block">Reset Password</button></a>
+            </div>
+            <div class="extra-buttons">
+                <span>Create an account</span>
+                <a href="/register"><button class="btn btn-info btn-block">Register</button></a>
+            </div>
+        </div>
+    </div>
+
+</main>
 
 
 <th:block th:replace="partials/scripts">
