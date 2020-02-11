@@ -9,7 +9,7 @@ public class MessageController {
 
     @GetMapping("/message")
     public String showMessageForm(){
-        return "message";
+        return "messageOut";
     }
 
     @GetMapping("/messages")
