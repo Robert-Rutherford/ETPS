@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AuthenticationController {
-    @GetMapping("/")
+    @GetMapping("/login")
     public String showLoginForm() {
         return "users/login";
     }
+//  verified login redirect to profile.html
 }
