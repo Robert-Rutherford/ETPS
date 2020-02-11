@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head('Submissions')"></head>
 <body>
+
+<form action="">
+    <label for=""></label>
+    <input type="text" id="">
+</form>
+<form>
+    <div class="form-group">
+        <label for="exampleFormControlFile1">Select file: </label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+    <input type="submit" value="Upload">
+</form>
+
+
+<th:block th:replace="partials/scripts :: scripts">
 
 </body>
 </html>
