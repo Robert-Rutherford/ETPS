@@ -23,6 +23,7 @@ public class MessageController {
 
     private DateFormat returnFormater() {
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
         return df;
     }
 
