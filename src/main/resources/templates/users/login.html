@@ -2,12 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head('Login')"></head>
 <style>
-    .extra-buttons {
-        display: flex;
-        flex-direction: column;
+    main {
+        margin-top: 2em;
     }
-    .extra-buttons span {
+    .extra-buttons {
         text-align: center;
+        margin: 1em 0;
+    }
+    .extra-buttons-container {
+        border: 1px solid grey;
+        border-radius: 1em;
+        padding: 0 1em;
     }
 </style>
 <body>
@@ -29,19 +34,19 @@
             <button type="submit" name="forgot" class="btn btn-success btn-block">Login</button>
         </form>
         <div class="card-body">
-            <div class="extra-buttons">
-                <span>Forgot your password?</span>
-                <a href="/resetpassword"><button class="btn btn-primary btn-block">Reset Password</button></a>
-            </div>
-            <div class="extra-buttons">
-                <span>Create an account</span>
-                <a href="/register"><button class="btn btn-info btn-block">Register</button></a>
-            </div>
+            <form action="" class="extra-buttons-container">
+                <div class="extra-buttons">
+                <label for="reset">Forgot your password?</label>
+                <input type="submit" name="reset" id="reset" class="btn btn-primary btn-block" value="Reset Password">
+                </div>
+                <div class="extra-buttons">
+                    <label for="register">Create an account</label>
+                    <input type="submit" name="register" id="register" class="btn btn-info btn-block" value="Register">
+                </div>
+            </form>
         </div>
     </div>
-
 </main>
-
 
 <th:block th:replace="partials/scripts">
 </body>
