@@ -1,5 +1,7 @@
 package com.etps.etps;
 
+import com.etps.etps.controllers.UserController;
+import com.etps.etps.models.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

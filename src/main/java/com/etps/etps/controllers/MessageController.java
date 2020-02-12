@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -50,14 +51,19 @@ public class MessageController {
     }
 
     @PostMapping("/messages/create")
-    public String submitMessage(Message message, @RequestParam String to, Model model){
-        Date date = new Date;
+    public String submitMessage(Message message, @RequestParam String to, Model model) throws ParseException {
+        Date date = new Date();
         User receivedUser = userDao.findByUsername(to);
         User sentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         sentUser = userDao.findById(sentUser.getId());
         message.setReceivedUser(receivedUser);
         message.setSentUser(sentUser);
-        message.setDate_sent((Date) df.format(date));
+        message.setDate_sent(df.parse(df.format(date)));
+        message.setBeenRead(false);
+        messageDao.save(message);
+
+        return "users/profile";
+
 
     }
 }
