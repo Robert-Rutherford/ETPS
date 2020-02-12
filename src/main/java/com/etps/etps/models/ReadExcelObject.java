@@ -1,14 +1,6 @@
 package com.etps.etps.models;
 
 public class ReadExcelObject {
-    //                new Object[] {provider.getId(),provider.getProviderName(), provider.getDescription(),
-//                        campus.getId(), campus.getCampusName(),program.getId(),program.getName(),
-//                        program.getDescription(),program.getEtpCodeId()});
-//    private long providerId;
-//    private String providerName;
-//    private String providerDescription;
-//    private long campusID;
-//    private String campusName
 
     private Provider newProvider;
     private Campus newCampus;

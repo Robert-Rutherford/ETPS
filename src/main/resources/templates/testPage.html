@@ -3,9 +3,10 @@
 <head th:replace="partials/head :: head(test)" ></head>
 <body>
 
-<form th:action="@{|/test/write|}">
-    <label for="writeButton">Write Test -> </label>
-    <input type="button" id="writeButton" value="click">
+<form th:method="POST" th:action="@{|/test/write|}">
+<!--    <label for="writeButton">Write Test -> </label>-->
+    <button th:action="submit">Write</button>
+<!--    <input type="button" id="writeButton" th:action="submit">-->
 </form>
 <form th:action="@{|/test/read|}">
     <label for="readButton">Read Test -> </label>
