@@ -1,6 +1,7 @@
 package com.etps.etps.controllers;
 
 import com.etps.etps.excelConversions.FormLayout;
+import com.etps.etps.excelConversions.ReadFromExcel;
 import com.etps.etps.excelConversions.WriteToExcel;
 import com.etps.etps.models.User;
 import com.etps.etps.repositories.Campuses;
@@ -52,7 +53,9 @@ public class testController {
 
     @PostMapping("test/read")
     public String ReadTest(){
-
+        ReadFromExcel readFromExcel = new ReadFromExcel(providerDao,campusDao,programDao);
+        File file = new File("/Users/robertlr/IdeaProjects/etps/testread1.xlsx");
+        readFromExcel.ReadExcel(file);
         return "testPage";
     }
 }

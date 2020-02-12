@@ -13,6 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.security.core.parameters.P;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.Map;
@@ -22,10 +23,15 @@ public class ReadFromExcel {
     private Campuses campusDao;
     private Programs programDao;
 
-    public void ReadFromExcel (FileInputStream file){
+    public ReadFromExcel(Providers providerDao, Campuses campusDao, Programs programDao) {
+        this.providerDao = providerDao;
+        this.campusDao = campusDao;
+        this.programDao = programDao;
+    }
+
+    public void ReadExcel (File filePath){
         try {
-
-
+            FileInputStream file = new FileInputStream(filePath);
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
             XSSFSheet sheet = workbook.getSheetAt(0);
@@ -91,8 +97,9 @@ public class ReadFromExcel {
                 ReadExcelObject excelData =  new ReadExcelObject(newProvider,newCampus,newProgram);
                 readToDatabase(excelData);
             }
-
-        }catch (Exception e)
+            file.close();
+        }
+        catch (Exception e)
         {
             e.printStackTrace();
         }

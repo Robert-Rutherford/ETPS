@@ -8,9 +8,8 @@
     <button th:action="submit">Write</button>
 <!--    <input type="button" id="writeButton" th:action="submit">-->
 </form>
-<form th:action="@{|/test/read|}">
-    <label for="readButton">Read Test -> </label>
-    <input type="button" id="readButton" value="click">
+<form th:method="POST" th:action="@{|/test/read|}">
+    <button th:action="submit">Read</button>
 </form>
 <th:block th:replace="partials/scripts :: scripts">
 </body>
