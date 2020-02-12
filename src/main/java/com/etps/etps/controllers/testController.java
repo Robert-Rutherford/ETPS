@@ -8,16 +8,18 @@ import com.etps.etps.repositories.Programs;
 import com.etps.etps.repositories.Providers;
 import com.etps.etps.repositories.Users;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 public class testController {
-//    private WriteToExcel writeToExcel;
-//    private FormLayout formLayout;
     private Users userDao;
     private Providers providerDao;
     private Campuses campusDao;
@@ -37,28 +39,51 @@ public class testController {
     }
 
     @PostMapping("/test/write")
-    public String WriteTest(){
-//        User user = new User();
-//        User user = userDao.findById(1);
+    public String WriteTest() {
+        String home = System.getProperty("user.home");
+        File file = new File(home+"/Downloads/ETPS_data.xlsx");
         User user = userDao.findByProviderId(802);
         WriteToExcel writeToExcel = new WriteToExcel();
-        Map<String, Object[]> testdata = writeToExcel.GenerateUserData(user,providerDao,campusDao,programDao);
-        File file = new File("testwrite1.xlsx");
-        writeToExcel.WriteExcel(testdata,file);
+        Map<String, Object[]> testdata = writeToExcel.GenerateUserData(user, providerDao, campusDao, programDao);
+//        File file = new File("testwrite1.xlsx");
+        writeToExcel.WriteExcel(testdata, file);
 
-        user = userDao.findByProviderId(1);
-        testdata = writeToExcel.GenerateUserData(user,providerDao,campusDao,programDao);
-        file = new File("testwrite2.xlsx");
-        writeToExcel.WriteExcel(testdata,file);
+//        user = userDao.findByProviderId(1);
+//        testdata = writeToExcel.GenerateUserData(user, providerDao, campusDao, programDao);
+//        file = new File("testwrite2.xlsx");
+//        writeToExcel.WriteExcel(testdata, file);
 
-        return "testPage";
+        return "redirect:/test";
     }
 
     @PostMapping("test/read")
-    public String ReadTest(){
-        ReadFromExcel readFromExcel = new ReadFromExcel(providerDao,campusDao,programDao);
+    public String ReadTest(Model model) {
+//        JFrame parentFrame = new JFrame("File to Read");
+//
+//        parentFrame.setSize(800, 600);
+//        parentFrame.setLocationRelativeTo(null);
+//        parentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        parentFrame.setVisible(true);
+//
+//        JFileChooser fileChooser = new JFileChooser();
+//        FileNameExtensionFilter filter = new FileNameExtensionFilter("xslx");
+//        fileChooser.setFileFilter(filter);
+//        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+//        fileChooser.setDialogTitle("Specify a file to save");
+//
+//        int userSelection = fileChooser.showSaveDialog(parentFrame);
+//        if (userSelection == JFileChooser.APPROVE_OPTION) {
+//            File selectedFile = fileChooser.getSelectedFile();
+//            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+//        }
+//        File pathTest = new File((String) Objects.requireNonNull(model.getAttribute("readFile")));
+
+
+
+        ReadFromExcel readFromExcel = new ReadFromExcel(providerDao, campusDao, programDao);
         File file = new File("/Users/robertlr/IdeaProjects/etps/testread1.xlsx");
         readFromExcel.ReadExcel(file);
+//        readFromExcel.ReadExcel(pathTest);
         return "testPage";
     }
 }

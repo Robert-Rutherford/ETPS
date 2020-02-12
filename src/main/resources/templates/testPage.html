@@ -4,11 +4,17 @@
 <body>
 
 <form th:method="POST" th:action="@{|/test/write|}">
-<!--    <label for="writeButton">Write Test -> </label>-->
+<!--    <div class="custom-file">-->
+<!--        <input type="file" class="custom-file-input" id="writeFile">-->
+<!--        <label class="custom-file-label" for="writeFile">Choose file</label>-->
+<!--    </div>-->
     <button th:action="submit">Write</button>
-<!--    <input type="button" id="writeButton" th:action="submit">-->
 </form>
 <form th:method="POST" th:action="@{|/test/read|}">
+<!--        <div class="form-group">-->
+<!--            <label for="readFile">Example file input</label>-->
+<!--            <input type="file" class="form-control-file" id="readFile">-->
+<!--        </div>-->
     <button th:action="submit">Read</button>
 </form>
 <th:block th:replace="partials/scripts :: scripts">

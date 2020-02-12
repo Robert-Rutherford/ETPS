@@ -11,12 +11,10 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.security.core.parameters.P;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Iterator;
-import java.util.Map;
 
 public class ReadFromExcel {
     private Providers providerDao;
@@ -29,7 +27,7 @@ public class ReadFromExcel {
         this.programDao = programDao;
     }
 
-    public void ReadExcel (File filePath){
+    public void ReadExcel(File filePath) {
         try {
             FileInputStream file = new FileInputStream(filePath);
             XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -38,16 +36,13 @@ public class ReadFromExcel {
 
             Iterator<Row> rowIterator = sheet.iterator();
             rowIterator.next(); //skip header
-            while (rowIterator.hasNext())
-            {
+            while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
                 //For each row, iterate through all the columns
-                if (row.getRowNum() == 0){
+                if (row.getRowNum() == 0) {
                     continue;
                 }
 
-//                Object rowObject = new Object();
-//                ReadExcelObject newRow = new ReadExcelObject();
                 Provider newProvider = new Provider();
                 Program newProgram = new Program();
                 Campus newCampus = new Campus();
@@ -55,19 +50,14 @@ public class ReadFromExcel {
                 newCampus.setProvider(newProvider);
                 newProgram.setCampus(newCampus);
 
-                // new Object[] {provider.getId(),provider.getProviderName(), provider.getDescription(),
-//                        campus.getId(), campus.getCampusName(),program.getId(),program.getName(),
-//                        program.getDescription(),program.getEtpCodeId()});
-
                 Iterator<Cell> cellIterator = row.cellIterator();
 
-                while (cellIterator.hasNext())
-                {
+                while (cellIterator.hasNext()) {
                     Cell cell = cellIterator.next();
 
                     //Check the cell type and format accordingly
                     int columnIndex = cell.getColumnIndex();
-                    switch (columnIndex){
+                    switch (columnIndex) {
                         case 0:
                             long provider_id = (long) cell.getNumericCellValue();
                             newProvider.setId(provider_id);
@@ -79,7 +69,7 @@ public class ReadFromExcel {
                             newProvider.setDescription(cell.getStringCellValue());
                             break;
                         case 3:
-                            long campus_id = (long) cell.getNumericCellValue();;
+                            long campus_id = (long) cell.getNumericCellValue();
                             newCampus.setId(campus_id);
                             break;
                         case 4:
@@ -101,19 +91,17 @@ public class ReadFromExcel {
                     }
                 }
 
-                ReadExcelObject excelData =  new ReadExcelObject(newProvider,newCampus,newProgram);
+                ReadExcelObject excelData = new ReadExcelObject(newProvider, newCampus, newProgram);
                 readToDatabase(excelData);
             }
             file.close();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    private void readToDatabase(ReadExcelObject data){
+    private void readToDatabase(ReadExcelObject data) {
 
         Provider newProvider = data.getNewProvider();
         Campus newCampus = data.getNewCampus();
