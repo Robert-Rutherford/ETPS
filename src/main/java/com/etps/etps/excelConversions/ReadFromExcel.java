@@ -52,6 +52,9 @@ public class ReadFromExcel {
                 Program newProgram = new Program();
                 Campus newCampus = new Campus();
 
+                newCampus.setProvider(newProvider);
+                newProgram.setCampus(newCampus);
+
                 // new Object[] {provider.getId(),provider.getProviderName(), provider.getDescription(),
 //                        campus.getId(), campus.getCampusName(),program.getId(),program.getName(),
 //                        program.getDescription(),program.getEtpCodeId()});
@@ -61,34 +64,38 @@ public class ReadFromExcel {
                 while (cellIterator.hasNext())
                 {
                     Cell cell = cellIterator.next();
+
                     //Check the cell type and format accordingly
                     int columnIndex = cell.getColumnIndex();
                     switch (columnIndex){
-                        case 1:
-                            newProvider.setId((long) cell.getNumericCellValue());
+                        case 0:
+                            long provider_id = (long) cell.getNumericCellValue();
+                            newProvider.setId(provider_id);
                             break;
-                        case 2:
+                        case 1:
                             newProvider.setProviderName(cell.getStringCellValue());
                             break;
-                        case 3:
+                        case 2:
                             newProvider.setDescription(cell.getStringCellValue());
                             break;
-                        case 4:
-                            newCampus.setId((long) cell.getNumericCellValue());
+                        case 3:
+                            long campus_id = (long) cell.getNumericCellValue();;
+                            newCampus.setId(campus_id);
                             break;
-                        case 5:
+                        case 4:
                             newCampus.setCampusName(cell.getStringCellValue());
                             break;
-                        case 6:
-                            newProgram.setId((long) cell.getNumericCellValue());
+                        case 5:
+                            long program_id = (long) cell.getNumericCellValue();
+                            newProgram.setId(program_id);
                             break;
-                        case 7:
+                        case 6:
                             newProgram.setName(cell.getStringCellValue());
                             break;
-                        case 8:
+                        case 7:
                             newProgram.setDescription(cell.getStringCellValue());
                             break;
-                        case 9:
+                        case 8:
                             newProgram.setEtpCodeId(cell.getStringCellValue());
                             break;
                     }
