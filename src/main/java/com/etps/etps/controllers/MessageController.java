@@ -46,7 +46,12 @@ public class MessageController {
     }
 
     @GetMapping("/messages")
-    public String showMessages(){
+    public String showMessages(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.findById(user.getId());
+
+        model.addAttribute("user", user);
+
         return "messages";
     }
 

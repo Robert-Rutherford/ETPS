@@ -8,8 +8,32 @@
     <input type="checkbox" class="custom-control-input" id="customSwitch1">
 </div>
 <div>
+    <h1>Sent</h1>
+    <ul th:each="message : ${user.sent}">
+        <li>
+            <h4 th:text="${message.title}"></h4>
+            <p>Sent To : <span th:text="${message.receivedUser.username}"></span>
+                At :
+                <span th:text="${message.dateSent}"></span>
+            </p>
+        </li>
+
+    </ul>
+
+    <h1>Received</h1>
+    <ul th:each="message : ${user.received}">
+        <li>
+            <h4 th:text="${message.title}"></h4>
+            <p>Sent From : <span th:text="${message.sentUser.username}"></span>
+                At :
+                <span th:text="${message.dateSent}"></span>
+            </p>
+        </li>
+
+    </ul>
+
 
 </div>
-<th:block th:replace="partials/scripts :: scripts">
+<th:block th:replace="partials/scripts :: scripts"></th:block>
 </body>
 </html>
