@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -48,16 +51,21 @@ public class testController {
 //        File file = new File("testwrite1.xlsx");
         writeToExcel.WriteExcel(testdata, file);
 
-//        user = userDao.findByProviderId(1);
-//        testdata = writeToExcel.GenerateUserData(user, providerDao, campusDao, programDao);
-//        file = new File("testwrite2.xlsx");
-//        writeToExcel.WriteExcel(testdata, file);
+        user = userDao.findByProviderId(1);
+        testdata = writeToExcel.GenerateUserData(user, providerDao, campusDao, programDao);
+        file = new File("testwrite2.xlsx");
+        writeToExcel.WriteExcel(testdata, file);
 
         return "redirect:/test";
     }
 
     @PostMapping("test/read")
-    public String ReadTest(Model model) {
+    public String ReadTest() {
+//        public String ReadTest
+//    }(Model model,@RequestParam("readFile") MultipartFile file,
+//                           RedirectAttributes redirectAttributes) {
+
+
 //        JFrame parentFrame = new JFrame("File to Read");
 //
 //        parentFrame.setSize(800, 600);
