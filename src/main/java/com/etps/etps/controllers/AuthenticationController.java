@@ -11,4 +11,14 @@ public class AuthenticationController {
         return "users/login";
     }
 //  verified login redirect to profile.html
+
+    @GetMapping("/register")
+    public String showRegister() {
+        return "users/register";
+    }
+
+    @GetMapping("/resetpassword")
+    public String showResetPassword() {
+        return "users/resetPassword";
+    }
 }

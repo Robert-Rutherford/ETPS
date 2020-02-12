@@ -16,7 +16,7 @@ public class User {
     @Column(nullable = false, length = 30, unique = true)
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true, nullable = true)
     private String email;
 
     @Column(nullable = false)
@@ -46,6 +46,7 @@ public class User {
         sent = copy.sent;
         received = copy.received;
     }
+
 
     public long getId() {
         return id;
