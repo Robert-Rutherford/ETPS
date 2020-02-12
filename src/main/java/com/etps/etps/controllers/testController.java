@@ -1,6 +1,5 @@
 package com.etps.etps.controllers;
 
-import com.etps.etps.excelConversions.FormLayout;
 import com.etps.etps.excelConversions.ReadFromExcel;
 import com.etps.etps.excelConversions.WriteToExcel;
 import com.etps.etps.models.User;
@@ -42,11 +41,15 @@ public class testController {
 //        User user = new User();
 //        User user = userDao.findById(1);
         User user = userDao.findByProviderId(802);
-        FormLayout formLayout = new FormLayout(userDao,programDao,providerDao,campusDao);
-        Map<String, Object[]> testdata = formLayout.GenerateUserData(user,providerDao,campusDao,programDao);
-        File file = new File("testwrite1.xlsx");
         WriteToExcel writeToExcel = new WriteToExcel();
-        writeToExcel.WriteToExcel(testdata,file);
+        Map<String, Object[]> testdata = writeToExcel.GenerateUserData(user,providerDao,campusDao,programDao);
+        File file = new File("testwrite1.xlsx");
+        writeToExcel.WriteExcel(testdata,file);
+
+        user = userDao.findByProviderId(1);
+        testdata = writeToExcel.GenerateUserData(user,providerDao,campusDao,programDao);
+        file = new File("testwrite2.xlsx");
+        writeToExcel.WriteExcel(testdata,file);
 
         return "testPage";
     }
