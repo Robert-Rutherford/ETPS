@@ -1,6 +1,7 @@
 package com.etps.etps.models;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -12,7 +13,8 @@ public class Message {
     @Column(columnDefinition = ("INT UNSIGNED"))
     private long id;
 
-    private Date dateSent;
+    @Column(nullable = false)
+    private LocalDateTime dateSent;
 
     @Column(nullable = false, length = 50)
     private String title;
@@ -40,12 +42,12 @@ public class Message {
         this.id = id;
     }
 
-    public Date getDate_sent() {
+    public LocalDateTime getDateSent() {
         return dateSent;
     }
 
-    public void setDate_sent(Date date_sent) {
-        this.dateSent = date_sent;
+    public void setDateSent(LocalDateTime dateSent) {
+        this.dateSent = dateSent;
     }
 
     public String getTitle() {

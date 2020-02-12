@@ -12,15 +12,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 @Controller
 public class MessageController {
 
-    private DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+    private DateFormat returnFormater() {
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return df;
+    }
 
+    private DateFormat df;
 
     private final Messages messageDao;
     private final Users userDao;
@@ -28,6 +35,7 @@ public class MessageController {
     public MessageController(Messages messageDao, Users userDao){
         this.messageDao = messageDao;
         this.userDao = userDao;
+        this.df = returnFormater();
     }
 
 
@@ -50,15 +58,17 @@ public class MessageController {
         return "messageForm";
     }
 
-    @PostMapping("/messages/create")
+    @PostMapping("/message/create")
     public String submitMessage(Message message, @RequestParam String to, Model model) throws ParseException {
-        Date date = new Date();
+        LocalDateTime date = LocalDateTime.now();
+//        System.out.println(date);
+
         User receivedUser = userDao.findByUsername(to);
         User sentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         sentUser = userDao.findById(sentUser.getId());
         message.setReceivedUser(receivedUser);
         message.setSentUser(sentUser);
-        message.setDate_sent(df.parse(df.format(date)));
+        message.setDateSent(date);
         message.setBeenRead(false);
         messageDao.save(message);
 
