@@ -21,26 +21,26 @@ public class FormLayout {
     private Providers providerDao;
     private Campuses campusDao;
 
-//    public FormLayout(Users userDao, Programs programsDao, Providers providerDao, Campuses campusDao) {
-//        this.userDao = userDao;
-//        this.programsDao = programsDao;
-//        this.providerDao = providerDao;
-//        this.campusDao = campusDao;
-//    }
+    public FormLayout(Users userDao, Programs programsDao, Providers providerDao, Campuses campusDao) {
+        this.userDao = userDao;
+        this.programsDao = programsDao;
+        this.providerDao = providerDao;
+        this.campusDao = campusDao;
+    }
 
-    public Map<String, Object[]> GenerateUserData(User user){
+    public Map<String, Object[]> GenerateUserData(User user, Providers providerDao, Campuses campusDao, Programs programsDao){
         Map<String, Object[]> data = new TreeMap<String, Object[]>();
         data.put("1", new Object[] {"Provider ID", "Provider Name", "Provider Description","Campus ID","Campus Name",
                 "Program ID", "Program Name", "Program Description", "ETP ID"});
         int treeNum = 2;
-//        Provider provider = providerDao.findById(user.getProvider().getId());
-        Provider provider = providerDao.findById(802);
+        Provider provider = providerDao.findById(user.getProvider().getId());
+//        Provider provider = providerDao.findById(802);
         List<Campus> campusesList = campusDao.findAllByProvider_Id(provider.getId());
         for (Campus campus: campusesList) {
             List<Program> programsList = programsDao.findAllByCampus_Id(campus.getId());
             for (Program program: programsList) {
                 data.put(Integer.toString(treeNum),
-                        new Object[] {provider.getId(),provider.getProviderName(), provider.getDescription(),
+                        new Object[] {Long.toString(provider.getId()),provider.getProviderName(), provider.getDescription(),
                                 campus.getId(), campus.getCampusName(),program.getId(),program.getName(),
                                 program.getDescription(),program.getEtpCodeId()});
                 treeNum++;
@@ -49,6 +49,11 @@ public class FormLayout {
 
         return data;
     }
+
+
+
+
+
 
 //    public static void main(String[] args) {
 //        User user = new User();

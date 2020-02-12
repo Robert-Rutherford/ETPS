@@ -32,8 +32,8 @@ public class WriteToExcel {
                 Cell cell = row.createCell(cellNum++);
                 if(obj instanceof String)
                     cell.setCellValue((String)obj);
-                else if(obj instanceof Integer)
-                    cell.setCellValue((Integer)obj);
+                else if(obj instanceof Long)
+                    cell.setCellValue((Long)obj);
             }
         }
 
