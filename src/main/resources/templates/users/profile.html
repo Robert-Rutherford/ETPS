@@ -13,6 +13,10 @@
     <div th:if="${unread > 1}">
         <p>You have <span th:text="${unread}"></span> unread messages!</p>
     </div>
+
+    <form th:action="@{/messages}">
+        <button>View Messages</button>
+    </form>
 </div>
 
 

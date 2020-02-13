@@ -7,6 +7,9 @@
 <div class="custom-control custom-switch">
     <input type="checkbox" class="custom-control-input" id="customSwitch1">
 </div>
+<form th:action="@{/message/create}">
+    <button>Write Message</button>
+</form>
 <div>
     <h1>Sent</h1>
     <ul th:each="message : ${user.sent}">

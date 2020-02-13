@@ -104,6 +104,8 @@ public class MessageController {
 //        currentUser().getReceived().remove(messageDao.findById(id));
 //        currentUser().setReceived(currentUser().getReceived());
         messageDao.findById(id).setDeleted(true);
+        messageDao.findById(id).setBeenRead(true);
+
 //        userDao.save(currentUser());
         messageDao.save(messageDao.findById(id));
         for (Message message: currentUser().getReceived()){
