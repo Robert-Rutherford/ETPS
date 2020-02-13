@@ -1,3 +1,63 @@
 footer {
     grid-area: 3 / 1 / 4 / 2;
+    background-color: #E8E8E8;
+    margin-top: 2em;
+    min-height: 5em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
+
+.powered-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    align-items: center;
+}
+
+.codey-container a:link {
+    padding: 0;
+    cursor: default;
+    margin: 0 5px;
+}
+
+.codeup-link a:link {
+    color: #769E48;
+    padding: 0;
+}
+
+.codeup-link a:visited {
+    color: #769E48;
+}
+
+.codey-duck {
+    height: 2em;
+    width: auto;
+}
+
+footer a:link {
+    color: black;
+    text-decoration: none;
+    padding: .5em;
+}
+
+footer a:visited {
+    color: black;
+}
+
+footer a:hover {
+    color: #769E48;
+}
+
+
+.menu-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+}
+
+.menu-list li {
+    margin: 0 .5em;
+}
+
