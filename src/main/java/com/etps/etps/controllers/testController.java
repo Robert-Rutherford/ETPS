@@ -12,14 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.io.File;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller
 public class testController {
@@ -36,8 +32,10 @@ public class testController {
     }
 
 
+
     @GetMapping("/test")
     public String testShow() {
+
         return "testPage";
     }
 
@@ -53,45 +51,23 @@ public class testController {
 
         user = userDao.findByProviderId(1);
         testdata = writeToExcel.GenerateUserData(user, providerDao, campusDao, programDao);
-        file = new File("testwrite2.xlsx");
+        file = new File(home+"/Downloads/ETPS_data2.xlsx");
         writeToExcel.WriteExcel(testdata, file);
 
         return "redirect:/test";
     }
 
     @PostMapping("test/read")
-    public String ReadTest() {
-//        public String ReadTest
-//    }(Model model,@RequestParam("readFile") MultipartFile file,
-//                           RedirectAttributes redirectAttributes) {
+    public String ReadTest(Model model, @RequestParam("readFile") File file) {
 
-
-//        JFrame parentFrame = new JFrame("File to Read");
-//
-//        parentFrame.setSize(800, 600);
-//        parentFrame.setLocationRelativeTo(null);
-//        parentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        parentFrame.setVisible(true);
-//
-//        JFileChooser fileChooser = new JFileChooser();
-//        FileNameExtensionFilter filter = new FileNameExtensionFilter("xslx");
-//        fileChooser.setFileFilter(filter);
-//        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-//        fileChooser.setDialogTitle("Specify a file to save");
-//
-//        int userSelection = fileChooser.showSaveDialog(parentFrame);
-//        if (userSelection == JFileChooser.APPROVE_OPTION) {
-//            File selectedFile = fileChooser.getSelectedFile();
-//            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-//        }
-//        File pathTest = new File((String) Objects.requireNonNull(model.getAttribute("readFile")));
-
-
+        File newFile = new File(file.getAbsolutePath());
+        System.out.println(file.getAbsolutePath());
 
         ReadFromExcel readFromExcel = new ReadFromExcel(providerDao, campusDao, programDao);
-        File file = new File("/Users/robertlr/IdeaProjects/etps/testread1.xlsx");
-        readFromExcel.ReadExcel(file);
+//        File file = new File("/Users/robertlr/IdeaProjects/etps/testread1.xlsx");
+//        readFromExcel.ReadExcel(file);
 //        readFromExcel.ReadExcel(pathTest);
-        return "testPage";
+        readFromExcel.ReadExcel(newFile);
+        return "redirect:/test";
     }
 }
