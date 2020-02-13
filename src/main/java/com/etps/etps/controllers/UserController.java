@@ -57,6 +57,10 @@ public class UserController {
         userDao.save(admin);
         }
 
+        if (providerDao.findById(829) == null){
+            providerDao.save(codeUp);
+        }
+
         return "redirect:/";
     }
 }
