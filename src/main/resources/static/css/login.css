@@ -1,0 +1,12 @@
+main {
+    margin-top: 2em;
+}
+.extra-buttons {
+    text-align: center;
+    margin: 1em 0;
+}
+.extra-buttons-container {
+    border: 1px solid grey;
+    border-radius: 1em;
+    padding: 0 1em;
+}

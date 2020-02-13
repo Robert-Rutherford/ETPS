@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Home')"></head>
+<head>
+    <th:block th:insert="partials/head :: head('Home')"></th:block>
+</head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
-<header class="container my-5">
-    <div class="jumbotron">
-        <h1 class="text-center display-5">Eligible Training Provider System Portal</h1>
-    </div>
-</header>
 
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<main>
+    <header class="container my-5">
+        <div class="jumbotron">
+            <h1 class="text-center display-5">Eligible Training Provider System Portal</h1>
+        </div>
+    </header>
+</main>
+
+<footer th:replace="partials/footer :: footer"></footer>
 
 <th:block th:replace="partials/scripts :: scripts">
 </body>
