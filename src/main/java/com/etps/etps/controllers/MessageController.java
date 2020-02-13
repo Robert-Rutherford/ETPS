@@ -109,7 +109,7 @@ public class MessageController {
         message.setBeenRead(false);
         messageDao.save(message);
 
-        return "users/profile";
+        return "redirect:/profile";
 
 
     }
