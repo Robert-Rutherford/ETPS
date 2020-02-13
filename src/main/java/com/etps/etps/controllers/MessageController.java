@@ -76,23 +76,7 @@ public class MessageController {
         return "messageForm";
     }
 
-    @GetMapping("/message/delete")
-    public String deleteMessage(@RequestParam long id){
-        for (Message message: currentUser().getReceived()){
-            System.out.println(message);
-        }
-            System.out.println("After");
-        currentUser().getReceived().remove(messageDao.findById(id));
-        currentUser().setReceived(currentUser().getReceived());
-        messageDao.findById(id).setReceivedUser(userDao.findByUsername("ghost"));
-        userDao.save(currentUser());
-        messageDao.save(messageDao.findById(id));
-        for (Message message: currentUser().getReceived()){
-            System.out.println(message);
-        }
 
-        return "redirect:/messages";
-    }
 
     @PostMapping("/message/create")
     public String submitMessage(Message message, @RequestParam String to, Model model) throws ParseException {
@@ -101,8 +85,6 @@ public class MessageController {
         Date date = new Date();
 
         User receivedUser = userDao.findByUsername(to);
-//        User sentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        sentUser = userDao.findById(sentUser.getId());
         message.setReceivedUser(receivedUser);
         message.setSentUser(currentUser());
         message.setDateSent(df.parse(df.format(date)));
@@ -111,6 +93,23 @@ public class MessageController {
 
         return "redirect:/profile";
 
+    }
 
+    @GetMapping("/message/delete")
+    public String deleteMessage(@RequestParam long id){
+        for (Message message: currentUser().getReceived()){
+            System.out.println(message);
+        }
+        System.out.println("After");
+//        currentUser().getReceived().remove(messageDao.findById(id));
+//        currentUser().setReceived(currentUser().getReceived());
+        messageDao.findById(id).setDeleted(true);
+//        userDao.save(currentUser());
+        messageDao.save(messageDao.findById(id));
+        for (Message message: currentUser().getReceived()){
+            System.out.println(message);
+        }
+
+        return "redirect:/messages";
     }
 }

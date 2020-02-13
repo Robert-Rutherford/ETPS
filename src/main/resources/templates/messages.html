@@ -22,11 +22,14 @@
             </form>
         </li>
 
+
     </ul>
 
     <h1>Received</h1>
     <ul th:each="message : ${user.received}">
+            <div th:if="${!message.deleted}">
         <li>
+
             <div th:if="${!message.beenRead}">
                 <p style="color: red">(Unread)</p>
             </div>
@@ -44,6 +47,7 @@
                 <button>Delete Message</button>
             </form>
         </li>
+</div>
 
     </ul>
 

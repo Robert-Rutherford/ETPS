@@ -32,6 +32,16 @@ public class Message {
 
     private boolean beenRead;
 
+    private boolean deleted = false;
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public Message(){};
 
     public long getId() {
@@ -73,6 +83,11 @@ public class Message {
     public void setReceivedUser(User receivedUser) {
         this.receivedUser = receivedUser;
     }
+
+    public void setReceivedUser() {
+        this.receivedUser = null;
+    }
+
 
     public User getSentUser() {
         return sentUser;
