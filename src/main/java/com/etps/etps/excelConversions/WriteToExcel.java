@@ -4,6 +4,7 @@ import com.etps.etps.models.*;
 import com.etps.etps.repositories.Campuses;
 import com.etps.etps.repositories.Programs;
 import com.etps.etps.repositories.Providers;
+import com.etps.etps.repositories.Submissions;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -17,11 +18,13 @@ public class WriteToExcel {
     private Providers providerDao;
     private Campuses campusDao;
     private Programs programDao;
+    private Submissions submissionDao;
 
-    public WriteToExcel(Providers providerDao, Campuses campusDao, Programs programDao) {
+    public WriteToExcel(Providers providerDao, Campuses campusDao, Programs programDao,Submissions submissionDao) {
         this.providerDao = providerDao;
         this.campusDao = campusDao;
         this.programDao = programDao;
+        this.submissionDao = submissionDao;
     }
 
     public void WriteExcel(Map<String, Object[]> data, File outPath) {
@@ -65,7 +68,6 @@ public class WriteToExcel {
         List<Provider> providers = new ArrayList<>();
         if (user.isAdmin()) {
             providers = providerDao.findAll();
-
         } else {
             providers.add(providerDao.findById(user.getProvider().getId()));
         }
@@ -87,5 +89,43 @@ public class WriteToExcel {
 
         return data;
     }
+    public Map<String, Object[]> GeneratePending(User user) {
+        TreeMap<String, Object[]> data = new TreeMap<>();
+        data.put("1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
+                "Program ID", "Program Name", "Program Description", "ETP ID"});
+        int treeNum = 2;
+        List<Provider> providers = new ArrayList<>();
+        List<Submission> submissions = new ArrayList<>();
+        submissions = submissionDao.findAll();
+        if (user.isAdmin()) {
+            for (Submission submission : submissions) {
+                if (submission.getStatus().equalsIgnoreCase("pending")){
+                    treeNum = getTreeNum(data, treeNum, submission);
+                }
+            }
+        } else {
+            for (Submission submission : submissions) {
+                if (submission.getStatus().equalsIgnoreCase("pending")&&
+                        (user.getProvider().getId() == submission.getProvider().getId())){
+                    treeNum = getTreeNum(data, treeNum, submission);
+                }
+            }
+        }
+
+        return data;
+    }
+
+    private int getTreeNum(TreeMap<String, Object[]> data, int treeNum, Submission submission) {
+        Provider provider = submission.getProvider();
+        Campus campus = submission.getCampus();
+        Program program = submission.getProgram();
+        data.put(Integer.toString(treeNum),
+                new Object[]{Long.toString(provider.getId()), provider.getProviderName(), provider.getDescription(),
+                        campus.getId(), campus.getCampusName(), program.getId(), program.getName(),
+                        program.getDescription(), program.getEtpCodeId()});
+        treeNum++;
+        return treeNum;
+    }
+
 
 }

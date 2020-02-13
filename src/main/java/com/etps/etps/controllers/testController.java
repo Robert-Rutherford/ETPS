@@ -45,8 +45,8 @@ public class testController {
 
 
         String home = System.getProperty("user.home");
-        File file = new File(home+"/Downloads/ETPS_data.xlsx");
         User user = userDao.findByProviderId(802);
+        File file = new File(home+"/Downloads/ETPS_"+user.getProvider().getId()+"_"+user.getProvider().getProviderName()+"_All.xlsx");
         WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao);
         Map<String, Object[]> testdata = writeToExcel.GenerateUserData(user);
 //        File file = new File("testwrite1.xlsx");
@@ -54,8 +54,17 @@ public class testController {
 
         user = userDao.findByProviderId(1);
         testdata = writeToExcel.GenerateUserData(user);
-        file = new File(home+"/Downloads/ETPS_data2.xlsx");
+        file = new File(home+"/Downloads/ETPS_data_All.xlsx");
         writeToExcel.WriteExcel(testdata, file);
+
+
+        user = userDao.findByProviderId(802);
+        file = new File(home+"/Downloads/ETPS_"+user.getProvider().getId()+"_"+user.getProvider().getProviderName()+"_Pending.xlsx");
+        testdata = writeToExcel.GenerateUserData(user);
+        writeToExcel.WriteExcel(testdata, file);
+
+
+
 
         return "redirect:/test";
     }
