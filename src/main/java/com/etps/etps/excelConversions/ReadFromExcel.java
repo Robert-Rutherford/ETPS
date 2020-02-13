@@ -1,12 +1,10 @@
 package com.etps.etps.excelConversions;
 
-import com.etps.etps.models.Campus;
-import com.etps.etps.models.Program;
-import com.etps.etps.models.Provider;
-import com.etps.etps.models.ReadExcelObject;
+import com.etps.etps.models.*;
 import com.etps.etps.repositories.Campuses;
 import com.etps.etps.repositories.Programs;
 import com.etps.etps.repositories.Providers;
+import com.etps.etps.repositories.Submissions;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -14,17 +12,21 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Date;
 import java.util.Iterator;
 
 public class ReadFromExcel {
     private Providers providerDao;
     private Campuses campusDao;
     private Programs programDao;
+    private Submissions submissionDao;
 
-    public ReadFromExcel(Providers providerDao, Campuses campusDao, Programs programDao) {
+
+    public ReadFromExcel(Providers providerDao, Campuses campusDao, Programs programDao,Submissions submissionDao) {
         this.providerDao = providerDao;
         this.campusDao = campusDao;
         this.programDao = programDao;
+        this.submissionDao = submissionDao;
     }
 
     public void ReadExcel(File filePath) {
@@ -107,11 +109,19 @@ public class ReadFromExcel {
         Campus newCampus = data.getNewCampus();
         Program newProgram = data.getNewProgram();
 
+        Submission newSubmission = new Submission();
+        newSubmission.setStatus("pending");
+        newSubmission.setProvider(newProvider);
+        newSubmission.setCampus(newCampus);
+        newSubmission.setProgram(newProgram);
+        newSubmission.setDeadline(new Date());
+
         providerDao.save(newProvider);
         campusDao.save(newCampus);
         programDao.save(newProgram);
-
+        submissionDao.save(newSubmission);
 
     }
+
 
 }

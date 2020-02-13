@@ -1,9 +1,6 @@
 package com.etps.etps.excelConversions;
 
-import com.etps.etps.models.Campus;
-import com.etps.etps.models.Program;
-import com.etps.etps.models.Provider;
-import com.etps.etps.models.User;
+import com.etps.etps.models.*;
 import com.etps.etps.repositories.Campuses;
 import com.etps.etps.repositories.Programs;
 import com.etps.etps.repositories.Providers;
@@ -17,6 +14,16 @@ import java.io.FileOutputStream;
 import java.util.*;
 
 public class WriteToExcel {
+    private Providers providerDao;
+    private Campuses campusDao;
+    private Programs programDao;
+
+    public WriteToExcel(Providers providerDao, Campuses campusDao, Programs programDao) {
+        this.providerDao = providerDao;
+        this.campusDao = campusDao;
+        this.programDao = programDao;
+    }
+
     public void WriteExcel(Map<String, Object[]> data, File outPath) {
 
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -50,7 +57,7 @@ public class WriteToExcel {
 
     }
 
-    public Map<String, Object[]> GenerateUserData(User user, Providers providerDao, Campuses campusDao, Programs programsDao) {
+    public Map<String, Object[]> GenerateUserData(User user) {
         TreeMap<String, Object[]> data = new TreeMap<>();
         data.put("1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
                 "Program ID", "Program Name", "Program Description", "ETP ID"});
@@ -67,7 +74,7 @@ public class WriteToExcel {
             List<Campus> campusesList = campusDao.findAllByProvider_Id(provider.getId());
 
             for (Campus campus : campusesList) {
-                List<Program> programsList = programsDao.findAllByCampus_Id(campus.getId());
+                List<Program> programsList = programDao.findAllByCampus_Id(campus.getId());
                 for (Program program : programsList) {
                     data.put(Integer.toString(treeNum),
                             new Object[]{Long.toString(provider.getId()), provider.getProviderName(), provider.getDescription(),
