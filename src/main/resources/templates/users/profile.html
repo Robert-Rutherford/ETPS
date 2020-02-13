@@ -7,7 +7,7 @@
         profile page here
     </p>
 
-    <div>
+    <div th:if="${unread > 0}">
         <p>You have <span th:text="${unread}"></span> unread messages!</p>
     </div>
 </div>
