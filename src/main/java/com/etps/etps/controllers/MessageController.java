@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class MessageController {
@@ -56,6 +57,7 @@ public class MessageController {
         System.out.println(currentUser().getId());
         System.out.println(message.getReceivedUser().getId());
         model.addAttribute("message", message);
+        messageDao.save(message);
         return "message";
     }
 
@@ -72,6 +74,24 @@ public class MessageController {
 
         model.addAttribute("message", new Message());
         return "messageForm";
+    }
+
+    @GetMapping("/message/delete")
+    public String deleteMessage(@RequestParam long id){
+        for (Message message: currentUser().getReceived()){
+            System.out.println(message);
+        }
+            System.out.println("After");
+        currentUser().getReceived().remove(messageDao.findById(id));
+        currentUser().setReceived(currentUser().getReceived());
+        messageDao.findById(id).setReceivedUser(userDao.findByUsername("ghost"));
+        userDao.save(currentUser());
+        messageDao.save(messageDao.findById(id));
+        for (Message message: currentUser().getReceived()){
+            System.out.println(message);
+        }
+
+        return "redirect:/messages";
     }
 
     @PostMapping("/message/create")

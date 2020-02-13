@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ProfileController {
 
+    private User currentUser(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.findById(user.getId());
+        return user;
+    }
+
     private Users userDao;
 
     public ProfileController(Users userDao){
@@ -20,17 +26,16 @@ public class ProfileController {
     public String displayProfile(Model model){
 
 //        Grabbing and assigning current user
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        user = userDao.findById(user.getId());
+
 
         int unread = 0;
 
-        for (Message message: user.getReceived()){
+        for (Message message: currentUser().getReceived()){
             if (!message.isBeenRead()){
                 unread++;
             }
         }
-        model.addAttribute("user",user);
+        model.addAttribute("user",currentUser());
         model.addAttribute("unread", unread);
 
         return "users/profile";

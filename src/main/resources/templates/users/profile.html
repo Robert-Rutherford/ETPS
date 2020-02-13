@@ -6,9 +6,13 @@
     <p>
         profile page here
     </p>
+
+    <div>
+        <p>You have <span th:text="${unread}"></span> unread messages!</p>
+    </div>
 </div>
 
 
-<th:block th:replace="partials/scripts">
+<th:block th:replace="partials/scripts"></th:block>
 </body>
 </html>

@@ -17,7 +17,7 @@
                 <span th:text="${message.dateSent}"></span>
             </p>
             <form th:action="@{/message}">
-                <input type="hidden" th:value="${message.id}">
+                <input type="hidden" th:value="${message.id}" name="id">
                 <button>View Message</button>
             </form>
         </li>
@@ -39,6 +39,10 @@
                     <input type="hidden" th:value="${message.id}" name="id">
                     <button>View Message</button>
                 </form>
+            <form th:action="@{/message/delete}">
+                <input type="hidden" th:value="${message.id}" name="id">
+                <button>Delete Message</button>
+            </form>
         </li>
 
     </ul>
