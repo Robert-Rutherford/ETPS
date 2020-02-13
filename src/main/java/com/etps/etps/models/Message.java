@@ -39,6 +39,7 @@ public class Message {
     }
 
     public void setDeleted(boolean deleted) {
+
         this.deleted = deleted;
     }
 
