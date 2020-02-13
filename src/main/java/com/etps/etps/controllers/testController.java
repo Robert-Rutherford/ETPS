@@ -2,11 +2,9 @@ package com.etps.etps.controllers;
 
 import com.etps.etps.excelConversions.ReadFromExcel;
 import com.etps.etps.excelConversions.WriteToExcel;
+import com.etps.etps.models.DaoCombiner;
 import com.etps.etps.models.User;
-import com.etps.etps.repositories.Campuses;
-import com.etps.etps.repositories.Programs;
-import com.etps.etps.repositories.Providers;
-import com.etps.etps.repositories.Users;
+import com.etps.etps.repositories.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,34 +21,39 @@ public class testController {
     private Providers providerDao;
     private Campuses campusDao;
     private Programs programDao;
+    private Submissions submissionDao;
 
-    public testController(Users userDao, Providers providerDao, Campuses campusDao, Programs programDao) {
+    public testController(Users userDao, Providers providerDao, Campuses campusDao, Programs programDao, Submissions submissionDao) {
         this.userDao = userDao;
         this.providerDao = providerDao;
         this.campusDao = campusDao;
         this.programDao = programDao;
+        this.submissionDao = submissionDao;
     }
 
 
 
     @GetMapping("/test")
     public String testShow() {
-
         return "testPage";
     }
 
     @PostMapping("/test/write")
     public String WriteTest() {
+
+        DaoCombiner daoCombiner = new DaoCombiner(userDao,providerDao,campusDao,programDao);
+
+
         String home = System.getProperty("user.home");
         File file = new File(home+"/Downloads/ETPS_data.xlsx");
         User user = userDao.findByProviderId(802);
-        WriteToExcel writeToExcel = new WriteToExcel();
-        Map<String, Object[]> testdata = writeToExcel.GenerateUserData(user, providerDao, campusDao, programDao);
+        WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao);
+        Map<String, Object[]> testdata = writeToExcel.GenerateUserData(user);
 //        File file = new File("testwrite1.xlsx");
         writeToExcel.WriteExcel(testdata, file);
 
         user = userDao.findByProviderId(1);
-        testdata = writeToExcel.GenerateUserData(user, providerDao, campusDao, programDao);
+        testdata = writeToExcel.GenerateUserData(user);
         file = new File(home+"/Downloads/ETPS_data2.xlsx");
         writeToExcel.WriteExcel(testdata, file);
 
@@ -60,10 +63,12 @@ public class testController {
     @PostMapping("test/read")
     public String ReadTest(Model model, @RequestParam("readFile") File file) {
 
+        DaoCombiner daoCombiner = new DaoCombiner(userDao,providerDao,campusDao,programDao);
+
         File newFile = new File(file.getAbsolutePath());
         System.out.println(file.getAbsolutePath());
 
-        ReadFromExcel readFromExcel = new ReadFromExcel(providerDao, campusDao, programDao);
+        ReadFromExcel readFromExcel = new ReadFromExcel(providerDao, campusDao, programDao, submissionDao);
 //        File file = new File("/Users/robertlr/IdeaProjects/etps/testread1.xlsx");
 //        readFromExcel.ReadExcel(file);
 //        readFromExcel.ReadExcel(pathTest);

@@ -29,4 +29,11 @@ INSERT INTO programs (id, description, etp_code_id, name, campus_id) VALUES
 (8851,'Computer and Information','Netw0300','Network Administrator AAS',1496),
 (8852,'Computer and Information','Comp0300','Computer Programing AAS',1496);
 
-
+# submissions
+INSERT INTO submissions (deadline, status, campus_id, program_id, provider_id) VALUES
+('2020-01-01','approved',1952,8841,802),
+('2020-01-01','approved',1952,8842,802),
+('2020-01-01','approved',1952,8843,802),
+('2020-01-01','approved',1952,8844,802),
+('2020-01-01','approved',1952,8851,803),
+('2020-01-01','approved',1952,8852,803);
