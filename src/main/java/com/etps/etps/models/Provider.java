@@ -14,6 +14,7 @@ public class Provider {
     @Column(unique = true)
     private String providerName;
 
+    @Column(length = 1000)
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
@@ -55,7 +56,7 @@ public class Provider {
         return users;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUsers(User user) {
+        this.users.add(user);
     }
 }
