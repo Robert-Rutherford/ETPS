@@ -16,6 +16,10 @@
                 At :
                 <span th:text="${message.dateSent}"></span>
             </p>
+            <form th:action="@{/message}">
+                <input type="hidden" th:value="${message.id}">
+                <button>View Message</button>
+            </form>
         </li>
 
     </ul>
@@ -23,11 +27,18 @@
     <h1>Received</h1>
     <ul th:each="message : ${user.received}">
         <li>
+            <div th:if="${!message.beenRead}">
+                <p style="color: red">(Unread)</p>
+            </div>
             <h4 th:text="${message.title}"></h4>
             <p>Sent From : <span th:text="${message.sentUser.username}"></span>
                 At :
                 <span th:text="${message.dateSent}"></span>
             </p>
+                <form th:action="@{/message}">
+                    <input type="hidden" th:value="${message.id}" name="id">
+                    <button>View Message</button>
+                </form>
         </li>
 
     </ul>

@@ -1,12 +1,17 @@
 package com.etps.etps.controllers;
 
+import com.etps.etps.models.Message;
 import com.etps.etps.models.Provider;
 import com.etps.etps.models.User;
 import com.etps.etps.repositories.Providers;
 import com.etps.etps.repositories.Users;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -20,9 +25,10 @@ public class UserController {
         this.providerDao = providerDao;
     }
 
+
+//    Creating test users for demonstration
     @GetMapping("users/test")
     public String createTestUsers(){
-
 
         Provider codeUp = new Provider();
         codeUp.setId(829);
@@ -63,4 +69,7 @@ public class UserController {
 
         return "redirect:/";
     }
+
+
+
 }

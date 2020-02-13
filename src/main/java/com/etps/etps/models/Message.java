@@ -14,7 +14,7 @@ public class Message {
     private long id;
 
     @Column(nullable = false)
-    private LocalDateTime dateSent;
+    private Date dateSent;
 
     @Column(nullable = false, length = 50)
     private String title;
@@ -42,11 +42,11 @@ public class Message {
         this.id = id;
     }
 
-    public LocalDateTime getDateSent() {
+    public Date getDateSent() {
         return dateSent;
     }
 
-    public void setDateSent(LocalDateTime dateSent) {
+    public void setDateSent(Date dateSent) {
         this.dateSent = dateSent;
     }
 
