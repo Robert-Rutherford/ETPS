@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
 import java.util.*;
 
 public class WriteToExcel {
-    public void WriteExcel(Map<String, Object[]> data, File outPath){
+    public void WriteExcel(Map<String, Object[]> data, File outPath) {
 
         XSSFWorkbook workbook = new XSSFWorkbook();
 
@@ -26,58 +26,53 @@ public class WriteToExcel {
         Set<String> keyset = data.keySet();
 
         int rowNum = 0;
-        for (String key : keyset)
-        {
+        for (String key : keyset) {
             Row row = sheet.createRow(rowNum++);
-            Object [] objArr = data.get(key);
+            Object[] objArr = data.get(key);
             int cellNum = 0;
-            for (Object obj : objArr)
-            {
+            for (Object obj : objArr) {
                 Cell cell = row.createCell(cellNum++);
-                if(obj instanceof String)
-                    cell.setCellValue((String)obj);
-                else if(obj instanceof Long)
-                    cell.setCellValue((Long)obj);
+                if (obj instanceof String)
+                    cell.setCellValue((String) obj);
+                else if (obj instanceof Long)
+                    cell.setCellValue((Long) obj);
             }
         }
 
-        try{
+        try {
             FileOutputStream out = new FileOutputStream(outPath);
             workbook.write(out);
             out.close();
-            System.out.println("file written to "+ outPath);
-        }catch (Exception e){
+            System.out.println("file written to " + outPath);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public Map<String, Object[]> GenerateUserData(User user, Providers providerDao, Campuses campusDao, Programs programsDao){
+    public Map<String, Object[]> GenerateUserData(User user, Providers providerDao, Campuses campusDao, Programs programsDao) {
         TreeMap<String, Object[]> data = new TreeMap<>();
-        data.put("1", new Object[] {"Provider ID", "Provider Name", "Provider Description","Campus ID","Campus Name",
+        data.put("1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
                 "Program ID", "Program Name", "Program Description", "ETP ID"});
         int treeNum = 2;
         List<Provider> providers = new ArrayList<>();
-        if (user.isAdmin()){
+        if (user.isAdmin()) {
             providers = providerDao.findAll();
 
-        }else {
+        } else {
             providers.add(providerDao.findById(user.getProvider().getId()));
         }
 
-//        Provider provider = providerDao.findById(user.getProvider().getId());
-//        Provider provider = providerDao.findById(802);
-
-        for (Provider provider: providers) {
+        for (Provider provider : providers) {
             List<Campus> campusesList = campusDao.findAllByProvider_Id(provider.getId());
 
-            for (Campus campus: campusesList) {
+            for (Campus campus : campusesList) {
                 List<Program> programsList = programsDao.findAllByCampus_Id(campus.getId());
-                for (Program program: programsList) {
+                for (Program program : programsList) {
                     data.put(Integer.toString(treeNum),
-                            new Object[] {Long.toString(provider.getId()),provider.getProviderName(), provider.getDescription(),
-                                    campus.getId(), campus.getCampusName(),program.getId(),program.getName(),
-                                    program.getDescription(),program.getEtpCodeId()});
+                            new Object[]{Long.toString(provider.getId()), provider.getProviderName(), provider.getDescription(),
+                                    campus.getId(), campus.getCampusName(), program.getId(), program.getName(),
+                                    program.getDescription(), program.getEtpCodeId()});
                     treeNum++;
                 }
             }

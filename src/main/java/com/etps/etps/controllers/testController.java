@@ -8,16 +8,17 @@ import com.etps.etps.repositories.Programs;
 import com.etps.etps.repositories.Providers;
 import com.etps.etps.repositories.Users;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.io.File;
 import java.util.Map;
 
 @Controller
 public class testController {
-//    private WriteToExcel writeToExcel;
-//    private FormLayout formLayout;
     private Users userDao;
     private Providers providerDao;
     private Campuses campusDao;
@@ -31,34 +32,42 @@ public class testController {
     }
 
 
+
     @GetMapping("/test")
     public String testShow() {
+
         return "testPage";
     }
 
     @PostMapping("/test/write")
-    public String WriteTest(){
-//        User user = new User();
-//        User user = userDao.findById(1);
+    public String WriteTest() {
+        String home = System.getProperty("user.home");
+        File file = new File(home+"/Downloads/ETPS_data.xlsx");
         User user = userDao.findByProviderId(802);
         WriteToExcel writeToExcel = new WriteToExcel();
-        Map<String, Object[]> testdata = writeToExcel.GenerateUserData(user,providerDao,campusDao,programDao);
-        File file = new File("testwrite1.xlsx");
-        writeToExcel.WriteExcel(testdata,file);
+        Map<String, Object[]> testdata = writeToExcel.GenerateUserData(user, providerDao, campusDao, programDao);
+//        File file = new File("testwrite1.xlsx");
+        writeToExcel.WriteExcel(testdata, file);
 
         user = userDao.findByProviderId(1);
-        testdata = writeToExcel.GenerateUserData(user,providerDao,campusDao,programDao);
-        file = new File("testwrite2.xlsx");
-        writeToExcel.WriteExcel(testdata,file);
+        testdata = writeToExcel.GenerateUserData(user, providerDao, campusDao, programDao);
+        file = new File(home+"/Downloads/ETPS_data2.xlsx");
+        writeToExcel.WriteExcel(testdata, file);
 
-        return "testPage";
+        return "redirect:/test";
     }
 
     @PostMapping("test/read")
-    public String ReadTest(){
-        ReadFromExcel readFromExcel = new ReadFromExcel(providerDao,campusDao,programDao);
-        File file = new File("/Users/robertlr/IdeaProjects/etps/testread1.xlsx");
-        readFromExcel.ReadExcel(file);
-        return "testPage";
+    public String ReadTest(Model model, @RequestParam("readFile") File file) {
+
+        File newFile = new File(file.getAbsolutePath());
+        System.out.println(file.getAbsolutePath());
+
+        ReadFromExcel readFromExcel = new ReadFromExcel(providerDao, campusDao, programDao);
+//        File file = new File("/Users/robertlr/IdeaProjects/etps/testread1.xlsx");
+//        readFromExcel.ReadExcel(file);
+//        readFromExcel.ReadExcel(pathTest);
+        readFromExcel.ReadExcel(newFile);
+        return "redirect:/test";
     }
 }
