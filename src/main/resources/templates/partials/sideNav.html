@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:fragment="side-nav" class="side-nav-container">
+    <div class="side-nav">
+        <ul>
+            <li><div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                            <span class="test">Messages</span>
+                        </button>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            <a href="/about">Inbox</a>
+                            <a href="/about">Outbox</a>
+                            <a href="/about">New Message</a>
+                        </div>
+                    </div>
+                </div>
+            </div></li>
+            <li><a href="/submission">
+                <div class="card">
+                    <div class="card-header">
+                        <span>Submissions</span>
+                    </div>
+                </div>
+            </a></li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

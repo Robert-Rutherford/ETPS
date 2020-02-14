@@ -10,6 +10,10 @@
     font-size: 14pt;
 }
 
+hr {
+    width: calc(100vw - 20%);
+}
+
 .team-header {
     text-align: center;
 }
@@ -24,12 +28,12 @@
 }
 
 .member {
-    width: 17em;
+    width: 15em;
     height: auto;
     border: 1px solid grey;
     border-radius: 1em;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr auto;
     justify-items: center;
     align-items: center;
@@ -42,68 +46,34 @@
     width: 12em;
     height: 12em;
     border-radius: 50%;
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 1 / 1 / 2 / 4;
     margin-top: .5em;
     box-shadow: 0 7px 7px -2px grey;
 }
 
 .member > span {
-    grid-area: 2 / 1 / 3 / 2;
+    grid-area: 2 / 1 / 3 / 4;
+    margin-top: .5em;
 }
 
 .member a {
-    width: 100%;
-    color: black;
-    text-decoration: none;
-}
-
-.member a:visited {
-    color: black;
-}
-
-.member a:hover {
-    color: grey;
+    width: auto;
+    margin: 1em;
 }
 
 .member a:nth-child(3) {
     grid-area: 3 / 1 / 4 / 2;
 }
 .member a:nth-child(4) {
-    grid-area: 4 / 1 / 5 / 2;
+    grid-area: 3 / 2 / 4 / 3;
 }
 .member a:nth-child(5) {
-    grid-area: 5 / 1 / 6 / 2;
-}
-/*.member a {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: end;*/
-/*    margin: 1em;*/
-/*}*/
-
-.profile-container {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: auto;
-    margin-bottom: .5em;
-    align-items: center;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-}
-
-.profile-container > img {
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 3 / 3 / 4 / 4;
 }
 
 .profile-logo {
     width: 50px;
     height: 50px;
     justify-self: center;
-}
-
-.profile-container > span {
-    grid-area: 1 / 2 / 2 / 3;
-    margin-left: .5em;
-    font-weight: bold;
 }
 
