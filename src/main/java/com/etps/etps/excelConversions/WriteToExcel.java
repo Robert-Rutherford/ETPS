@@ -97,6 +97,7 @@ public class WriteToExcel {
         List<Provider> providers = new ArrayList<>();
         List<Submission> submissions = new ArrayList<>();
         submissions = submissionDao.findAll();
+
         if (user.isAdmin()) {
             for (Submission submission : submissions) {
                 if (submission.getStatus().equalsIgnoreCase("pending")){

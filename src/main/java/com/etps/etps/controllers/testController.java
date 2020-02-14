@@ -61,11 +61,13 @@ public class testController {
 
         user = userDao.findByProviderId(900);
         file = new File(home+"/Downloads/ETPS_"+user.getProvider().getId()+"_"+user.getProvider().getProviderName()+"_Pending.xlsx");
-        testdata = writeToExcel.GenerateUserData(user);
+        testdata = writeToExcel.GeneratePending(user);
         writeToExcel.WriteExcel(testdata, file);
 
-
-
+        user = userDao.findByProviderId(1);
+        file = new File(home+"/Downloads/ETPS_All_Pending.xlsx");
+        testdata = writeToExcel.GeneratePending(user);
+        writeToExcel.WriteExcel(testdata, file);
 
 
         return "redirect:/test";
