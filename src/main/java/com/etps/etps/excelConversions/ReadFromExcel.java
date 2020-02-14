@@ -1,35 +1,35 @@
 package com.etps.etps.excelConversions;
 
-import com.etps.etps.models.Campus;
-import com.etps.etps.models.Program;
-import com.etps.etps.models.Provider;
-import com.etps.etps.models.ReadExcelObject;
+import com.etps.etps.models.*;
 import com.etps.etps.repositories.Campuses;
 import com.etps.etps.repositories.Programs;
 import com.etps.etps.repositories.Providers;
+import com.etps.etps.repositories.Submissions;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.security.core.parameters.P;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Date;
 import java.util.Iterator;
-import java.util.Map;
 
 public class ReadFromExcel {
     private Providers providerDao;
     private Campuses campusDao;
     private Programs programDao;
+    private Submissions submissionDao;
 
-    public ReadFromExcel(Providers providerDao, Campuses campusDao, Programs programDao) {
+
+    public ReadFromExcel(Providers providerDao, Campuses campusDao, Programs programDao,Submissions submissionDao) {
         this.providerDao = providerDao;
         this.campusDao = campusDao;
         this.programDao = programDao;
+        this.submissionDao = submissionDao;
     }
 
-    public void ReadExcel (File filePath){
+    public void ReadExcel(File filePath , User user) {
         try {
             FileInputStream file = new FileInputStream(filePath);
             XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -38,16 +38,13 @@ public class ReadFromExcel {
 
             Iterator<Row> rowIterator = sheet.iterator();
             rowIterator.next(); //skip header
-            while (rowIterator.hasNext())
-            {
+            while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
                 //For each row, iterate through all the columns
-                if (row.getRowNum() == 0){
+                if (row.getRowNum() == 0) {
                     continue;
                 }
 
-//                Object rowObject = new Object();
-//                ReadExcelObject newRow = new ReadExcelObject();
                 Provider newProvider = new Provider();
                 Program newProgram = new Program();
                 Campus newCampus = new Campus();
@@ -55,19 +52,14 @@ public class ReadFromExcel {
                 newCampus.setProvider(newProvider);
                 newProgram.setCampus(newCampus);
 
-                // new Object[] {provider.getId(),provider.getProviderName(), provider.getDescription(),
-//                        campus.getId(), campus.getCampusName(),program.getId(),program.getName(),
-//                        program.getDescription(),program.getEtpCodeId()});
-
                 Iterator<Cell> cellIterator = row.cellIterator();
 
-                while (cellIterator.hasNext())
-                {
+                while (cellIterator.hasNext()) {
                     Cell cell = cellIterator.next();
 
                     //Check the cell type and format accordingly
                     int columnIndex = cell.getColumnIndex();
-                    switch (columnIndex){
+                    switch (columnIndex) {
                         case 0:
                             long provider_id = (long) cell.getNumericCellValue();
                             newProvider.setId(provider_id);
@@ -79,7 +71,7 @@ public class ReadFromExcel {
                             newProvider.setDescription(cell.getStringCellValue());
                             break;
                         case 3:
-                            long campus_id = (long) cell.getNumericCellValue();;
+                            long campus_id = (long) cell.getNumericCellValue();
                             newCampus.setId(campus_id);
                             break;
                         case 4:
@@ -101,29 +93,37 @@ public class ReadFromExcel {
                     }
                 }
 
-                ReadExcelObject excelData =  new ReadExcelObject(newProvider,newCampus,newProgram);
-                readToDatabase(excelData);
+                ReadExcelObject excelData = new ReadExcelObject(newProvider, newCampus, newProgram);
+                readToDatabase(excelData,user);
             }
             file.close();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    private void readToDatabase(ReadExcelObject data){
+    private void readToDatabase(ReadExcelObject data ,User user) {
 
         Provider newProvider = data.getNewProvider();
         Campus newCampus = data.getNewCampus();
         Program newProgram = data.getNewProgram();
+        if (user.getProvider().getId() != newProvider.getId()){
+            return;
+        }
+        Submission newSubmission = new Submission();
+        newSubmission.setStatus("pending");
+        newSubmission.setProvider(newProvider);
+        newSubmission.setCampus(newCampus);
+        newSubmission.setProgram(newProgram);
+        newSubmission.setDeadline(new Date());
 
         providerDao.save(newProvider);
         campusDao.save(newCampus);
         programDao.save(newProgram);
-
+        submissionDao.save(newSubmission);
 
     }
+
 
 }
