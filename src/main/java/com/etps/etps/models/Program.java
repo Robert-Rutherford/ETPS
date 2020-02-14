@@ -24,6 +24,8 @@ public class Program {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "program")
     private List<Submission> submissions;
+//    @OneToOne
+//    private Submission submission;
 
     public Program(){};
 
