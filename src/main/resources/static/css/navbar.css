@@ -6,3 +6,16 @@ nav {
 {
     color: #8AC152;
 }
+
+.twc-logo-link {
+    display: inline-block;
+    margin-right: 1rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+.twc-logo-link img {
+    height: 3.5em;
+    width: auto;
+    border-radius: 50%;
+}

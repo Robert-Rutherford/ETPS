@@ -2,17 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <th:block th:insert="partials/head :: head('Home')"></th:block>
+    <th:block th:replace="${user != null} ? ~{/partials/head :: sidenav} : _"></th:block>
 </head>
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <main>
-    <header class="container my-5">
-        <div class="jumbotron">
-            <h1 class="text-center display-5">Eligible Training Provider System Portal</h1>
-        </div>
-    </header>
+    <th:block th:replace="${user != null} ? ~{/partials/sideNav :: side-nav} : _"></th:block>
+
+    <section class="main-content">
+        <header class="container my-5">
+            <div class="jumbotron">
+                <h1 class="text-center display-5">Eligible Training Provider System Portal</h1>
+            </div>
+        </header>
+    </section>
 </main>
 
 <footer th:replace="partials/footer :: footer"></footer>

@@ -1,7 +1,7 @@
 footer {
     grid-area: 3 / 1 / 4 / 2;
     background-color: #E8E8E8;
-    margin-top: 2em;
+    /*margin-top: 2em;*/
     min-height: 5em;
     display: flex;
     justify-content: space-evenly;
