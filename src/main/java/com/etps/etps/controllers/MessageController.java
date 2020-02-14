@@ -91,26 +91,17 @@ public class MessageController {
         message.setBeenRead(false);
         messageDao.save(message);
 
-        return "redirect:/profile";
+        return "redirect:/";
 
     }
 
     @GetMapping("/message/delete")
     public String deleteMessage(@RequestParam long id){
-        for (Message message: currentUser().getReceived()){
-            System.out.println(message);
-        }
-        System.out.println("After");
-//        currentUser().getReceived().remove(messageDao.findById(id));
-//        currentUser().setReceived(currentUser().getReceived());
+
         messageDao.findById(id).setDeleted(true);
         messageDao.findById(id).setBeenRead(true);
-
-//        userDao.save(currentUser());
         messageDao.save(messageDao.findById(id));
-        for (Message message: currentUser().getReceived()){
-            System.out.println(message);
-        }
+
 
         return "redirect:/messages";
     }

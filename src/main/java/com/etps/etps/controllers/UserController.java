@@ -25,6 +25,18 @@ public class UserController {
         this.providerDao = providerDao;
     }
 
+    private User currentUser(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.findById(user.getId());
+        return user;
+    }
+
+    @GetMapping("/login/success")
+    public String setLoggedInUser(Model model){
+        model.addAttribute("user", currentUser());
+        return "redirect:/";
+    }
+
 
 //    Creating test users for demonstration
     @GetMapping("users/test")
