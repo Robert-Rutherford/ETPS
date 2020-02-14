@@ -63,7 +63,7 @@ public class WriteToExcel {
     public Map<String, Object[]> GenerateUserData(User user) {
         TreeMap<String, Object[]> data = new TreeMap<>();
         data.put("1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
-                "Program ID", "Program Name", "Program Description", "ETP ID"});
+                "Program ID", "Program Name", "Program Description", "ETP ID","Status"});
         int treeNum = 2;
         List<Provider> providers = new ArrayList<>();
         if (user.isAdmin()) {
@@ -81,7 +81,7 @@ public class WriteToExcel {
                     data.put(Integer.toString(treeNum),
                             new Object[]{Long.toString(provider.getId()), provider.getProviderName(), provider.getDescription(),
                                     campus.getId(), campus.getCampusName(), program.getId(), program.getName(),
-                                    program.getDescription(), program.getEtpCodeId()});
+                                    program.getDescription(), program.getEtpCodeId(),submissionDao.findByProgram_Id(program.getId()).getStatus()});
                     treeNum++;
                 }
             }
@@ -92,7 +92,7 @@ public class WriteToExcel {
     public Map<String, Object[]> GeneratePending(User user) {
         TreeMap<String, Object[]> data = new TreeMap<>();
         data.put("1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
-                "Program ID", "Program Name", "Program Description", "ETP ID"});
+                "Program ID", "Program Name", "Program Description", "ETP ID", "Status"});
         int treeNum = 2;
         List<Provider> providers = new ArrayList<>();
         List<Submission> submissions = new ArrayList<>();
@@ -123,7 +123,7 @@ public class WriteToExcel {
         data.put(Integer.toString(treeNum),
                 new Object[]{Long.toString(provider.getId()), provider.getProviderName(), provider.getDescription(),
                         campus.getId(), campus.getCampusName(), program.getId(), program.getName(),
-                        program.getDescription(), program.getEtpCodeId()});
+                        program.getDescription(), program.getEtpCodeId(), submission.getStatus()});
         treeNum++;
         return treeNum;
     }

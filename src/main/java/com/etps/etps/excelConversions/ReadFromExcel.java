@@ -90,6 +90,9 @@ public class ReadFromExcel {
                         case 8:
                             newProgram.setEtpCodeId(cell.getStringCellValue());
                             break;
+                        case 9:
+//                            status column would be here. Not needed as new submissions will always be pending
+                            break;
                     }
                 }
 

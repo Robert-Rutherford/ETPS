@@ -1,6 +1,7 @@
 package com.etps.etps.controllers;
 
 import com.etps.etps.excelConversions.ReadFromExcel;
+import com.etps.etps.excelConversions.StatusChange;
 import com.etps.etps.excelConversions.WriteToExcel;
 import com.etps.etps.models.DaoCombiner;
 import com.etps.etps.models.User;
@@ -89,4 +90,14 @@ public class testController {
         readFromExcel.ReadExcel(newFile,user);
         return "redirect:/test";
     }
+
+
+    @PostMapping("test/approve")
+    public String approveTest(){
+        User user = userDao.findByProviderId(900);
+        StatusChange statusChange = new StatusChange(submissionDao);
+        statusChange.ApproveSubmission(user);
+        return "redirect:/test";
+    }
+
 }

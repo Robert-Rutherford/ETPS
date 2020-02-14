@@ -17,6 +17,13 @@
         </div>
     <button th:action="submit" >Read</button>
 </form>
+
+
+<form th:method="POST" th:action="@{|/test/approve|}">
+    <button th:action="submit">Approve Submission</button>
+</form>
+
+
 <th:block th:replace="partials/scripts :: scripts">
 </body>
 </html>
