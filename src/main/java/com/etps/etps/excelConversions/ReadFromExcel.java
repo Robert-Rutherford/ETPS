@@ -29,7 +29,7 @@ public class ReadFromExcel {
         this.submissionDao = submissionDao;
     }
 
-    public void ReadExcel(File filePath) {
+    public void ReadExcel(File filePath , User user) {
         try {
             FileInputStream file = new FileInputStream(filePath);
             XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -94,7 +94,7 @@ public class ReadFromExcel {
                 }
 
                 ReadExcelObject excelData = new ReadExcelObject(newProvider, newCampus, newProgram);
-                readToDatabase(excelData);
+                readToDatabase(excelData,user);
             }
             file.close();
         } catch (Exception e) {
@@ -103,12 +103,14 @@ public class ReadFromExcel {
 
     }
 
-    private void readToDatabase(ReadExcelObject data) {
+    private void readToDatabase(ReadExcelObject data ,User user) {
 
         Provider newProvider = data.getNewProvider();
         Campus newCampus = data.getNewCampus();
         Program newProgram = data.getNewProgram();
-
+        if (user.getProvider().getId() != newProvider.getId()){
+            return;
+        }
         Submission newSubmission = new Submission();
         newSubmission.setStatus("pending");
         newSubmission.setProvider(newProvider);
