@@ -46,7 +46,7 @@ public class testController {
 
         String home = System.getProperty("user.home");
         File file = new File(home+"/Downloads/ETPS_data.xlsx");
-        User user = userDao.findByProviderId(802);
+        User user = userDao.findByProviderId(900);
         WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao);
         Map<String, Object[]> testdata = writeToExcel.GenerateUserData(user);
 //        File file = new File("testwrite1.xlsx");

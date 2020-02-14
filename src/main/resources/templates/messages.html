@@ -12,8 +12,8 @@
 </form>
 <div>
     <h1>Sent</h1>
-    <ul th:each="message : ${user.sent}">
-        <li>
+    <ul th:each="message : ${user.sent}" class="list-group">
+        <li class="list-group-item">
             <h4 th:text="${message.title}"></h4>
             <p>Sent To : <span th:text="${message.receivedUser.username}"></span>
                 At :
@@ -29,10 +29,9 @@
     </ul>
 
     <h1>Received</h1>
-    <ul th:each="message : ${user.received}">
+    <ul th:each="message : ${user.received}" class="list-group">
             <div th:if="${!message.deleted}">
-        <li>
-
+        <li class="list-group-item">
             <div th:if="${!message.beenRead}">
                 <p style="color: red">(Unread)</p>
             </div>
