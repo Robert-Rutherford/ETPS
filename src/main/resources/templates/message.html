@@ -9,10 +9,19 @@
 <p th:text="${message.sentUser.username}"></p>
 <p>Sent: <span th:text="${message.dateSent}"></span></p>
 
-<form th:action="@{/messages}">
+<div th:if="${message.beenRead}">
+<form th:action="@{/messages/in}">
     <button>Back</button>
 </form>
+</div>
 
-<th:block th:replace="partials/scripts">
+<div th:if="${!message.beenRead}">
+    <form th:action="@{/messages/out}">
+        <button>Back</button>
+    </form>
+</div>
+
+
+<th:block th:replace="partials/scripts"></th:block>
 </body>
 </html>

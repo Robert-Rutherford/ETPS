@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
-import java.time.LocalDateTime;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,8 +46,8 @@ public class MessageController {
 
 
 
-    @GetMapping("/message")
-    public String showMessage(@RequestParam long id, Model model){
+    @GetMapping("/message/{id}")
+    public String showMessage(@PathVariable long id, Model model){
         Message message = messageDao.findById(id);
 
         if (currentUser().getId() == message.getReceivedUser().getId()) {
@@ -61,12 +60,16 @@ public class MessageController {
         return "message";
     }
 
-    @GetMapping("/messages")
-    public String showMessages(Model model){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        user = userDao.findById(user.getId());
+    @GetMapping("/messages/out")
+    public String showOutbox(Model model){
         model.addAttribute("user", currentUser());
-        return "messages";
+        return "outbox";
+    }
+
+    @GetMapping("/messages/in")
+    public String showInbox(Model model){
+        model.addAttribute("user", currentUser());
+        return "inbox";
     }
 
     @GetMapping("/message/create")
@@ -96,13 +99,16 @@ public class MessageController {
     }
 
     @GetMapping("/message/delete")
-    public String deleteMessage(@RequestParam long id){
-
-        messageDao.findById(id).setDeleted(true);
-        messageDao.findById(id).setBeenRead(true);
-        messageDao.save(messageDao.findById(id));
+    public String deleteMessage(@RequestParam List<Long> id){
 
 
-        return "redirect:/messages";
+        for ( Long deleteid : id) {
+            System.out.println(messageDao.findById((long) deleteid));
+            messageDao.findById((long) deleteid).setDeleted(true);
+            messageDao.findById((long) deleteid).setBeenRead(true);
+            messageDao.save(messageDao.findById((long) deleteid));
+
+        }
+        return "redirect:/messages/in";
     }
 }
