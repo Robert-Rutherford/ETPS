@@ -53,8 +53,7 @@ public class MessageController {
         if (currentUser().getId() == message.getReceivedUser().getId()) {
             message.setBeenRead(true);
         }
-        System.out.println(currentUser().getId());
-        System.out.println(message.getReceivedUser().getId());
+        model.addAttribute("user", currentUser());
         model.addAttribute("message", message);
         messageDao.save(message);
         return "message";

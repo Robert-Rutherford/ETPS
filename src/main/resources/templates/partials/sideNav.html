@@ -14,16 +14,16 @@
                     <div class="card-header" id="headingOne">
                         <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseOne"
                                 aria-expanded="true" aria-controls="collapseOne">
-                            <span class="test">Messages</span>
+                            <span class="test">Messages <span th:text="${unread}" class="badge badge-danger"></span>
                         </button>
                     </div>
 
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                          data-parent="#accordionExample">
                         <div class="card-body">
-                            <a href="/about">Inbox</a>
-                            <a href="/about">Outbox</a>
-                            <a href="/about">New Message</a>
+                            <a href="/messages/in">Inbox</span></a>
+                            <a href="/messages/out">Outbox</a>
+                            <a href="/message/create">New Message</a>
                         </div>
                     </div>
                 </div>

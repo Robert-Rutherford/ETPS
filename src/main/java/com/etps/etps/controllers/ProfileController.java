@@ -32,8 +32,8 @@ public class ProfileController {
                 unread++;
             }
         }
-        model.addAttribute("user",currentUser());
         model.addAttribute("unread", unread);
+        model.addAttribute("user",currentUser());
 
         return "users/profile";
     }

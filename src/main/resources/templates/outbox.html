@@ -20,10 +20,8 @@
                         At :
                         <span th:text="${message.dateSent}"></span>
                     </p>
-                    <form th:action="@{/message}">
-                        <input type="hidden" th:value="${message.id}" name="id">
-                        <button class="btn btn-success ml-auto">View Message</button>
-                    </form>
+                    <a th:href="@{|/message/${message.id}|}" class="btn btn-success mr-auto">View
+                        Message</a>
                 </li>
             </ul>
         </div>

@@ -37,6 +37,22 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping(value = {"/", "/home"})
+    public String showHomePage(Model model) {
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            int unread = 0;
+
+            for (Message message: currentUser().getReceived()){
+                if (!message.isBeenRead()){
+                    unread++;
+                }
+            }
+            model.addAttribute("unread", unread);
+            model.addAttribute("user", currentUser());
+        }
+        return "index";
+    }
+
 
 //    Creating test users for demonstration
     @GetMapping("users/test")
