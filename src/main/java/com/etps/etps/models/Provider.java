@@ -14,7 +14,7 @@ public class Provider {
     @Column(columnDefinition = ("INT UNSIGNED"))
     private long provId;
 
-    @Column(unique = true)
+//    @Column(unique = true)
     private String providerName;
 
     @Column(length = 1000)
