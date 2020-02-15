@@ -111,20 +111,24 @@ public class ReadFromExcel {
         Provider newProvider = data.getNewProvider();
         Campus newCampus = data.getNewCampus();
         Program newProgram = data.getNewProgram();
-        if (user.getProvider().getId() != newProvider.getId()){
+        if (user.getUserProviderId() != newProvider.getProvId()){
             return;
         }
         Submission newSubmission = new Submission();
         newSubmission.setStatus("pending");
-        newSubmission.setProvider(newProvider);
-        newSubmission.setCampus(newCampus);
-        newSubmission.setProgram(newProgram);
+
+//        newSubmission.setProvider(newProvider);
+//        newSubmission.setCampus(newCampus);
+//        newSubmission.setProgram(newProgram);
         newSubmission.setDeadline(new Date());
 
+        newProvider.setSubmission(newSubmission);
+
+        submissionDao.save(newSubmission);
         providerDao.save(newProvider);
         campusDao.save(newCampus);
         programDao.save(newProgram);
-        submissionDao.save(newSubmission);
+
 
     }
 

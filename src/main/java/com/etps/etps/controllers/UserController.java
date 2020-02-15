@@ -50,13 +50,13 @@ public class UserController {
         codeUpUser.setUsername("codeup");
         codeUpUser.setPassword(passwordEncoder.encode("test"));
         codeUpUser.setEmail("test@testing.com");
-        codeUpUser.setProvider(codeUp);
+//        codeUpUser.setProvider(codeUp);
         codeUpUser.setAdmin(false);
 
         System.out.println(admin);
 
 
-        codeUpUser.setProvider(codeUp);
+//        codeUpUser.setProvider(codeUp);
 
 
         providerDao.save(codeUp);

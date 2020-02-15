@@ -47,25 +47,25 @@ public class testController {
         WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
 
         String home = System.getProperty("user.home");
-        User user = userDao.findByProviderId(802);
-        File file = new File(home+"/Downloads/ETPS_"+user.getProvider().getId()+"_"+user.getProvider().getProviderName()+"_All.xlsx");
+        User user = userDao.findByUserProviderId(802);
+        File file = new File(home+"/Downloads/ETPS_"+user.getUserProviderId()+"_All.xlsx");
 
         Map<String, Object[]> testdata = writeToExcel.GenerateUserData(user);
 //        File file = new File("testwrite1.xlsx");
         writeToExcel.WriteExcel(testdata, file);
 
-        user = userDao.findByProviderId(1);
+        user = userDao.findByUserProviderId(1);
         testdata = writeToExcel.GenerateUserData(user);
         file = new File(home+"/Downloads/ETPS_data_All.xlsx");
         writeToExcel.WriteExcel(testdata, file);
 
 
-        user = userDao.findByProviderId(900);
-        file = new File(home+"/Downloads/ETPS_"+user.getProvider().getId()+"_"+user.getProvider().getProviderName()+"_Pending.xlsx");
+        user = userDao.findByUserProviderId(900);
+        file = new File(home+"/Downloads/ETPS_"+user.getUserProviderId()+"_Pending.xlsx");
         testdata = writeToExcel.GeneratePending(user);
         writeToExcel.WriteExcel(testdata, file);
 
-        user = userDao.findByProviderId(1);
+        user = userDao.findByUserProviderId(1);
         file = new File(home+"/Downloads/ETPS_All_Pending.xlsx");
         testdata = writeToExcel.GeneratePending(user);
         writeToExcel.WriteExcel(testdata, file);
@@ -86,7 +86,7 @@ public class testController {
 //        File file = new File("/Users/robertlr/IdeaProjects/etps/testread1.xlsx");
 //        readFromExcel.ReadExcel(file);
 //        readFromExcel.ReadExcel(pathTest);
-        User user = userDao.findByProviderId(900);
+        User user = userDao.findByUserProviderId(900);
         readFromExcel.ReadExcel(newFile,user);
         return "redirect:/test";
     }
@@ -94,8 +94,8 @@ public class testController {
 
     @PostMapping("test/approve")
     public String approveTest(){
-        User user = userDao.findByProviderId(900);
-        StatusChange statusChange = new StatusChange(submissionDao);
+        User user = userDao.findByUserProviderId(900);
+        StatusChange statusChange = new StatusChange(submissionDao,providerDao);
         statusChange.ApproveSubmission(user);
         return "redirect:/test";
     }
