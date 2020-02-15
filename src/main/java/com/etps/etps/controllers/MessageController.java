@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
-import java.time.LocalDateTime;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,26 +46,29 @@ public class MessageController {
 
 
 
-    @GetMapping("/message")
-    public String showMessage(@RequestParam long id, Model model){
+    @GetMapping("/message/{id}")
+    public String showMessage(@PathVariable long id, Model model){
         Message message = messageDao.findById(id);
 
         if (currentUser().getId() == message.getReceivedUser().getId()) {
             message.setBeenRead(true);
         }
-        System.out.println(currentUser().getId());
-        System.out.println(message.getReceivedUser().getId());
+        model.addAttribute("user", currentUser());
         model.addAttribute("message", message);
         messageDao.save(message);
         return "message";
     }
 
-    @GetMapping("/messages")
-    public String showMessages(Model model){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        user = userDao.findById(user.getId());
+    @GetMapping("/messages/out")
+    public String showOutbox(Model model){
         model.addAttribute("user", currentUser());
-        return "messages";
+        return "outbox";
+    }
+
+    @GetMapping("/messages/in")
+    public String showInbox(Model model){
+        model.addAttribute("user", currentUser());
+        return "inbox";
     }
 
     @GetMapping("/message/create")
@@ -76,23 +78,7 @@ public class MessageController {
         return "messageForm";
     }
 
-    @GetMapping("/message/delete")
-    public String deleteMessage(@RequestParam long id){
-        for (Message message: currentUser().getReceived()){
-            System.out.println(message);
-        }
-            System.out.println("After");
-        currentUser().getReceived().remove(messageDao.findById(id));
-        currentUser().setReceived(currentUser().getReceived());
-        messageDao.findById(id).setReceivedUser(userDao.findByUsername("ghost"));
-        userDao.save(currentUser());
-        messageDao.save(messageDao.findById(id));
-        for (Message message: currentUser().getReceived()){
-            System.out.println(message);
-        }
 
-        return "redirect:/messages";
-    }
 
     @PostMapping("/message/create")
     public String submitMessage(Message message, @RequestParam String to, Model model) throws ParseException {
@@ -101,16 +87,27 @@ public class MessageController {
         Date date = new Date();
 
         User receivedUser = userDao.findByUsername(to);
-//        User sentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        sentUser = userDao.findById(sentUser.getId());
         message.setReceivedUser(receivedUser);
         message.setSentUser(currentUser());
         message.setDateSent(df.parse(df.format(date)));
         message.setBeenRead(false);
         messageDao.save(message);
 
-        return "users/profile";
+        return "redirect:/";
+
+    }
+
+    @GetMapping("/message/delete")
+    public String deleteMessage(@RequestParam List<Long> id){
 
 
+        for ( Long deleteid : id) {
+            System.out.println(messageDao.findById((long) deleteid));
+            messageDao.findById((long) deleteid).setDeleted(true);
+            messageDao.findById((long) deleteid).setBeenRead(true);
+            messageDao.save(messageDao.findById((long) deleteid));
+
+        }
+        return "redirect:/messages/in";
     }
 }

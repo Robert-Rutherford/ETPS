@@ -8,9 +8,34 @@
 
 
 <footer th:fragment="footer">
-    <div>
-        <p class="text-center">This is my footer</p>
-    </div>
+    <ul class="powered-list">
+        <li class="codeup-link">Proudly powered by <a href="https://codeup.com">Codeup</a></li>
+        <li>
+            <div class="dropdown codey-container">
+                <a class="dropdown" href="#" role="button" id="dropdownMenu2" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <img src="/images/codey.png" alt="Codey from Codeup" class="codey-duck">
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button">Robert Rutherford</button>
+                    <button class="dropdown-item" type="button">Ethan Joiner</button>
+                    <button class="dropdown-item" type="button">Miguel Garcia</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <ul class="menu-list">
+        <li>
+            <a href="/home">Home</a>
+        </li>
+        <li>
+            <a href="/about">About</a>
+        </li>
+        <li>
+            <a href="/info">More Info</a>
+        </li>
+    </ul>
 </footer>
 </body>
 </html>

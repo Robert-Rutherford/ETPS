@@ -25,13 +25,41 @@ public class UserController {
         this.providerDao = providerDao;
     }
 
+    private User currentUser(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.findById(user.getId());
+        return user;
+    }
+
+    @GetMapping("/login/success")
+    public String setLoggedInUser(Model model){
+        model.addAttribute("user", currentUser());
+        return "redirect:/";
+    }
+
+    @GetMapping(value = {"/", "/home"})
+    public String showHomePage(Model model) {
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            int unread = 0;
+
+            for (Message message: currentUser().getReceived()){
+                if (!message.isBeenRead()){
+                    unread++;
+                }
+            }
+            model.addAttribute("unread", unread);
+            model.addAttribute("user", currentUser());
+        }
+        return "index";
+    }
+
 
 //    Creating test users for demonstration
     @GetMapping("users/test")
     public String createTestUsers(){
 
         Provider codeUp = new Provider();
-        codeUp.setId(829);
+        codeUp.setId(900);
         codeUp.setProviderName("Codeup");
         codeUp.setDescription("At Codeup, we have one goal: To solve meaningful problems that bring the tech community together through empowerment. As a Codeup student, you have the opportunity to learn in a supportive environment with staff, instructors, and employer partners that do their part to innovate and lead the future of tech. Together, we are making our corner of the world a better place — one techie at a time.");
 

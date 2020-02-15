@@ -1,93 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<!--<head th:replace="partials/head :: head('About Us')"></head>-->
 <head>
     <th:block th:insert="partials/head :: head('About Us')"></th:block>
     <link rel="stylesheet" href="/css/aboutPage.css">
+<!--    testing sidenav if user is logged in-->
+    <th:block th:replace="${user != null} ? ~{/partials/head :: sidenav} : _"></th:block>
+<!--    <link rel="stylesheet" href="/css/loggedInNav.css">-->
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<main>
-<div>
-    <h1 class="page-header">About Us</h1>
-    <p class="project-description">
-        Eligible Training Provider System Portal is a web application created to directly connect Texas Workforce Commission to eligible training providers to achieve a higher quality of communication and data submissions. E.T.P.S. Portal provides straightforward displays for simpler navigation and essential functionality to effortlessly manage provider data.
-    </p>
-    <hr>
-    <h1 class="team-header">Development Team</h1>
-    <div class="member-container">
-        <div class="member">
-            <img th:src="@{images/robert-rutherford.jpg}" alt="member image" class="member-image">
-            <span>Robert Rutherford</span>
-            <a href="https://github.com/Robert-Rutherford">
-                <div class="profile-container">
-                    <img th:src="@{images/github-logo.svg}" alt="GitHub logo" class="profile-logo">
-                    <span>/Robert-Rutherford</span>
-                </div>
-            </a>
-            <a href="https://www.linkedin.com/in/robert-rutherford2/">
-                <div class="profile-container">
-                    <img th:src="@{images/linkedin-logo.svg}" alt="LinkedIn logo" class="profile-logo">
-                    <span>/in/robert-rutherford2/</span>
-                </div>
-            </a>
-            <a href="">
-                <div class="profile-container">
-                    <img th:src="@{images/codeup-logo.jpg}" alt="Codeup logo" class="profile-logo">
-                    <span>profile url</span>
-                </div>
-            </a>
-        </div>
-        <div class="member">
-            <img th:src="@{images/ethan-joiner.jpg}" alt="member image" class="member-image">
-            <span>Ethan Joiner</span>
-            <a href="https://github.com/Ethan-Joiner">
-                <div class="profile-container">
-                    <img th:src="@{images/github-logo.svg}" alt="GitHub logo" class="profile-logo">
-                    <span>/Ethan-Joiner</span>
-                </div>
-            </a>
-            <a href="https://www.linkedin.com/in/ethan-joiner/">
-                <div class="profile-container">
-                    <img th:src="@{images/linkedin-logo.svg}" alt="LinkedIn logo" class="profile-logo">
-                    <span>/in/ethan-joiner/</span>
-                </div>
-            </a>
-            <a href="">
-                <div class="profile-container">
-                    <img th:src="@{images/codeup-logo.jpg}" alt="Codeup logo" class="profile-logo">
-                    <span>profile url</span>
-                </div>
-            </a>
-        </div>
-        <div class="member">
-            <img th:src="@{images/miguel-garcia.jpg}" alt="member image" class="member-image">
-            <span>Miguel Garcia</span>
-            <a href="https://github.com/miguelgarcia210">
-                <div class="profile-container">
-                    <img th:src="@{images/github-logo.svg}" alt="GitHub logo" class="profile-logo">
-                    <span>/miguelgarcia210</span>
-                </div>
-            </a>
-            <a href="https://www.linkedin.com/in/miguelgarcia210/">
-                <div class="profile-container">
-                    <img th:src="@{images/linkedin-logo.svg}" alt="LinkedIn logo" class="profile-logo">
-                    <span>/in/miguelgarcia210/</span>
-                </div>
-            </a>
-            <a href="">
-                <div class="profile-container">
-                    <img th:src="@{images/codeup-logo.jpg}" alt="Codeup logo" class="profile-logo">
-                    <span>profile url</span>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
 
+<main>
+
+<!--    <th:block th:replace="/partials/sideNav :: side-nav"></th:block>-->
+    <!--    testing sidenav if user is logged in-->
+        <th:block th:replace="${user != null} ? ~{/partials/sideNav :: side-nav} : _"></th:block>
+
+    <section class="main-content">
+        <h1 class="page-header">About Us</h1>
+        <p class="project-description">
+            Eligible Training Provider System Portal is a web application created to directly connect Texas Workforce
+            Commission to eligible training providers to achieve a higher quality of communication and data submissions.
+            E.T.P.S. Portal provides straightforward displays for simpler navigation and essential functionality to
+            effortlessly manage provider data.
+        </p>
+        <hr>
+
+        <h1 class="team-header">Development Team</h1>
+        <section class="member-container">
+            <div class="member">
+                <img th:src="@{images/robert-rutherford.jpg}" alt="member image" class="member-image">
+                <span>Robert Rutherford</span>
+                <a href="https://github.com/Robert-Rutherford">
+                    <img th:src="@{images/github-logo.svg}" alt="GitHub logo" class="profile-logo">
+                </a>
+                <a href="https://www.linkedin.com/in/robert-rutherford2/">
+                    <img th:src="@{images/linkedin-logo.svg}" alt="LinkedIn logo" class="profile-logo">
+                </a>
+                <a href="">
+                    <img th:src="@{images/codeup-logo.jpg}" alt="Codeup logo" class="profile-logo">
+                </a>
+            </div>
+            <div class="member">
+                <img th:src="@{images/ethan-joiner.jpg}" alt="member image" class="member-image">
+                <span>Ethan Joiner</span>
+                <a href="https://github.com/Ethan-Joiner">
+                    <img th:src="@{images/github-logo.svg}" alt="GitHub logo" class="profile-logo">
+                </a>
+                <a href="https://www.linkedin.com/in/ethan-joiner/">
+                    <img th:src="@{images/linkedin-logo.svg}" alt="LinkedIn logo" class="profile-logo">
+                </a>
+                <a href="">
+                    <img th:src="@{images/codeup-logo.jpg}" alt="Codeup logo" class="profile-logo">
+                </a>
+            </div>
+            <div class="member">
+                <img th:src="@{images/miguel-garcia.jpg}" alt="member image" class="member-image">
+                <span>Miguel Garcia</span>
+                <a href="https://github.com/miguelgarcia210">
+                    <img th:src="@{images/github-logo.svg}" alt="GitHub logo" class="profile-logo">
+                </a>
+                <a href="https://www.linkedin.com/in/miguelgarcia210/">
+                    <img th:src="@{images/linkedin-logo.svg}" alt="LinkedIn logo" class="profile-logo">
+                </a>
+                <a href="">
+                    <img th:src="@{images/codeup-logo.jpg}" alt="Codeup logo" class="profile-logo">
+                </a>
+            </div>
+        </section>
+    </section>
 </main>
 
+<footer th:replace="partials/footer :: footer"></footer>
 
 <th:block th:replace="partials/scripts">
 </body>

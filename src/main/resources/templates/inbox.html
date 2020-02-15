@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head('Messages')">
+</head>
+<body style="background-color: #E9ECEF">
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<form th:action="@{/message/delete}">
+
+    <div class="d-flex justify-content-center">
+        <a th:href="@{/}" class="btn btn-success my-3 mx-4"
+           style="background-color: #28699F; color: white; border: none">Back</a>
+        <button class="btn btn-danger my-3 mx-4">Delete Selected</button>
+    </div>
+
+    <div class="container" style="height: 80vh; overflow-y: scroll">
+        <div class="card w-100 d-flex justify-content-center" style="background-color: #28699F">
+            <div class="card-body w-100">
+                <h1 class="card-title text-center" style="color: white">Received</h1>
+                <div th:each="message : ${user.received}" th:if="${!message.deleted}">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-start">
+                                <h4 th:if="${!message.beenRead}" class="mr-2">
+                                    <span class="badge badge-danger">Unread</span>
+                                </h4>
+                                <h4 th:text="${message.title}" ></h4>
+                            </div>
+
+                            <p>Sent From : <span th:text="${message.sentUser.username}"></span>
+                                At :
+                                <span th:text="${message.dateSent}"></span>
+                            </p>
+                            <div class="d-flex justify-content-between">
+                                <a th:href="@{|/message/${message.id}|}" class="btn btn-success mr-auto">View
+                                    Message</a>
+
+
+                                <input type="checkbox" th:value="${message.id}" name="id" class="mt-auto">
+                            </div>
+                        </li>
+                    </ul>
+                    <!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<th:block th:replace="partials/scripts :: scripts"></th:block>
+</body>
+</html>

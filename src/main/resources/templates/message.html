@@ -1,18 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Login')"></head>
-<body>
+<head th:replace="partials/head :: head('Messages')">
+</head>
+<body style="background-color: #E9ECEF">
+<nav th:replace="partials/navbar :: navbar"></nav>
 
-<h2 th:text="${message.title}"></h2>
 
-<p th:text="${message.body}"></p>
-<p th:text="${message.sentUser.username}"></p>
-<p>Sent: <span th:text="${message.dateSent}"></span></p>
+<div class="d-flex justify-content-center">
+    <a th:href="@{/}" class="btn btn-success my-3 mx-4"
+       style="background-color: #28699F; color: white; border: none">Back</a>
+</div>
 
-<form th:action="@{/messages}">
-    <button>Back</button>
-</form>
+<div class="container" style="height: 80vh; overflow-y: scroll">
+    <div class="card w-100 d-flex justify-content-center" style="background-color: #28699F">
+        <div class="card-body w-100">
 
-<th:block th:replace="partials/scripts">
+
+            <h2 class="text-center">Title: <span th:text="${message.title}"></span></h2>
+
+
+            <p th:if="${message.receivedUser.id == user.id}" class="text-center">Sent From : <span th:text="${message.sentUser.username}"></span>
+                At :
+                <span th:text="${message.dateSent}"></span>
+            </p>
+
+            <p th:if="${message.sentUser.id == user.id}" class="text-center">Sent To : <span th:text="${message.receivedUser.username}"></span>
+                At :
+                <span th:text="${message.dateSent}"></span>
+            </p>
+
+            <p th:text="${message.body}" class="text-center"></p>
+
+            <div th:if="${message.beenRead}">
+                <form th:action="@{/messages/in}">
+                    <button>Back</button>
+                </form>
+            </div>
+
+            <div th:if="${!message.beenRead}">
+                <form th:action="@{/messages/out}">
+                    <button>Back</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<th:block th:replace="partials/scripts :: scripts"></th:block>
 </body>
 </html>
+
+
+

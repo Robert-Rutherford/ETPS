@@ -25,9 +25,6 @@ public class ProfileController {
     @GetMapping("/profile")
     public String displayProfile(Model model){
 
-//        Grabbing and assigning current user
-
-
         int unread = 0;
 
         for (Message message: currentUser().getReceived()){
@@ -35,8 +32,8 @@ public class ProfileController {
                 unread++;
             }
         }
-        model.addAttribute("user",currentUser());
         model.addAttribute("unread", unread);
+        model.addAttribute("user",currentUser());
 
         return "users/profile";
     }
