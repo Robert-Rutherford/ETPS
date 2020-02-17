@@ -8,34 +8,6 @@ footer {
     align-items: center;
 }
 
-.powered-list {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    align-items: center;
-}
-
-.codey-container a:link {
-    padding: 0;
-    cursor: default;
-    margin: 0 5px;
-}
-
-.codeup-link a:link {
-    color: #769E48;
-    padding: 0;
-}
-
-.codeup-link a:visited {
-    color: #769E48;
-}
-
-.codey-duck {
-    height: 2em;
-    width: auto;
-}
-
 footer a:link {
     color: black;
     text-decoration: none;
@@ -50,7 +22,47 @@ footer a:hover {
     color: #769E48;
 }
 
+/* Powered By Codeup */
+.powered-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    align-items: center;
+}
 
+.codeup-link a:link {
+    color: #769E48;
+    padding: 0;
+}
+
+.codeup-link a:visited {
+    color: #769E48;
+}
+
+.codey-container a:link {
+    /*color: #8AC152;*/
+    color: #688b3a;
+}
+
+.codey-container a:visited {
+    color: #8AC152;
+}
+
+.codey-container a:hover {
+    color: #FFC314;
+}
+
+.codey-link {
+    cursor: default;
+}
+
+.codey-duck-img {
+    height: 2em;
+    width: auto;
+}
+
+/* Site Navigation Footer*/
 .menu-list {
     display: flex;
     list-style: none;
