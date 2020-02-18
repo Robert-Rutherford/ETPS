@@ -100,7 +100,6 @@ public class MessageController {
         emailService.prepareAndSend(message, "New Message From " + message.getSentUser().getUsername(), "You have a new message!");
 
         return "redirect:/";
-
     }
 
     @GetMapping("/message/delete")
