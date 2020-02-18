@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <th:block th:insert="partials/head :: head('Home')"></th:block>
-    <th:block th:replace="${user != null} ? ~{/partials/head :: sidenav} : _"></th:block>
+    <th:block th:insert="${user != null} ? ~{partials/head :: sidenav} : ~{}"></th:block>
 </head>
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <main>
-    <th:block th:replace="${user != null} ? ~{/partials/sideNav :: side-nav} : _"></th:block>
+    <th:block th:replace="${user != null} ? ~{partials/sideNav :: side-nav} : ~{}"></th:block>
 
     <section class="main-content">
         <header class="container my-5">
