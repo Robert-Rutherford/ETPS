@@ -9,8 +9,11 @@ import java.util.List;
 public class Campus {
 
     @Id
-    @Column(columnDefinition = ("INT UNSIGNED"))
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(columnDefinition = ("INT UNSIGNED"))
+    private long campId;
 
     private String name;
 
@@ -22,8 +25,8 @@ public class Campus {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "campus")
     private List<Program> programs;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "campus")
-    private List<Submission> submissions;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "campus")
+//    private List<Submission> submissions;
 
     public Campus(){};
 
@@ -50,4 +53,36 @@ public class Campus {
     public void setProvider(Provider provider) {
         this.provider = provider;
     }
+
+    public long getCampId() {
+        return campId;
+    }
+
+    public void setCampId(long campId) {
+        this.campId = campId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Program> getPrograms() {
+        return programs;
+    }
+
+    public void setPrograms(List<Program> programs) {
+        this.programs = programs;
+    }
+
+//    public List<Submission> getSubmissions() {
+//        return submissions;
+//    }
+//
+//    public void setSubmissions(List<Submission> submissions) {
+//        this.submissions = submissions;
+//    }
 }

@@ -13,6 +13,9 @@ public class User {
     @Column(columnDefinition = ("INT UNSIGNED"))
     private long id;
 
+    @Column(columnDefinition = ("INT UNSIGNED"))
+    private long userProviderId;
+
     @Column(nullable = false, length = 30, unique = true)
     private String username;
 
@@ -22,9 +25,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "provider_id")
-    private Provider provider;
+//    @ManyToOne
+//    @JoinColumn(name = "provId")
+//    private Provider provider;
 
     private boolean isAdmin;
 
@@ -41,7 +44,7 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
-        provider = copy.provider;
+//        provider = copy.provider;
         isAdmin = copy.isAdmin;
         sent = copy.sent;
         received = copy.received;
@@ -80,13 +83,13 @@ public class User {
         this.password = password;
     }
 
-    public Provider getProvider() {
-        return provider;
-    }
-
-    public void setProvider(Provider provider) {
-        this.provider = provider;
-    }
+//    public Provider getProvider() {
+//        return provider;
+//    }
+//
+//    public void setProvider(Provider provider) {
+//        this.provider = provider;
+//    }
 
     public boolean isAdmin() {
         return isAdmin;
@@ -110,5 +113,13 @@ public class User {
 
     public void setReceived(List<Message> received) {
         this.received = received;
+    }
+
+    public long getUserProviderId() {
+        return userProviderId;
+    }
+
+    public void setUserProviderId(long userProviderId) {
+        this.userProviderId = userProviderId;
     }
 }
