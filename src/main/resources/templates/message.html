@@ -6,17 +6,22 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 
-<div class="d-flex justify-content-center">
-    <a th:href="@{/}" class="btn btn-success my-3 mx-4"
+<div class="d-flex justify-content-center" th:if="${message.beenRead}">
+    <a th:href="@{/messages/in}" class="btn btn-success my-3 mx-4"
+       style="background-color: #28699F; color: white; border: none">Back</a>
+</div>
+
+<div class="d-flex justify-content-center" th:if="${!message.beenRead}">
+    <a th:href="@{/messages/out}" class="btn btn-success my-3 mx-4"
        style="background-color: #28699F; color: white; border: none">Back</a>
 </div>
 
 <div class="container" style="height: 80vh; overflow-y: scroll">
-    <div class="card w-100 d-flex justify-content-center" style="background-color: #28699F">
+    <div class="card w-100 d-flex justify-content-center" style="border: 5px solid #28699F">
         <div class="card-body w-100">
 
 
-            <h2 class="text-center">Title: <span th:text="${message.title}"></span></h2>
+            <h2 class="text-center">Subject: <span th:text="${message.title}"></span></h2>
 
 
             <p th:if="${message.receivedUser.id == user.id}" class="text-center">Sent From : <span th:text="${message.sentUser.username}"></span>
@@ -31,17 +36,17 @@
 
             <p th:text="${message.body}" class="text-center"></p>
 
-            <div th:if="${message.beenRead}">
-                <form th:action="@{/messages/in}">
-                    <button>Back</button>
-                </form>
-            </div>
+<!--            <div th:if="${message.beenRead}">-->
+<!--                <form th:action="@{/messages/in}">-->
+<!--                    <button>Back</button>-->
+<!--                </form>-->
+<!--            </div>-->
 
-            <div th:if="${!message.beenRead}">
-                <form th:action="@{/messages/out}">
-                    <button>Back</button>
-                </form>
-            </div>
+<!--            <div th:if="${!message.beenRead}">-->
+<!--                <form th:action="@{/messages/out}">-->
+<!--                    <button>Back</button>-->
+<!--                </form>-->
+<!--            </div>-->
 
         </div>
     </div>

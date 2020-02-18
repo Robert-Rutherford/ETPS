@@ -9,8 +9,11 @@ import java.util.List;
 public class Program {
 
     @Id
-    @Column(columnDefinition = ("INT UNSIGNED"))
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(columnDefinition = ("INT UNSIGNED"))
+    private long progId;
 
     private String name;
 
@@ -22,8 +25,10 @@ public class Program {
     @JoinColumn(name = "campus_id")
     private Campus campus;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "program")
-    private List<Submission> submissions;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "program")
+//    private List<Submission> submissions;
+//    @OneToOne
+//    private Submission submission;
 
     public Program(){};
 
@@ -59,13 +64,13 @@ public class Program {
         this.etpCodeId = etpCodeId;
     }
 
-    public List<Submission> getSubmissions() {
-        return submissions;
-    }
-
-    public void setSubmissions(List<Submission> submissions) {
-        this.submissions = submissions;
-    }
+//    public List<Submission> getSubmissions() {
+//        return submissions;
+//    }
+//
+//    public void setSubmissions(List<Submission> submissions) {
+//        this.submissions = submissions;
+//    }
 
     public Campus getCampus() {
         return campus;
@@ -73,5 +78,13 @@ public class Program {
 
     public void setCampus(Campus campus) {
         this.campus = campus;
+    }
+
+    public long getProgId() {
+        return progId;
+    }
+
+    public void setProgId(long progId) {
+        this.progId = progId;
     }
 }

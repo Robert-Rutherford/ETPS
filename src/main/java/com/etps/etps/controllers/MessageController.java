@@ -4,6 +4,7 @@ import com.etps.etps.models.Message;
 import com.etps.etps.models.User;
 import com.etps.etps.repositories.Messages;
 import com.etps.etps.repositories.Users;
+import com.etps.etps.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,9 @@ import java.util.List;
 
 @Controller
 public class MessageController {
+
+    private final EmailService emailService;
+
 
     private DateFormat returnFormater() {
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -38,10 +42,11 @@ public class MessageController {
     private final Messages messageDao;
     private final Users userDao;
 
-    public MessageController(Messages messageDao, Users userDao){
+    public MessageController(Messages messageDao, Users userDao, EmailService emailService){
         this.messageDao = messageDao;
         this.userDao = userDao;
         this.df = returnFormater();
+        this.emailService = emailService;
     }
 
 
@@ -92,21 +97,19 @@ public class MessageController {
         message.setDateSent(df.parse(df.format(date)));
         message.setBeenRead(false);
         messageDao.save(message);
+        emailService.prepareAndSend(message, "New Message From " + message.getSentUser().getUsername(), "You have a new message!");
 
         return "redirect:/";
-
     }
 
     @GetMapping("/message/delete")
     public String deleteMessage(@RequestParam List<Long> id){
-
 
         for ( Long deleteid : id) {
             System.out.println(messageDao.findById((long) deleteid));
             messageDao.findById((long) deleteid).setDeleted(true);
             messageDao.findById((long) deleteid).setBeenRead(true);
             messageDao.save(messageDao.findById((long) deleteid));
-
         }
         return "redirect:/messages/in";
     }

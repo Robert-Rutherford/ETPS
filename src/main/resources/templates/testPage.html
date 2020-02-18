@@ -10,13 +10,42 @@
 <!--    </div>-->
     <button th:action="submit">Write</button>
 </form>
-<form th:method="POST" th:action="@{|/test/read|}">
+<form th:method="POST" th:action="@{|/uploadFile|}">
         <div class="form-group">
             <label th:for="readFile">Example file input</label>
-            <input type="file" th:action="submit" class="form-control-file" name="readFile" th:id="readFile">
+            <input type="file" th:action="submit" class="form-control-file" name="file" th:id="readFile">
         </div>
     <button th:action="submit" >Read</button>
 </form>
+
+
+<form th:method="POST" th:action="@{|/test/approve|}">
+    <button th:action="submit">Approve Submission</button>
+</form>
+
+
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+
+<div>
+    <form th:method="POST" enctype="multipart/form-data" th:action="@{|/uploadFile|}">
+        <table>
+            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+        </table>
+    </form>
+</div>
+
+<div>
+    <ul>
+        <li th:each="file : ${files}">
+            <a th:href="${file}" th:text="${file}" />
+        </li>
+    </ul>
+</div>
+
+
 <th:block th:replace="partials/scripts :: scripts">
 </body>
 </html>

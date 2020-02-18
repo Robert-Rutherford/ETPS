@@ -16,45 +16,46 @@ public class Submission {
 
     private Date deadline;
 
-    @ManyToOne
-    @JoinColumn(name = "provider_id")
-    private Provider provider;
+//    @ManyToOne
+//    @OneToOne
+//    @JoinColumn(name = "provider_id")
+//    private Provider provider;
 
-    @ManyToOne
-    @JoinColumn(name = "campus_id")
-    private Campus campus;
+//    @ManyToOne
+//    @JoinColumn(name = "campus_id")
+//    private Campus campus;
 
-    @ManyToOne
-    @JoinColumn(name = "program_id")
-    private Program program;
+//    @ManyToOne
+//    @JoinColumn(name = "program_id")
+//    private Program program;
 
 
 
     public Submission(){};
 
-    public Provider getProvider() {
-        return provider;
-    }
+//    public Provider getProvider() {
+//        return provider;
+//    }
+//
+//    public void setProvider(Provider provider) {
+//        this.provider = provider;
+//    }
 
-    public void setProvider(Provider provider) {
-        this.provider = provider;
-    }
-
-    public Campus getCampus() {
-        return campus;
-    }
-
-    public void setCampus(Campus campus) {
-        this.campus = campus;
-    }
-
-    public Program getProgram() {
-        return program;
-    }
-
-    public void setProgram(Program program) {
-        this.program = program;
-    }
+//    public Campus getCampus() {
+//        return campus;
+//    }
+//
+//    public void setCampus(Campus campus) {
+//        this.campus = campus;
+//    }
+//
+//    public Program getProgram() {
+//        return program;
+//    }
+//
+//    public void setProgram(Program program) {
+//        this.program = program;
+//    }
 
     public long getId() {
         return id;
@@ -79,4 +80,6 @@ public class Submission {
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
+
+
 }
