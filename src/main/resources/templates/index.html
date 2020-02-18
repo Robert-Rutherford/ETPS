@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <th:block th:insert="partials/head :: head('Home')"></th:block>
-    <th:block th:replace="/partials/head :: index"></th:block>
+    <th:block th:insert="partials/head :: index"></th:block>
     <th:block th:insert="${user != null} ? ~{partials/head :: sidenav} : ~{}"></th:block>
 </head>
 <body>
