@@ -111,7 +111,6 @@ public class MessageController {
             messageDao.findById((long) deleteid).setDeleted(true);
             messageDao.findById((long) deleteid).setBeenRead(true);
             messageDao.save(messageDao.findById((long) deleteid));
-
         }
         return "redirect:/messages/in";
     }
