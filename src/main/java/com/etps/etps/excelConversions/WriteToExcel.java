@@ -63,28 +63,23 @@ public class WriteToExcel {
     public Map<String, Object[]> GenerateUserData(User user) {
         TreeMap<String, Object[]> data = new TreeMap<>();
         data.put("1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
-                "Program ID", "Program Name", "Program Description", "ETP ID"});
+                "Program ID", "Program Name", "Program Description", "ETP ID","Status"});
         int treeNum = 2;
         List<Provider> providers = new ArrayList<>();
-        if (user.isAdmin()) {
-            providers = providerDao.findAll();
-        } else {
-            providers.add(providerDao.findById(user.getProvider().getId()));
+        providers = providerDao.findAll();
+        if (!user.isAdmin()) {
+            List<Provider> searchProviders = new ArrayList<>();
+            for (Provider provider: providers) {
+                if (provider.getProvId() == user.getUserProviderId()){
+                    searchProviders.add(provider);
+                }
+            }
+            providers = searchProviders;
+//            providers.add(providerDao.findAllById(user.getUserProviderId()));
         }
 
         for (Provider provider : providers) {
-            List<Campus> campusesList = campusDao.findAllByProvider_Id(provider.getId());
-
-            for (Campus campus : campusesList) {
-                List<Program> programsList = programDao.findAllByCampus_Id(campus.getId());
-                for (Program program : programsList) {
-                    data.put(Integer.toString(treeNum),
-                            new Object[]{Long.toString(provider.getId()), provider.getProviderName(), provider.getDescription(),
-                                    campus.getId(), campus.getCampusName(), program.getId(), program.getName(),
-                                    program.getDescription(), program.getEtpCodeId()});
-                    treeNum++;
-                }
-            }
+            treeNum = getTreeNum(data, treeNum, provider);
         }
 
         return data;
@@ -92,23 +87,26 @@ public class WriteToExcel {
     public Map<String, Object[]> GeneratePending(User user) {
         TreeMap<String, Object[]> data = new TreeMap<>();
         data.put("1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
-                "Program ID", "Program Name", "Program Description", "ETP ID"});
+                "Program ID", "Program Name", "Program Description", "ETP ID", "Status"});
         int treeNum = 2;
         List<Provider> providers = new ArrayList<>();
         List<Submission> submissions = new ArrayList<>();
         submissions = submissionDao.findAll();
+        providers = providerDao.findAll();
 
         if (user.isAdmin()) {
-            for (Submission submission : submissions) {
-                if (submission.getStatus().equalsIgnoreCase("pending")){
-                    treeNum = getTreeNum(data, treeNum, submission);
+            for (Provider provider : providers) {
+                if ( (provider.getSubmission() != null) && provider.getSubmission().getStatus().equalsIgnoreCase("pending")){
+//                    treeNum = getTreeNum(data, treeNum, submission);
+                    treeNum = getTreeNum(data, treeNum, provider);
                 }
             }
         } else {
-            for (Submission submission : submissions) {
-                if (submission.getStatus().equalsIgnoreCase("pending")&&
-                        (user.getProvider().getId() == submission.getProvider().getId())){
-                    treeNum = getTreeNum(data, treeNum, submission);
+            for (Provider provider : providers) {
+                if ((provider.getSubmission() != null) && provider.getSubmission().getStatus().equalsIgnoreCase("pending")&&
+                        (user.getUserProviderId() == provider.getProvId())){
+//                    treeNum = getTreeNum(data, treeNum, submission);
+                    treeNum = getTreeNum(data, treeNum, provider);
                 }
             }
         }
@@ -116,17 +114,35 @@ public class WriteToExcel {
         return data;
     }
 
-    private int getTreeNum(TreeMap<String, Object[]> data, int treeNum, Submission submission) {
-        Provider provider = submission.getProvider();
-        Campus campus = submission.getCampus();
-        Program program = submission.getProgram();
-        data.put(Integer.toString(treeNum),
-                new Object[]{Long.toString(provider.getId()), provider.getProviderName(), provider.getDescription(),
-                        campus.getId(), campus.getCampusName(), program.getId(), program.getName(),
-                        program.getDescription(), program.getEtpCodeId()});
-        treeNum++;
+    private int getTreeNum(TreeMap<String, Object[]> data, int treeNum, Provider provider) {
+//        List<Campus> campusesList = campusDao.findAllByProvider_Id(provider.getId());
+        List<Campus> campusesList = provider.getCampuses();
+
+        for (Campus campus : campusesList) {
+//            List<Program> programsList = programDao.findAllByCampus_Id(campus.getId());
+            List<Program> programsList = campus.getPrograms();
+            for (Program program : programsList) {
+                data.put(Integer.toString(treeNum),
+                        new Object[]{Long.toString(provider.getProvId()), provider.getProviderName(), provider.getDescription(),
+                                campus.getCampId(), campus.getCampusName(), program.getProgId(), program.getName(),
+                                program.getDescription(), program.getEtpCodeId(),provider.getSubmission().getStatus()});
+                treeNum++;
+            }
+        }
         return treeNum;
     }
+
+//    private int getTreeNum(TreeMap<String, Object[]> data, int treeNum, Submission submission) {
+//        Provider provider = submission.getProvider();
+//        Campus campus = submission.getCampus();
+//        Program program = submission.getProgram();
+//        data.put(Integer.toString(treeNum),
+//                new Object[]{Long.toString(provider.getId()), provider.getProviderName(), provider.getDescription(),
+//                        campus.getId(), campus.getCampusName(), program.getId(), program.getName(),
+//                        program.getDescription(), program.getEtpCodeId(), submission.getStatus()});
+//        treeNum++;
+//        return treeNum;
+//    }
 
 
 }

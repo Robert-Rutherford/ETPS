@@ -62,7 +62,7 @@ public class ReadFromExcel {
                     switch (columnIndex) {
                         case 0:
                             long provider_id = (long) cell.getNumericCellValue();
-                            newProvider.setId(provider_id);
+                            newProvider.setProvId(provider_id);
                             break;
                         case 1:
                             newProvider.setProviderName(cell.getStringCellValue());
@@ -72,14 +72,14 @@ public class ReadFromExcel {
                             break;
                         case 3:
                             long campus_id = (long) cell.getNumericCellValue();
-                            newCampus.setId(campus_id);
+                            newCampus.setCampId(campus_id);
                             break;
                         case 4:
                             newCampus.setCampusName(cell.getStringCellValue());
                             break;
                         case 5:
                             long program_id = (long) cell.getNumericCellValue();
-                            newProgram.setId(program_id);
+                            newProgram.setProgId(program_id);
                             break;
                         case 6:
                             newProgram.setName(cell.getStringCellValue());
@@ -89,6 +89,9 @@ public class ReadFromExcel {
                             break;
                         case 8:
                             newProgram.setEtpCodeId(cell.getStringCellValue());
+                            break;
+                        case 9:
+//                            status column would be here. Not needed as new submissions will always be pending
                             break;
                     }
                 }
@@ -108,20 +111,24 @@ public class ReadFromExcel {
         Provider newProvider = data.getNewProvider();
         Campus newCampus = data.getNewCampus();
         Program newProgram = data.getNewProgram();
-        if (user.getProvider().getId() != newProvider.getId()){
+        if (user.getUserProviderId() != newProvider.getProvId()){
             return;
         }
         Submission newSubmission = new Submission();
         newSubmission.setStatus("pending");
-        newSubmission.setProvider(newProvider);
-        newSubmission.setCampus(newCampus);
-        newSubmission.setProgram(newProgram);
+
+//        newSubmission.setProvider(newProvider);
+//        newSubmission.setCampus(newCampus);
+//        newSubmission.setProgram(newProgram);
         newSubmission.setDeadline(new Date());
 
+        newProvider.setSubmission(newSubmission);
+
+        submissionDao.save(newSubmission);
         providerDao.save(newProvider);
         campusDao.save(newCampus);
         programDao.save(newProgram);
-        submissionDao.save(newSubmission);
+
 
     }
 
