@@ -26,13 +26,16 @@
                 <a class="nav-link text-light" href="/info">More Info</a>
             </li>
         </ul>
-        <div class="nav-item dropdown ml-auto">
+
+
+        <div class="nav-item dropdown ml-auto" th:if="${user == null}">
             <a class="nav-link dropdown" style="color: white" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
                     <span style="font-size: 1.5em">
                         <i class="fas fa-user"></i>
                     </span>
             </a>
+
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="/login">Login</a>

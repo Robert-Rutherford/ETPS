@@ -100,7 +100,7 @@ public class UserController {
             userDao.save(ghost);
         }
 
-        if (providerDao.findById(829) == null){
+        if (providerDao.findById(900) == null){
             providerDao.save(codeUp);
         }
 
