@@ -106,7 +106,6 @@ public class MessageController {
     @GetMapping("/message/delete")
     public String deleteMessage(@RequestParam List<Long> id){
 
-
         for ( Long deleteid : id) {
             System.out.println(messageDao.findById((long) deleteid));
             messageDao.findById((long) deleteid).setDeleted(true);
