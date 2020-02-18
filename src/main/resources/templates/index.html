@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <th:block th:insert="partials/head :: head('Home')"></th:block>
+    <th:block th:replace="/partials/head :: index"></th:block>
     <th:block th:insert="${user != null} ? ~{partials/head :: sidenav} : ~{}"></th:block>
 </head>
 <body>
@@ -17,11 +18,60 @@
                 <h1 class="text-center display-5">Eligible Training Provider System Portal</h1>
             </div>
         </header>
+
+            <section class="container service-container">
+                <h2>Making Impacting Changes</h2>
+                <div class="services">
+                    <div>
+                        <img src="/images/database-images/db-update.svg" alt="database update" class="service-img">
+                        <p>Retain current provider information to be updated at any time.</p>
+                    </div>
+                    <div>
+                        <img src="/images/database-images/db-secure.svg" alt="database secure" class="service-img">
+                        <p>Private provider data safely secured </p>
+                    </div>
+                    <div><img src="/images/database-images/db-import-export.jpg" alt="" class="service-img"
+                              style="border-radius: 1em"></div>
+                    <div><img src="/images/database-images/db-collaboration.svg" alt="" class="service-img"></div>
+                </div>
+            </section>
+
+        <section class="container provider-clients">
+            <h3>Impacted Providers</h3>
+            <div class="container">
+                <div class="customer-logos slider">
+                    <div class="slide"><img src="/images/provider-images/audio-eng-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/bmet-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/bshp-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/chcplogo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/ciachef-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/codeup-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/concorde-logo.jpg" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/dentalassistant-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/dynamicadvancement-logo-.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/goodwill-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/instituteAlliedHealth.jpg" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/kaplan-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/leaderQuest.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/opencloud-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/sage-logo.jpg" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/samedicalassistant-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/sci-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/stvt-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/techtalent-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/theHealthCareInstitute-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/tscer-logo.jpg" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/txdentalassistantschool-logo.png" alt=""></div>
+                    <div class="slide"><img src="/images/provider-images/txsleepschool-logo.png" alt=""></div>
+                </div>
+            </div>
+        </section>
     </section>
 </main>
 
 <footer th:replace="partials/footer :: footer"></footer>
 
-<th:block th:replace="partials/scripts :: scripts">
+<th:block th:replace="partials/scripts :: scripts"></th:block>
+<th:block th:replace="partials/scripts :: carousel"></th:block>
 </body>
 </html>
