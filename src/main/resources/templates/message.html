@@ -35,6 +35,10 @@
 
             <p th:text="${message.body}" class="text-center"></p>
 
+            <form th:method="GET" th:action="@{|/download/pending|}">
+                <button th:action="submit">Download Submission</button>
+            </form>
+
 <!--            <div th:if="${message.beenRead}">-->
 <!--                <form th:action="@{/messages/in}">-->
 <!--                    <button>Back</button>-->

@@ -60,13 +60,12 @@ public class WriteToExcel {
 
     }
 
-    public Map<String, Object[]> GenerateUserData(User user) {
+    public Map<String, Object[]> GenerateAllUserData(User user) {
         TreeMap<String, Object[]> data = new TreeMap<>();
         data.put("1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
                 "Program ID", "Program Name", "Program Description", "ETP ID","Status"});
         int treeNum = 2;
-        List<Provider> providers = new ArrayList<>();
-        providers = providerDao.findAll();
+        List<Provider> providers = providerDao.findAll();
         if (!user.isAdmin()) {
             List<Provider> searchProviders = new ArrayList<>();
             for (Provider provider: providers) {
@@ -84,26 +83,24 @@ public class WriteToExcel {
 
         return data;
     }
-    public Map<String, Object[]> GeneratePending(User user) {
+    public Map<String, Object[]> GenerateByStatus(User user,String status) {
         TreeMap<String, Object[]> data = new TreeMap<>();
         data.put("1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
                 "Program ID", "Program Name", "Program Description", "ETP ID", "Status"});
         int treeNum = 2;
         List<Provider> providers = new ArrayList<>();
-        List<Submission> submissions = new ArrayList<>();
-        submissions = submissionDao.findAll();
         providers = providerDao.findAll();
 
         if (user.isAdmin()) {
             for (Provider provider : providers) {
-                if ( (provider.getSubmission() != null) && provider.getSubmission().getStatus().equalsIgnoreCase("pending")){
+                if ( (provider.getSubmission() != null) && provider.getSubmission().getStatus().equalsIgnoreCase(status)){
 //                    treeNum = getTreeNum(data, treeNum, submission);
                     treeNum = getTreeNum(data, treeNum, provider);
                 }
             }
         } else {
             for (Provider provider : providers) {
-                if ((provider.getSubmission() != null) && provider.getSubmission().getStatus().equalsIgnoreCase("pending")&&
+                if ((provider.getSubmission() != null) && provider.getSubmission().getStatus().equalsIgnoreCase(status)&&
                         (user.getUserProviderId() == provider.getProvId())){
 //                    treeNum = getTreeNum(data, treeNum, submission);
                     treeNum = getTreeNum(data, treeNum, provider);
