@@ -52,8 +52,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/message",
-                        "/message/create" // only authenticated users can create messages
+                        "/message/**",
+                        "/messages/**",
+                        "/download/**",
+                        "/uploadFile"// only authenticated users can create messages
                 )
                 .authenticated()
         ;
