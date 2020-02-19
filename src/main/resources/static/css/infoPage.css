@@ -39,4 +39,66 @@
     width: 3em;
 }
 
+/* ===== TAB UNIVERSAL ===== */
+.tab-title {
+    text-align: center;
+    color: #12395B;
+    margin-bottom: .5em;
+
+}
 /* ====== CONTACT TAB ======*/
+.contact-tab {
+    display: flex;
+    justify-content: center;
+}
+
+.tab-content > div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.workforce-question {
+    font-style: italic;
+}
+
+.workforce-question a:active, a:focus {
+    outline: 0;
+    border: none;
+    -moz-outline-style: none;
+}
+
+.workforce-question a:link, a:visited {
+    color: black;
+}
+
+.workforce-question a:hover {
+    text-decoration: none;
+}
+
+.workforce-solutions {
+    background-color: #053B68;
+    border-radius: 1em;
+    padding: 2px 1em;
+}
+
+.workforce-solutions > span:nth-child(1) {
+    color: #FFFFFF;
+}
+
+.workforce-solutions > span:nth-child(2) {
+    color: #8AC152;
+}
+
+.workforce-solutions > span:nth-child(3) {
+    color: #FFFFFF;
+}
+
+.contact-information {
+    margin: 1rem 0;
+    background-color: #DEEAEE;
+    padding: 1em;
+    border-radius: 1em;
+    font-size: 14pt;
+}
