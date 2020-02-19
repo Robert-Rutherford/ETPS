@@ -37,7 +37,8 @@ public class FileDownloadController {
     @PostMapping("/download/Approved")
     public String WriteApproved(HttpServletResponse response) {
 
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
         WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
 
         try {
@@ -63,7 +64,8 @@ public class FileDownloadController {
     @PostMapping("/download/Pending")
     public void WritePending(HttpServletResponse response) {
 
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
         WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
 
 
@@ -95,7 +97,8 @@ public class FileDownloadController {
     @PostMapping("/download/Expired")
     public void WriteExpired(HttpServletResponse response) {
 
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
         WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
 
         try {
@@ -119,7 +122,8 @@ public class FileDownloadController {
     @PostMapping("/download/All")
     public void WriteAll(HttpServletResponse response) {
 
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
         if (loggedInUser.isAdmin()){
             WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
 

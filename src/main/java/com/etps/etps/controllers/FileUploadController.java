@@ -38,7 +38,8 @@ public class FileUploadController {
 
         try {
 
-            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
             ReadFromExcel readFromExcel = new ReadFromExcel(providerDao, campusDao, programDao, submissionDao);
             File readFile = File.createTempFile("testFile",".xlsx");
             file.transferTo(readFile);
@@ -50,7 +51,7 @@ public class FileUploadController {
     } catch (IOException e) {
         e.printStackTrace();
     }
-        return "redirect:/test";
+        return "redirect:/profile";
     }
 
 }
