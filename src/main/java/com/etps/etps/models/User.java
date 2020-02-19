@@ -2,6 +2,7 @@ package com.etps.etps.models;
 
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -100,6 +101,7 @@ public class User {
     }
 
     public List<Message> getSent() {
+        Collections.reverse(sent);
         return sent;
     }
 
@@ -108,7 +110,9 @@ public class User {
     }
 
     public List<Message> getReceived() {
-        return received;
+        Collections.reverse(received);
+        return this.received;
+
     }
 
     public void setReceived(List<Message> received) {
