@@ -25,6 +25,8 @@
                             <a href="/messages/out">Outbox</a>
                             <a href="/message/create">New Message</a>
                         </div>
+
+
                     </div>
                 </div>
             </div></li>
@@ -35,6 +37,22 @@
                     </div>
                 </div>
             </a></li>
+<!--            <li><div class="card-body" th:if="${user.isAdmin()}">-->
+            <li><div class="card-body">
+                <h5>Download excels:</h5>
+                <form th:method="POST" th:action="@{|/download/All|}">
+                    <button th:action="submit">All</button>
+                </form>
+                <form th:method="POST" th:action="@{|/download/Approved|}">
+                    <button th:action="submit">Approved</button>
+                </form>
+                <form th:method="POST" th:action="@{|/download/Pending|}">
+                    <button th:action="submit">Pending</button>
+                </form>
+                <form th:method="POST" th:action="@{|/download/Expired|}">
+                    <button th:action="submit">Expired</button>
+                </form>
+            </div></li>
         </ul>
     </div>
 </div>

@@ -52,7 +52,7 @@ public class FileDownloadController {
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
-            writeFile.delete();
+
         } catch (IOException ex) {
             throw new RuntimeException("IOError writing file to output stream");
         }
@@ -85,7 +85,7 @@ public class FileDownloadController {
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
-            writeFile.delete();
+
         } catch (IOException ex) {
             throw new RuntimeException("IOError writing file to output stream");
         }
@@ -110,7 +110,7 @@ public class FileDownloadController {
             response.setContentType("application/vnd.ms-excel");
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
-            writeFile.delete();
+
         } catch (IOException ex) {
             throw new RuntimeException("IOError writing file to output stream");
         }
@@ -138,7 +138,7 @@ public class FileDownloadController {
 
                 org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
                 response.flushBuffer();
-                writeFile.delete();
+
             } catch (IOException ex) {
                 throw new RuntimeException("IOError writing file to output stream");
             }
