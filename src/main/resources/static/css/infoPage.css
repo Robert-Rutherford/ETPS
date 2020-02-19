@@ -57,6 +57,40 @@
     margin-bottom: .5em;
 
 }
+
+/* ===== SUBMISSIONS TAB ===== */
+.submissions-content h3 {
+    color: #28699F;
+}
+
+.submissions-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em 0;
+}
+
+.eligible-disclaimer {
+    border: 1px solid black;
+    border-radius: 1em;
+    padding: 1em;
+    background-color: #FAFAD2;
+    box-shadow: 2px 2px 2px;
+}
+
+div.eligible-disclaimer > h3.pre-requisites {
+    color: black;
+}
+
+.submission-card {
+    border: 1px solid red;
+}
+
+.pre-requisites {
+    border-bottom: 2px solid red;
+    border-radius: 2px;
+    color: #212529;
+}
 /* ====== CONTACT TAB ======*/
 .contact-tab {
     display: flex;
