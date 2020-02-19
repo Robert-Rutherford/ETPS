@@ -4,6 +4,17 @@
     /*border: 1px solid black;*/
 }
 
+.info-content-container a:link, a:visited{
+    color: #0257B3;
+}
+.info-content-container a:hover{
+    color: #8AC152;
+}
+
+.nav-tabs .nav-link.active {
+    color: #8AC152;
+}
+
 .tab-content {
     padding: 1em;
     min-height: 20em;
