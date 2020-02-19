@@ -7,21 +7,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .jumbotron {
-    /*background-image: url("/images/bluebonnet-pan.png");*/
-    /*background: url("/images/bluebonnet-pan.png") no-repeat center center;*/
-    /*background: url("/images/bluebonnet1.png") no-repeat center center;*/
-    /*background: url("/images/bluebonnet2.png");*/
-    /*background-size: 100% 100%;*/
-    /*background-repeat: no-repeat;*/
-    /*!*background-position: center center;*!*/
-    background-image: url(/images/bluebonnet7.jpg
-    );
-    /*background-image: url(/images/bluebonnet4.png);*/
-    /*background-attachment: fixed;*/
+    background-image: url(/images/bluebonnet7.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-
     border-radius: 1em;
     display: flex;
     justify-content: center;
@@ -37,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 .5em;
 }
 
-/* Provided Services */
+/* ====== Provided Services ====== */
 .service-container {
     display: flex;
     flex-direction: column;
@@ -46,8 +35,49 @@ h1, h2, h3, h4, h5, h6 {
 .service-container h2 {
     display: inline-block;
     margin: 0 auto;
-    /*text-align: center;*/
 }
+
+.service-container > h2 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.service-container > h2:before,
+.service-container > h2:after {
+    content: '';
+    border-top: 2px solid;
+    margin: 0 20px 0 0;
+    flex: 1 0 20px;
+}
+
+.service-container > h2:after {
+    margin: 0 0 0 20px;
+}
+
+.service-title {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+.service-title:before,
+.service-title:after {
+    content: '';
+    border-top: 2px solid #FFC314;
+    margin: 0 20px 0 20px;
+    flex: 1 0 20px;
+}
+
+/*.service-title {*/
+/*    margin: 0 0 0 20px;*/
+/*}*/
 
 .services {
     display: grid;
@@ -59,22 +89,49 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 1em;
 }
 
+.services p {
+    justify-self: center;
+    align-self: center;
+    font-size: 14pt;
+    padding: 1em;
+    border-radius: 1em;
+    margin: 1em;
+    text-align: center;
+}
+
+.services div:nth-child(odd) p {
+    grid-area: 1 / 2 / 2 / 3;
+    background-color: rgba(27, 100, 154, .6);
+    color: #FFFFFF;
+    border: 3px solid #FFC314;
+}
+
+.services div:nth-child(even) p {
+    grid-area: 1 / 1 / 2 / 2;
+    background-color: white;
+    color: #0E2E49;
+    border: 3px solid #C0C0C0;
+
+}
+
 .services > div:nth-child(odd) {
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-template-rows: auto;
 }
+
 .services > div:nth-child(even) {
-    /*background-color: #8AC152;*/
     background: linear-gradient(0deg, #8AC152, white);
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: auto;
 }
+
 /* Controls even and odd images */
 .services div:nth-child(odd) > img {
     grid-area: 1 / 1 / 2 / 2;
 }
+
 .services div:nth-child(even) > img {
     grid-area: 1 / 2 / 2 / 3;
 }
@@ -93,7 +150,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Carousel Styling */
 .provider-clients {
     width: calc(100vw - 12em);
-    border: 1px solid red;
+    min-width: 20em;
+    /*border: 1px solid red;*/
     border-radius: 1em;
     display: flex;
     flex-direction: column;
@@ -104,9 +162,10 @@ h1, h2, h3, h4, h5, h6 {
 .provider-clients > h3 {
     border-bottom: 2px solid #0E2E49;
 }
+
 /* Slider */
 .slick-slide {
-    margin: 0px 20px;
+    margin: 0 20px;
 }
 
 .slick-slide img {
@@ -216,4 +275,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .slick-arrow.slick-hidden {
     display: none;
+}
+
+.background-show {
+    background-color: #053B68;
+}
+
+.slick-slider {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
 }
