@@ -50,73 +50,73 @@ public class testController {
                             HttpServletResponse response,
                             @PathVariable("fileName") String fileName) {
 
-        String dataDirectory = request.getServletContext().getRealPath("/WEB-INF/downloads/pdf/");
-        Path file = Paths.get(dataDirectory, fileName);
-        if (Files.exists(file))
-        {
-            response.setContentType("application/pdf");
-            response.addHeader("Content-Disposition", "attachment; filename="+fileName);
-            try
-            {
-                Files.copy(file, response.getOutputStream());
-                response.getOutputStream().flush();
-            }
-            catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
+//        String dataDirectory = request.getServletContext().getRealPath("/WEB-INF/downloads/pdf/");
+//        Path file = Paths.get(dataDirectory, fileName);
+//        if (Files.exists(file))
+//        {
+//            response.setContentType("application/pdf");
+//            response.addHeader("Content-Disposition", "attachment; filename="+fileName);
+//            try
+//            {
+//                Files.copy(file, response.getOutputStream());
+//                response.getOutputStream().flush();
+//            }
+//            catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
 
 
 
-//        DaoCombiner daoCombiner = new DaoCombiner(userDao,providerDao,campusDao,programDao);
-//
-//        WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
-//
-//        String home = System.getProperty("user.home");
-//
-//        User user = userDao.findByUserProviderId(802);
-//        File file = new File(home+"/Downloads/ETPS_"+user.getUserProviderId()+"_All.xlsx");
-//
-//
-//        Map<String, Object[]> testdata = writeToExcel.GenerateAllUserData(user);
-////        File file = new File("testwrite1.xlsx");
-//        writeToExcel.WriteExcel(testdata, file);
-//
-//        user = userDao.findByUserProviderId(1);
-//        testdata = writeToExcel.GenerateAllUserData(user);
-//        file = new File(home+"/Downloads/ETPS_data_All.xlsx");
-//        writeToExcel.WriteExcel(testdata, file);
-//
-//
-//        user = userDao.findByUserProviderId(900);
-//        file = new File(home+"/Downloads/ETPS_"+user.getUserProviderId()+"_Pending.xlsx");
-//        testdata = writeToExcel.GenerateByStatus(user,"pending");
-//        writeToExcel.WriteExcel(testdata, file);
-//
-//        user = userDao.findByUserProviderId(1);
-//        file = new File(home+"/Downloads/ETPS_All_Pending.xlsx");
-//        testdata = writeToExcel.GenerateByStatus(user,"pending");
-//        writeToExcel.WriteExcel(testdata, file);
-//
-//        user = userDao.findByUserProviderId(900);
-//        file = new File(home+"/Downloads/ETPS_"+user.getUserProviderId()+"_Approved.xlsx");
-//        testdata = writeToExcel.GenerateByStatus(user,"approved");
-//        writeToExcel.WriteExcel(testdata, file);
-//
-//        user = userDao.findByUserProviderId(1);
-//        file = new File(home+"/Downloads/ETPS_All_Approved.xlsx");
-//        testdata = writeToExcel.GenerateByStatus(user,"approved");
-//        writeToExcel.WriteExcel(testdata, file);
-//
-//        user = userDao.findByUserProviderId(900);
-//        file = new File(home+"/Downloads/ETPS_"+user.getUserProviderId()+"_Expired.xlsx");
-//        testdata = writeToExcel.GenerateByStatus(user,"expired");
-//        writeToExcel.WriteExcel(testdata, file);
-//
-//        user = userDao.findByUserProviderId(1);
-//        file = new File(home+"/Downloads/ETPS_All_Expired.xlsx");
-//        testdata = writeToExcel.GenerateByStatus(user,"expired");
-//        writeToExcel.WriteExcel(testdata, file);
+        DaoCombiner daoCombiner = new DaoCombiner(userDao,providerDao,campusDao,programDao);
+
+        WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
+
+        String home = System.getProperty("user.home");
+
+        User user = userDao.findByUserProviderId(802);
+        File file = new File(home+"/Downloads/ETPS_"+user.getUserProviderId()+"_All.xlsx");
+
+
+        Map<String, Object[]> testdata = writeToExcel.GenerateAllUserData(user);
+//        File file = new File("testwrite1.xlsx");
+        writeToExcel.WriteExcel(testdata, file);
+
+        user = userDao.findByUserProviderId(1);
+        testdata = writeToExcel.GenerateAllUserData(user);
+        file = new File(home+"/Downloads/ETPS_data_All.xlsx");
+        writeToExcel.WriteExcel(testdata, file);
+
+
+        user = userDao.findByUserProviderId(900);
+        file = new File(home+"/Downloads/ETPS_"+user.getUserProviderId()+"_Pending.xlsx");
+        testdata = writeToExcel.GenerateByStatus(user,"pending");
+        writeToExcel.WriteExcel(testdata, file);
+
+        user = userDao.findByUserProviderId(1);
+        file = new File(home+"/Downloads/ETPS_All_Pending.xlsx");
+        testdata = writeToExcel.GenerateByStatus(user,"pending");
+        writeToExcel.WriteExcel(testdata, file);
+
+        user = userDao.findByUserProviderId(900);
+        file = new File(home+"/Downloads/ETPS_"+user.getUserProviderId()+"_Approved.xlsx");
+        testdata = writeToExcel.GenerateByStatus(user,"approved");
+        writeToExcel.WriteExcel(testdata, file);
+
+        user = userDao.findByUserProviderId(1);
+        file = new File(home+"/Downloads/ETPS_All_Approved.xlsx");
+        testdata = writeToExcel.GenerateByStatus(user,"approved");
+        writeToExcel.WriteExcel(testdata, file);
+
+        user = userDao.findByUserProviderId(900);
+        file = new File(home+"/Downloads/ETPS_"+user.getUserProviderId()+"_Expired.xlsx");
+        testdata = writeToExcel.GenerateByStatus(user,"expired");
+        writeToExcel.WriteExcel(testdata, file);
+
+        user = userDao.findByUserProviderId(1);
+        file = new File(home+"/Downloads/ETPS_All_Expired.xlsx");
+        testdata = writeToExcel.GenerateByStatus(user,"expired");
+        writeToExcel.WriteExcel(testdata, file);
 
 
 

@@ -58,12 +58,12 @@ public class FileUploadController {
         try {
 
 //            InputStream inputStream =  new BufferedInputStream(file.getInputStream());
-            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ReadFromExcel readFromExcel = new ReadFromExcel(providerDao, campusDao, programDao, submissionDao);
         File readFile = File.createTempFile("testFile",".xlsx");
         file.transferTo(readFile);
 
-//        User user = userDao.findByUserProviderId(900);
+        User loggedInUser = userDao.findByUserProviderId(900);
         readFromExcel.ReadExcel(readFile,loggedInUser);
         readFile.delete();
 

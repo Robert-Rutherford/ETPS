@@ -1,10 +1,14 @@
 package com.etps.etps.controllers;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
+import java.util.zip.InflaterInputStream;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 //import com.etps.etps.services.FileStorageService;
 import com.etps.etps.excelConversions.WriteToExcel;
@@ -14,15 +18,14 @@ import com.etps.etps.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.bind.annotation.RestController;
 
 
@@ -48,23 +51,30 @@ public class FileDownloadController {
 
 
     @PostMapping("/download/Approved")
-    public String WriteApproved() {
+    public String WriteApproved(HttpServletResponse response) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
 //        String home = System.getProperty("user.home");
 
         try {
+
             File writeFile = File.createTempFile("ETPS_"+loggedInUser.getUserProviderId()+"_Approved",".xlsx");
 
 
 //            File file = new File(home+"/Downloads/ETPS_"+loggedInUser.getUserProviderId()+"_All.xlsx");
             Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(loggedInUser,"approved");
             writeToExcel.WriteExcel(writeData, writeFile);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            // get your file as InputStream
+            InputStream is = new FileInputStream(writeFile);
+            response.setContentType("application/vnd.ms-excel");
+            // copy it to response's OutputStream
+            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+            response.flushBuffer();
+            writeFile.delete();
+        } catch (IOException ex) {
+//            log.info("Error writing file to output stream. Filename was '{}'", fileName, ex);
+            throw new RuntimeException("IOError writing file to output stream");
         }
 
 
@@ -72,30 +82,42 @@ public class FileDownloadController {
     }
 
     @PostMapping("/download/Pending")
-    public String WritePending() {
+    public void WritePending(HttpServletResponse response) {
+
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
 //        String home = System.getProperty("user.home");
 
         try {
+
+            if (loggedInUser.isAdmin()){
+//                get sender's user and set them as the pending user instead
+
+            }
             File writeFile = File.createTempFile("ETPS_"+loggedInUser.getUserProviderId()+"_Pending",".xlsx");
 
 //            File file = new File(home+"/Downloads/ETPS_"+loggedInUser.getUserProviderId()+"_All.xlsx");
             Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(loggedInUser,"pending");
             writeToExcel.WriteExcel(writeData, writeFile);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            // get your file as InputStream
+            InputStream is = new FileInputStream(writeFile);
+            response.setContentType("application/vnd.ms-excel");
+            // copy it to response's OutputStream
+            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+            response.flushBuffer();
+            writeFile.delete();
+        } catch (IOException ex) {
+//            log.info("Error writing file to output stream. Filename was '{}'", fileName, ex);
+            throw new RuntimeException("IOError writing file to output stream");
         }
 
 
-        return "redirect:/home";
+//        return "redirect:/home";
     }
 
     @PostMapping("/download/Expired")
-    public String WriteExpired() {
+    public void WriteExpired(HttpServletResponse response) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
@@ -107,50 +129,77 @@ public class FileDownloadController {
 //            File file = new File(home+"/Downloads/ETPS_"+loggedInUser.getUserProviderId()+"_All.xlsx");
             Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(loggedInUser,"expired");
             writeToExcel.WriteExcel(writeData, writeFile);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            // get your file as InputStream
+            InputStream is = new FileInputStream(writeFile);
+            response.setContentType("application/vnd.ms-excel");
+            // copy it to response's OutputStream
+            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+            response.flushBuffer();
+            writeFile.delete();
+        } catch (IOException ex) {
+//            log.info("Error writing file to output stream. Filename was '{}'", fileName, ex);
+            throw new RuntimeException("IOError writing file to output stream");
         }
 
-
-        return "redirect:/home";
+        //        return "redirect:/home";
     }
 
 
+    @PostMapping("/download/All")
+    public void WriteAll(HttpServletResponse response) {
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (loggedInUser.isAdmin()){
+            WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
+//        String home = System.getProperty("user.home");
+
+            try {
+                File writeFile = File.createTempFile("ETPS_"+loggedInUser.getUserProviderId()+"_All",".xlsx");
+
+//            File file = new File(home+"/Downloads/ETPS_"+loggedInUser.getUserProviderId()+"_All.xlsx");
+                Map<String, Object[]> writeData = writeToExcel.GenerateAllUserData(loggedInUser);
+                writeToExcel.WriteExcel(writeData, writeFile);
+//              get your file as InputStream
+                InputStream is = new FileInputStream(writeFile);
+                response.setContentType("application/vnd.ms-excel");
+                // copy it to response's OutputStream
+                org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+                response.flushBuffer();
+                writeFile.delete();
+            } catch (IOException ex) {
+//            log.info("Error writing file to output stream. Filename was '{}'", fileName, ex);
+                throw new RuntimeException("IOError writing file to output stream");
+            }
+
+            //        return "redirect:/home";
+        }
+
+    }
 
 
-
-
-
-
-
-//    private static final Logger logger = LoggerFactory.getLogger(FileDownloadController.class);
-//
-//    @Autowired
-//    private FileStorageService fileStorageService;
-//
-//    @GetMapping("/downloadFile/{fileName:.+}")
-//    public ResponseEntity < Resource > downloadFile(@PathVariable String fileName, HttpServletRequest request) {
-//        // Load file as Resource
-//        Resource resource = fileStorageService.loadFileAsResource(fileName);
-//
-//        // Try to determine file's content type
-//        String contentType = null;
+//    @RequestMapping(value = "/files/test", method = RequestMethod.GET)
+//    public String getFile(HttpServletResponse response) {
 //        try {
-//            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+//                    WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
+////        String home = System.getProperty("user.home");
+//        User loggedInUser = userDao.findByUserProviderId(802);
+//
+//            File writeFile = File.createTempFile("ETPS_"+loggedInUser.getUserProviderId()+"_All",".xlsx");
+//
+////            File file = new File(home+"/Downloads/ETPS_"+loggedInUser.getUserProviderId()+"_All.xlsx");
+//            Map<String, Object[]> writeData = writeToExcel.GenerateAllUserData(loggedInUser);
+//            writeToExcel.WriteExcel(writeData, writeFile);
+//            // get your file as InputStream
+//            InputStream is = new FileInputStream(writeFile);
+//            response.setContentType("application/vnd.ms-excel");
+//            // copy it to response's OutputStream
+//            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+//            response.flushBuffer();
 //        } catch (IOException ex) {
-//            logger.info("Could not determine file type.");
+////            log.info("Error writing file to output stream. Filename was '{}'", fileName, ex);
+//            throw new RuntimeException("IOError writing file to output stream");
 //        }
-//
-//        // Fallback to the default content type if type could not be determined
-//        if (contentType == null) {
-//            contentType = "application/octet-stream";
-//        }
-//
-//        return ResponseEntity.ok()
-//                .contentType(MediaType.parseMediaType(contentType))
-//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-//                .body(resource);
+//        return "redirect:/test";
 //    }
+
 }
