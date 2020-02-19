@@ -35,7 +35,7 @@ public class FileDownloadController {
 
 
     @PostMapping("/download/Approved")
-    public String WriteApproved(HttpServletResponse response) {
+    public void WriteApproved(HttpServletResponse response) {
 
         User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
@@ -52,13 +52,13 @@ public class FileDownloadController {
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
-            writeFile.delete();
+
         } catch (IOException ex) {
             throw new RuntimeException("IOError writing file to output stream");
         }
 
 
-        return "redirect:/home";
+//        return "redirect:/home";
     }
 
     @PostMapping("/download/Pending")
@@ -85,7 +85,7 @@ public class FileDownloadController {
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
-            writeFile.delete();
+
         } catch (IOException ex) {
             throw new RuntimeException("IOError writing file to output stream");
         }
@@ -110,7 +110,7 @@ public class FileDownloadController {
             response.setContentType("application/vnd.ms-excel");
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
-            writeFile.delete();
+
         } catch (IOException ex) {
             throw new RuntimeException("IOError writing file to output stream");
         }
@@ -138,7 +138,7 @@ public class FileDownloadController {
 
                 org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
                 response.flushBuffer();
-                writeFile.delete();
+
             } catch (IOException ex) {
                 throw new RuntimeException("IOError writing file to output stream");
             }
