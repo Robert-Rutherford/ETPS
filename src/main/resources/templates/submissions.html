@@ -29,6 +29,61 @@
                     <tr><td></td><td><input type="submit" value="Submit" /></td></tr>
                 </table>
             </form>
+
+        <div>
+            <h5>Approved Table</h5>
+            <table>
+                <tr th:each="approvedObj : ${approvedList}">
+                    <th th:text="${approvedObj.getProviderID()}"></th>
+                    <th th:text="${approvedObj.getProviderName()}"></th>
+                    <th th:text="${approvedObj.getProviderDescription()}"></th>
+                    <th th:text="${approvedObj.getCampusID()}"></th>
+                    <th th:text="${approvedObj.getCampusName()}"></th>
+                    <th th:text="${approvedObj.getProgramID()}"></th>
+                    <th th:text="${approvedObj.getProgramName()}"></th>
+                    <th th:text="${approvedObj.getProgramDescription()}"></th>
+                    <th th:text="${approvedObj.getEtpID()}"></th>
+                    <th th:text="${approvedObj.getStatus()}"></th>
+                </tr>
+            </table>
+            <h5>Pending Table</h5>
+            <table>
+                <tr th:each="pendingObj : ${pendingList}">
+                    <th th:text="${pendingObj.getProviderID()}"></th>
+                    <th th:text="${pendingObj.getProviderName()}"></th>
+                    <th th:text="${pendingObj.getProviderDescription()}"></th>
+                    <th th:text="${pendingObj.getCampusID()}"></th>
+                    <th th:text="${pendingObj.getCampusName()}"></th>
+                    <th th:text="${pendingObj.getProgramID()}"></th>
+                    <th th:text="${pendingObj.getProgramName()}"></th>
+                    <th th:text="${pendingObj.getProgramDescription()}"></th>
+                    <th th:text="${pendingObj.getEtpID()}"></th>
+                    <th th:text="${pendingObj.getStatus()}"></th>
+                </tr>
+            </table>
+            <h5>Expired Table</h5>
+            <table>
+                <tr th:each="expiredObj : ${expiredList}">
+                    <th th:text="${expiredObj.getProviderID()}"></th>
+                    <th th:text="${expiredObj.getProviderName()}"></th>
+                    <th th:text="${expiredObj.getProviderDescription()}"></th>
+                    <th th:text="${expiredObj.getCampusID()}"></th>
+                    <th th:text="${expiredObj.getCampusName()}"></th>
+                    <th th:text="${expiredObj.getProgramID()}"></th>
+                    <th th:text="${expiredObj.getProgramName()}"></th>
+                    <th th:text="${expiredObj.getProgramDescription()}"></th>
+                    <th th:text="${expiredObj.getEtpID()}"></th>
+                    <th th:text="${expiredObj.getStatus()}"></th>
+                </tr>
+            </table>
+
+        </div>
+
+<!--//    "1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
+//            "Program ID", "Program Name", "Program Description", "ETP ID","Status"}-->
+
+
+
     </section>
 </main>
 
