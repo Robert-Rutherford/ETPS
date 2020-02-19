@@ -2,10 +2,12 @@
 package com.etps.etps.controllers;
 
 import com.etps.etps.excelConversions.WriteToExcel;
+import com.etps.etps.models.Message;
 import com.etps.etps.models.User;
 import com.etps.etps.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,13 +26,15 @@ public class FileDownloadController {
     private Campuses campusDao;
     private Programs programDao;
     private Submissions submissionDao;
+    private Messages messageDao;
 
-    public FileDownloadController(Users userDao, Providers providerDao, Campuses campusDao, Programs programDao, Submissions submissionDao) {
+    public FileDownloadController(Users userDao, Providers providerDao, Campuses campusDao, Programs programDao, Submissions submissionDao, Messages messageDao) {
         this.userDao = userDao;
         this.providerDao = providerDao;
         this.campusDao = campusDao;
         this.programDao = programDao;
         this.submissionDao = submissionDao;
+        this.messageDao = messageDao;
     }
 
 
@@ -147,6 +151,46 @@ public class FileDownloadController {
         }
 
     }
+
+    @PostMapping("/message/{id}/download/submission")
+    public void WriteSubmission(HttpServletResponse response, @PathVariable String id) {
+
+        Message message = messageDao.findById(Long.parseLong(id));
+        User receivedUser = message.getReceivedUser();
+        User sentUser = message.getSentUser();
+        User submissionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (!sentUser.isAdmin()){
+            submissionUser = sentUser;
+        }else {
+            submissionUser = receivedUser;
+        }
+
+
+            WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
+
+        try {
+
+            File writeFile = File.createTempFile("ETPS_"+submissionUser.getUserProviderId()+"_Pending",".xlsx");
+
+            Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(submissionUser,"pending");
+            writeToExcel.WriteExcel(writeData, writeFile);
+
+            InputStream is = new FileInputStream(writeFile);
+            response.setContentType("application/vnd.ms-excel");
+
+            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+            response.flushBuffer();
+
+        } catch (IOException ex) {
+            throw new RuntimeException("IOError writing file to output stream");
+        }
+
+    }
+
+
+
+
 
 
 //    @RequestMapping(value = "/files/test", method = RequestMethod.GET)
