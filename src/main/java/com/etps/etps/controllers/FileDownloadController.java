@@ -35,7 +35,7 @@ public class FileDownloadController {
 
 
     @PostMapping("/download/Approved")
-    public String WriteApproved(HttpServletResponse response) {
+    public void WriteApproved(HttpServletResponse response) {
 
         User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
@@ -58,7 +58,7 @@ public class FileDownloadController {
         }
 
 
-        return "redirect:/home";
+//        return "redirect:/home";
     }
 
     @PostMapping("/download/Pending")

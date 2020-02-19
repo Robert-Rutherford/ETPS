@@ -26,7 +26,6 @@
                             <a href="/message/create">New Message</a>
                         </div>
 
-
                     </div>
                 </div>
             </div></li>
@@ -40,7 +39,7 @@
 <!--            <li><div class="card-body" th:if="${user.isAdmin()}">-->
             <li><div class="card-body">
                 <h5>Download excels:</h5>
-                <form th:method="POST" th:action="@{|/download/All|}">
+                <form th:method="POST" th:action="@{|/download/All|}" th:if="${user.isAdmin()}">
                     <button th:action="submit">All</button>
                 </form>
                 <form th:method="POST" th:action="@{|/download/Approved|}">
