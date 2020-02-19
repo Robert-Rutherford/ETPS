@@ -69,10 +69,10 @@ public class UserController {
         admin.setEmail("admin@admin.com");
         admin.setAdmin(true);
 
-        User ghost = new User();
-        ghost.setUsername("ghost");
-        ghost.setPassword(passwordEncoder.encode("ghost"));
-        ghost.setEmail("ghost@admin.com");
+        User emailTest = new User();
+        emailTest.setUsername("emailTest");
+        emailTest.setPassword(passwordEncoder.encode("ghost"));
+        emailTest.setEmail("ethan.joiner@gmail.com");
 
         User codeUpUser = new User();
         codeUpUser.setUsername("codeup");
@@ -96,11 +96,11 @@ public class UserController {
         userDao.save(admin);
         }
 
-        if (userDao.findByUsername("ghost") == null){
-            userDao.save(ghost);
+        if (userDao.findByUsername("emailTest") == null){
+            userDao.save(emailTest);
         }
 
-        if (providerDao.findById(829) == null){
+        if (providerDao.findById(900) == null){
             providerDao.save(codeUp);
         }
 
