@@ -24,12 +24,12 @@
 
 
             <p th:if="${message.receivedUser.id == user.id}" class="text-center">Sent From : <span th:text="${message.sentUser.username}"></span>
-                At :
-                <span th:text="${message.dateSent}"></span>
+                On :
+                <span th:text="${message.dateSent}" class="timeStamp"></span>
             </p>
 
             <p th:if="${message.sentUser.id == user.id}" class="text-center">Sent To : <span th:text="${message.receivedUser.username}"></span>
-                At :
+                On :
                 <span th:text="${message.dateSent}"></span>
             </p>
 
