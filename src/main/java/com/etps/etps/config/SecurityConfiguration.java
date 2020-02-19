@@ -55,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/message/**",
                         "/messages/**",
                         "/download/**",
-                        "/uploadFile"// only authenticated users can create messages
+                        "/uploadFile"// only authenticated users
                 )
                 .authenticated()
         ;
