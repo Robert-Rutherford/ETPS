@@ -66,6 +66,7 @@ public class UserController {
         User admin = new User();
         admin.setUsername("admin");
         admin.setPassword(passwordEncoder.encode("admin"));
+        admin.setUserProviderId(1);
         admin.setEmail("admin@admin.com");
         admin.setAdmin(true);
 
@@ -78,6 +79,7 @@ public class UserController {
         codeUpUser.setUsername("codeup");
         codeUpUser.setPassword(passwordEncoder.encode("test"));
         codeUpUser.setEmail("test@testing.com");
+        codeUpUser.setUserProviderId(900);
 //        codeUpUser.setProvider(codeUp);
         codeUpUser.setAdmin(false);
 
