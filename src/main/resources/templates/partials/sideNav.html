@@ -14,7 +14,7 @@
                     <div class="card-header" id="headingOne">
                         <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseOne"
                                 aria-expanded="true" aria-controls="collapseOne">
-                            <span class="test">Messages <span th:text="${unread}" class="badge badge-danger"></span>
+                            <span class="test">Messages <span th:text="${unread}" th:if="${unread} > 0" class="badge badge-danger"></span>
                         </button>
                     </div>
 

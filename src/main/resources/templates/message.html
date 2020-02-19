@@ -39,17 +39,14 @@
                 <button th:action="submit">Download Submission</button>
             </form>
 
-<!--            <div th:if="${message.beenRead}">-->
-<!--                <form th:action="@{/messages/in}">-->
-<!--                    <button>Back</button>-->
-<!--                </form>-->
-<!--            </div>-->
+            <form th:action="@{|/message/${message.id}/submission/approved|}" th:if="${message.receivedUser.admin}" th:method="POST">
+                <input type="hidden" th:value="${message.id}" name="id" class="mt-auto">
+                <button class="btn btn-success">Approve Submission</button>
+            </form>
 
-<!--            <div th:if="${!message.beenRead}">-->
-<!--                <form th:action="@{/messages/out}">-->
-<!--                    <button>Back</button>-->
-<!--                </form>-->
-<!--            </div>-->
+
+
+
 
         </div>
     </div>
