@@ -12,8 +12,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 public class ReadFromExcel {
     private Providers providerDao;
@@ -129,6 +131,25 @@ public class ReadFromExcel {
         campusDao.save(newCampus);
         programDao.save(newProgram);
 
+
+    }
+
+    private Boolean existingPending(User user){
+        List<Provider> providers = providerDao.findAll();
+            List<Provider> searchProviders = new ArrayList<>();
+            for (Provider provider: providers) {
+                if (provider.getProvId() == user.getUserProviderId()){
+                    searchProviders.add(provider);
+                }
+            }
+
+        for (Provider provider: searchProviders) {
+            if (provider.getSubmission().getStatus().equalsIgnoreCase("pending")){
+                return true;
+            }
+        }
+
+        return false;
 
     }
 
