@@ -100,7 +100,7 @@ public class MessageController {
     @GetMapping("/message/approved")
     public String autoApproveMsg(@ModelAttribute("flashMessage") Message message) throws ParseException {
         Date date = new Date();
-        User receivedUser = userDao.findByUsername(message.getReceivedUser().getUsername());
+        User receivedUser = userDao.findByUsername(message.getSentUser().getUsername());
         Message approved = new Message();
         approved.setReceivedUser(receivedUser);
         approved.setSentUser(currentUser());
@@ -110,6 +110,23 @@ public class MessageController {
         approved.setBody("Your submission has been approved.");
         messageDao.save(approved);
         emailService.prepareAndSend(approved, "New Message From " + approved.getSentUser().getUsername(), "You have a new message!");
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/message/submission")
+    public String autoSubmitMsg() throws ParseException {
+        Date date = new Date();
+
+        Message message = new Message();
+        message.setSentUser(currentUser());
+        message.setReceivedUser(userDao.findByUsername("admin"));
+        message.setDateSent(df.parse(df.format(date)));
+        message.setBeenRead(false);
+        message.setTitle("New Submission");
+        message.setBody("You have received a new submission from " + currentUser().getUsername() + ".");
+        messageDao.save(message);
+        emailService.prepareAndSend(message, "New Message From " + message.getSentUser().getUsername(), "You have a new message!");
 
         return "redirect:/";
     }
