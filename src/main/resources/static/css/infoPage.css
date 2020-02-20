@@ -59,6 +59,8 @@
 
 }
 
+/* ===== REQUIREMENTS ====== */
+
 /* ===== SUBMISSIONS TAB ===== */
 .submissions-container h3 {
     color: #28699F;
@@ -141,7 +143,7 @@ div.eligible-disclaimer > h3.pre-requisites {
     opacity: 0.7;
 }
 
-/* ==== OVERVIEW ===== */
+/* ------ SUBMISSIONS: OVERVIEW ----- */
 .process-card {
     width: 65em;
     margin: 0 auto;
@@ -198,7 +200,7 @@ div.eligible-disclaimer > h3.pre-requisites {
     opacity: .7;
 }
 
-/* ===== ELIGIBILITY ===== */
+/* ----- SUBMISSIONS: ELIGIBILITY ----- */
 .eligibility-card {
     width: min-content;
     margin: 0 auto;
@@ -225,6 +227,66 @@ div.eligible-disclaimer > h3.pre-requisites {
     width: 25em;
     margin: 1em;
     border-radius: 1em;
+}
+
+/* ====== CONTACT TAB ======*/
+.contact-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/*.tab-content > div:nth-child(5) {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    text-align: center;*/
+/*}*/
+
+.workforce-question {
+    font-style: italic;
+}
+
+.workforce-question a:active, a:focus {
+    outline: 0;
+    border: none;
+    -moz-outline-style: none;
+}
+
+.workforce-question a:link, a:visited {
+    color: black;
+}
+
+.workforce-question a:hover {
+    text-decoration: none;
+}
+
+.workforce-solutions {
+    background-color: #053B68;
+    border-radius: 1em;
+    padding: 2px 1em;
+}
+
+.workforce-solutions > span:nth-child(1) {
+    color: #FFFFFF;
+}
+
+.workforce-solutions > span:nth-child(2) {
+    color: #8AC152;
+}
+
+.workforce-solutions > span:nth-child(3) {
+    color: #FFFFFF;
+}
+
+.contact-information {
+    margin: 1rem 0;
+    background-color: #DEEAEE;
+    padding: 1em;
+    border-radius: 1em;
+    font-size: 14pt;
 }
 
 /* ===== MODAL IMAGE ===== */
@@ -301,64 +363,4 @@ div.eligible-disclaimer > h3.pre-requisites {
     .modal-content {
         width: 100%;
     }
-}
-
-/* ====== CONTACT TAB ======*/
-.contact-tab {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/*.tab-content > div:nth-child(5) {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*    text-align: center;*/
-/*}*/
-
-.workforce-question {
-    font-style: italic;
-}
-
-.workforce-question a:active, a:focus {
-    outline: 0;
-    border: none;
-    -moz-outline-style: none;
-}
-
-.workforce-question a:link, a:visited {
-    color: black;
-}
-
-.workforce-question a:hover {
-    text-decoration: none;
-}
-
-.workforce-solutions {
-    background-color: #053B68;
-    border-radius: 1em;
-    padding: 2px 1em;
-}
-
-.workforce-solutions > span:nth-child(1) {
-    color: #FFFFFF;
-}
-
-.workforce-solutions > span:nth-child(2) {
-    color: #8AC152;
-}
-
-.workforce-solutions > span:nth-child(3) {
-    color: #FFFFFF;
-}
-
-.contact-information {
-    margin: 1rem 0;
-    background-color: #DEEAEE;
-    padding: 1em;
-    border-radius: 1em;
-    font-size: 14pt;
 }
