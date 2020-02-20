@@ -35,21 +35,14 @@
 
             <p th:text="${message.body}" class="text-center"></p>
 
-            <form th:method="GET" th:action="@{|/download/pending|}">
+            <form th:method="POST" th:action="@{|/message/${message.id}/download/submission}">
                 <button th:action="submit">Download Submission</button>
             </form>
 
-<!--            <div th:if="${message.beenRead}">-->
-<!--                <form th:action="@{/messages/in}">-->
-<!--                    <button>Back</button>-->
-<!--                </form>-->
-<!--            </div>-->
+            <form th:method="POST" th:action="@{|/message/${message.id}/submission/approved}" th:if="${message.receivedUser.admin}">
+                <button th:action="submit" class="btn btn-success">Approve</button>
+            </form>
 
-<!--            <div th:if="${!message.beenRead}">-->
-<!--                <form th:action="@{/messages/out}">-->
-<!--                    <button>Back</button>-->
-<!--                </form>-->
-<!--            </div>-->
 
         </div>
     </div>
