@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -77,7 +78,7 @@ public class SubmissionController {
 
 
     @PostMapping("/message/{id}/submission/approved")
-    public void approveTest(@PathVariable String id){
+    public String approveTest(@PathVariable String id, RedirectAttributes attributes){
 //        User user = userDao.findByUserProviderId(900);
         Message message = messageDao.findById(Long.parseLong(id));
         User receivedUser = message.getReceivedUser();
@@ -91,10 +92,13 @@ public class SubmissionController {
         }
         StatusChange statusChange = new StatusChange(submissionDao,providerDao);
         statusChange.ApproveSubmission(submissionUser);
+        attributes.addFlashAttribute("flashMessage", message);
+
+        attributes.addAttribute("message", message);
 
 //
 
 
-//        return "redirect:/test";
+        return "redirect:/message/approved";
     }
 }
