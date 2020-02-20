@@ -8,10 +8,7 @@ import com.etps.etps.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.DateFormat;
@@ -101,18 +98,18 @@ public class MessageController {
     }
 
     @GetMapping("/message/approved")
-    public String autoApproveMsg(Message message) throws ParseException {
+    public String autoApproveMsg(@ModelAttribute("flashMessage") Message message) throws ParseException {
         Date date = new Date();
         User receivedUser = userDao.findByUsername(message.getReceivedUser().getUsername());
         Message approved = new Message();
-        approved.setReceivedUser(currentUser());
-        approved.setSentUser(receivedUser);
+        approved.setReceivedUser(receivedUser);
+        approved.setSentUser(currentUser());
         approved.setDateSent(df.parse(df.format(date)));
         approved.setBeenRead(false);
         approved.setTitle("Approved");
         approved.setBody("Your submission has been approved.");
-        messageDao.save(message);
-        emailService.prepareAndSend(message, "New Message From " + message.getSentUser().getUsername(), "You have a new message!");
+        messageDao.save(approved);
+        emailService.prepareAndSend(approved, "New Message From " + approved.getSentUser().getUsername(), "You have a new message!");
 
         return "redirect:/";
     }
