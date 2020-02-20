@@ -4,10 +4,11 @@
     /*border: 1px solid black;*/
 }
 
-.info-content-container a:link, a:visited{
+.info-content-container a:link, a:visited {
     color: #0257B3;
 }
-.info-content-container a:hover{
+
+.info-content-container a:hover {
     color: #8AC152;
 }
 
@@ -18,14 +19,14 @@
 .tab-content {
     padding: 1em;
     min-height: 20em;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     border-radius: 1em;
 }
 
 .nav-tab-container {
     justify-content: center;
-    position: sticky;
-    top: 4.3em;
+    /*position: sticky;*/
+    /*top: 4.3em;*/
     background-color: white;
 }
 
@@ -59,7 +60,7 @@
 }
 
 /* ===== SUBMISSIONS TAB ===== */
-.submissions-content h3 {
+.submissions-container h3 {
     color: #28699F;
 }
 
@@ -74,7 +75,8 @@
     border: 1px solid black;
     border-radius: 1em;
     padding: 1em;
-    background-color: #FAFAD2;
+    /*background-color: #FAFAD2;*/
+    background-color: rgba(246, 195, 88, .8);;
     box-shadow: 2px 2px 2px;
 }
 
@@ -83,26 +85,239 @@ div.eligible-disclaimer > h3.pre-requisites {
 }
 
 .submission-card {
-    border: 1px solid red;
+    /*border: 1px solid red;*/
+    margin: 1em 0;
 }
 
 .pre-requisites {
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid firebrick;
     border-radius: 2px;
     color: #212529;
 }
+
+.submissions-content {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: min-content 1fr;
+    width: 65em;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 1em;
+    /*padding: 1em 0;*/
+    padding-bottom: 1em;
+    background-color: #F6FFEE;
+    overflow: hidden;
+}
+
+.submissions-content > h4 {
+    grid-area: 1 / 1 / 2 / 3;
+    /*margin: .5em 0;*/
+    text-align: center;
+    color: white;
+    padding: .25em;
+    background-color: #8AC152;
+    border-bottom: 3px solid #1B649A;
+}
+
+.submissions-content > ul {
+    grid-area: 2 / 1 / 3 / 2;
+    justify-self: center;
+    align-self: center;
+}
+
+.submissions-content > img {
+    grid-area: 2 / 2 / 3 / 3;
+    justify-self: center;
+    align-self: center;
+    width: 25em;
+    /*border: 1px solid red;*/
+    border-radius: 1em;
+    box-shadow: 4px 4px 4px grey;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submissions-content img:hover {
+    opacity: 0.7;
+}
+
+/* ==== OVERVIEW ===== */
+.process-card {
+    width: 65em;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 1em;
+    /*overflow-y: hidden;*/
+    display: flex;
+    flex-direction: column;
+    /*overflow-x: scroll;*/
+    overflow: hidden;
+    background-color: #DEEAEE;
+}
+
+.process-card > h4 {
+    text-align: center;
+    background-color: #053B68;
+    color: white;
+    padding: .25em;
+    border-bottom: 3px solid #8AC152;
+}
+
+.etp-container {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-align: center;
+    /*scroll-behavior: auto;*/
+    scroll-behavior: smooth;
+}
+
+.etp-process-imgs {
+    display: flex;
+    padding: 1em .5em;
+    /*overflow-x: scroll;*/
+}
+
+.etp-process-imgs img {
+    width: 25em;
+    border-radius: 1em;
+    border: 2px solid silver;
+    margin: 0 2em;
+}
+
+.etp-process-imgs img:first-child {
+    margin-right: 2em;
+    margin-left: 0;
+}
+
+.sub-img {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sub-img:hover {
+    opacity: .7;
+}
+
+/* ===== ELIGIBILITY ===== */
+.eligibility-card {
+    width: min-content;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 1em;
+    overflow: hidden;
+    background-color: #F6FFEE;
+}
+
+.eligibility-card > h4 {
+    width: 100%;
+    text-align: center;
+    background: #8AC152;
+    padding: .25em;
+    color: white;
+    border-bottom: 3px solid #1B649A;
+}
+
+.eligibility-card > img {
+    width: 25em;
+    margin: 1em;
+    border-radius: 1em;
+}
+
+/* ===== MODAL IMAGE ===== */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1031; /* Sit on top */
+    padding-top: 75px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 60em;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0)
+    }
+    to {
+        transform: scale(1)
+    }
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+    }
+}
+
 /* ====== CONTACT TAB ======*/
 .contact-tab {
     display: flex;
-    justify-content: center;
-}
-
-.tab-content > div:nth-child(3) {
-    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
 }
+
+/*.tab-content > div:nth-child(5) {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    text-align: center;*/
+/*}*/
 
 .workforce-question {
     font-style: italic;
