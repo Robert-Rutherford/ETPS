@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head('Messages')">
+    <style>
+        a:visited {
+            color: black;
+        }
+        a {
+            color:black;
+        }
+        a:hover {
+            color:black;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body style="background-color: #E9ECEF">
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -24,7 +36,7 @@
             <div class="card-body w-100">
                 <h1 class="card-title text-center" style="color: white">Received</h1>
                 <div th:each="message : ${user.received}" th:if="${!message.deleted}">
-                    <a th:href="@{|/message/${message.id}|}">
+                    <a th:href="@{|/message/${message.id}|}" style="color:black; text-decoration: none">
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <div class="d-flex justify-content-start">
@@ -34,14 +46,11 @@
                                     <h4 th:text="${message.title}"></h4>
                                 </div>
 
-                                <p>Sent From : <span th:text="${message.sentUser.username}"></span>
-                                    At :
+                                <p>From : <span th:text="${message.sentUser.username}"></span>
+                                    On :
                                     <span th:text="${message.dateSent}" class="timeStamp"></span>
                                 </p>
                                 <div class="d-flex justify-content-end">
-                                    <!--                                <a th:href="@{|/message/${message.id}|}" class="btn btn-success mr-auto">View-->
-                                    <!--                                    Message</a>-->
-
 
                                     <input type="checkbox" th:value="${message.id}" name="id" class="mt-auto">
                                 </div>
