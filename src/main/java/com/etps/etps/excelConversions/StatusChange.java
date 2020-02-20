@@ -47,5 +47,17 @@ public class StatusChange {
         }
     }
 
+    public void RejectSubmission(User user){
+        long submitterID = user.getUserProviderId();
+        List<Provider> providerList = providerDao.findAll();
+        for (Provider provider: providerList) {
+            if (provider.getProvId() == submitterID){
+                if (provider.getSubmission().getStatus().equalsIgnoreCase("pending")){
+                    provider.getSubmission().setStatus("rejected");
+                    submissionDao.save(provider.getSubmission());
+                }
+            }
+        }
+    }
 
 }
