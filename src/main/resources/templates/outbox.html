@@ -5,13 +5,13 @@
 <body style="background-color: #E9ECEF">
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="d-flex justify-content-center">
-    <form th:action="@{/}" >
+    <form th:action="@{/}">
         <button class="btn my-3" style="background-color: #28699F; color: white">Back</button>
     </form>
-    <form th:action="@{/messages/in}" >
+    <form th:action="@{/messages/in}">
         <button class="btn my-3 mx-5" style="background-color: #28699F; color: white">Inbox</button>
     </form>
-    <form th:action="@{/message/create}" >
+    <form th:action="@{/message/create}">
         <button class="btn my-3" style="background-color: #28699F; color: white">Send</button>
     </form>
 </div>
@@ -20,15 +20,17 @@
         <div class="card-body w-100">
             <h1 class="card-title text-center" style="color: white">Sent</h1>
             <ul th:each="message : ${user.sent}" class="list-group">
-                <li class="list-group-item">
-                    <h4 th:text="${message.title}"></h4>
-                    <p>Sent To : <span th:text="${message.receivedUser.username}"></span>
-                        At :
-                        <span th:text="${message.dateSent}" class="timeStamp"></span>
-                    </p>
-                    <a th:href="@{|/message/${message.id}|}" class="btn btn-success mr-auto">View
-                        Message</a>
-                </li>
+                <a th:href="@{|/message/${message.id}|}" style="color:black; text-decoration: none">
+                    <div>
+                        <li class="list-group-item">
+                            <h4 th:text="${message.title}"></h4>
+                            <p>Sent To : <span th:text="${message.receivedUser.username}"></span>
+                                At :
+                                <span th:text="${message.dateSent}" class="timeStamp"></span>
+                            </p>
+                        </li>
+                    </div>
+                </a>
             </ul>
         </div>
     </div>
