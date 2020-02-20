@@ -24,18 +24,18 @@
 </h2>
 
 
-            <p th:if="${message.receivedUser.id == user.id}" class="text-center"> <span th:text="${message.sentUser.username}"></span>
+            <p th:if="${message.receivedUser.id == user.id}" class="text-center"> From: <span th:text="${message.sentUser.username}"></span>
 <!--                <span th:text="${message.dateSent}" class="timeStamp"></span>-->
             </p>
 
-            <p th:if="${message.sentUser.id == user.id}" class="text-center"><span th:text="${message.receivedUser.username}"></span>
+            <p th:if="${message.sentUser.id == user.id}" class="text-center">To: <span th:text="${message.receivedUser.username}"></span>
 <!--                <span th:text="${message.dateSent}"></span>-->
             </p>
 
             <p th:text="${message.body}" class="text-center"></p>
 
             <div class="d-flex">
-            <form th:method="POST" th:action="@{|/message/${message.id}/download/submission}">
+            <form th:method="POST" th:action="@{|/message/${message.id}/download/submission|}">
                 <button th:action="submit" class="btn">Download Submission</button>
             </form>
 

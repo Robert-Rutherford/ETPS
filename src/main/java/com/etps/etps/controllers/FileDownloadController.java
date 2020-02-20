@@ -163,7 +163,7 @@ public class FileDownloadController {
         Message message = messageDao.findById(Long.parseLong(id));
         User receivedUser = message.getReceivedUser();
         User sentUser = message.getSentUser();
-        User submissionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User submissionUser;
 
         if (!sentUser.isAdmin()){
             submissionUser = sentUser;
