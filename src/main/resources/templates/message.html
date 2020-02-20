@@ -36,10 +36,10 @@
 
             <div class="d-flex">
             <form th:method="POST" th:action="@{|/message/${message.id}/download/submission|}">
-                <button th:action="submit" class="btn">Download Submission</button>
+                <button th:action="submit" class="btn btn-light">Download Submission</button>
             </form>
 
-            <form th:method="POST" th:action="@{|/message/${message.id}/submission/approved|}" th:if="${message.receivedUser.admin}">
+            <form th:method="POST" th:action="@{|/message/${message.id}/submission/approved|}" th:if="${user.admin}">
                 <button th:action="submit" class="btn btn-success">Approve Submission</button>
             </form>
             <span th:text="${message.dateSent}" class="timeStamp ml-auto"></span>

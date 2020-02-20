@@ -57,7 +57,7 @@ public class FileUploadController {
     } catch (IOException e) {
         e.printStackTrace();
     }
-        return "redirect:/home";
+        return "redirect:/message/submission";
     }
 
 }
