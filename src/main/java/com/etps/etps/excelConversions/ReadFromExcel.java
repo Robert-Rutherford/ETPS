@@ -73,8 +73,20 @@ public class ReadFromExcel {
                     int columnIndex = cell.getColumnIndex();
                     switch (columnIndex) {
                         case 0:
-                            long provider_id = (long) cell.getNumericCellValue();
-                            newProvider.setProvId(provider_id);
+                            long provider_id;
+                            switch (cell.getCellType())
+                            {
+                                case NUMERIC:
+                                    provider_id = (long) cell.getNumericCellValue();
+                                    newProvider.setProvId(provider_id);
+                                    break;
+                                case STRING:
+                                    provider_id = Long.parseLong(cell.getStringCellValue());
+                                    newProvider.setProvId(provider_id);
+                                    break;
+                            }
+//                            provider_id = (long) cell.getNumericCellValue();
+//                            newProvider.setProvId(provider_id);
                             break;
                         case 1:
                             newProvider.setProviderName(cell.getStringCellValue());
@@ -83,15 +95,39 @@ public class ReadFromExcel {
                             newProvider.setDescription(cell.getStringCellValue());
                             break;
                         case 3:
-                            long campus_id = (long) cell.getNumericCellValue();
-                            newCampus.setCampId(campus_id);
+                            long campus_id;
+//                            long campus_id = (long) cell.getNumericCellValue();
+//                            newCampus.setCampId(campus_id);
+                            switch (cell.getCellType())
+                            {
+                                case NUMERIC:
+                                    campus_id = (long) cell.getNumericCellValue();
+                                    newCampus.setCampId(campus_id);
+                                    break;
+                                case STRING:
+                                    campus_id = Long.parseLong(cell.getStringCellValue());
+                                    newCampus.setCampId(campus_id);
+                                    break;
+                            }
                             break;
                         case 4:
                             newCampus.setCampusName(cell.getStringCellValue());
                             break;
                         case 5:
-                            long program_id = (long) cell.getNumericCellValue();
-                            newProgram.setProgId(program_id);
+//                            long program_id = (long) cell.getNumericCellValue();
+//                            newProgram.setProgId(program_id);
+                            long program_id;
+                            switch (cell.getCellType())
+                            {
+                                case NUMERIC:
+                                    program_id = (long) cell.getNumericCellValue();
+                                    newProgram.setProgId(program_id);
+                                    break;
+                                case STRING:
+                                    program_id = Long.parseLong(cell.getStringCellValue());
+                                    newProgram.setProgId(program_id);
+                                    break;
+                            }
                             break;
                         case 6:
                             newProgram.setName(cell.getStringCellValue());
