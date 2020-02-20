@@ -21,28 +21,37 @@
 
 
             <h2 class="text-center"><span th:text="${message.title}"></span>
-</h2>
+            </h2>
 
 
-            <p th:if="${message.receivedUser.id == user.id}" class="text-center"> From: <span th:text="${message.sentUser.username}"></span>
-<!--                <span th:text="${message.dateSent}" class="timeStamp"></span>-->
+            <p th:if="${message.receivedUser.id == user.id}" class="text-center"> From: <span
+                    th:text="${message.sentUser.username}"></span>
+                <!--                <span th:text="${message.dateSent}" class="timeStamp"></span>-->
             </p>
 
-            <p th:if="${message.sentUser.id == user.id}" class="text-center">To: <span th:text="${message.receivedUser.username}"></span>
-<!--                <span th:text="${message.dateSent}"></span>-->
+            <p th:if="${message.sentUser.id == user.id}" class="text-center">To: <span
+                    th:text="${message.receivedUser.username}"></span>
+                <!--                <span th:text="${message.dateSent}"></span>-->
             </p>
 
             <p th:text="${message.body}" class="text-center"></p>
 
             <div class="d-flex">
-            <form th:method="POST" th:action="@{|/message/${message.id}/download/submission|}">
-                <button th:action="submit" class="btn btn-light">Download Submission</button>
-            </form>
+                <div th:if="${message.receivedUser.id == user.id}" class="d-flex">
+                    <form th:method="POST" th:action="@{|/message/${message.id}/download/submission|}">
+                        <button th:action="submit" class="btn btn-light">Download Submission</button>
+                    </form>
 
-            <form th:method="POST" th:action="@{|/message/${message.id}/submission/approved|}" th:if="${user.admin}">
-                <button th:action="submit" class="btn btn-success">Approve Submission</button>
-            </form>
-            <span th:text="${message.dateSent}" class="timeStamp ml-auto"></span>
+                    <form th:method="POST" th:action="@{|/message/${message.id}/submission/approved|}"
+                          th:if="${user.admin}">
+                        <button th:action="submit" class="btn btn-success">Approve Submission</button>
+                    </form>
+                    <form th:method="POST" th:action="@{|/message/${message.id}/submission/rejected|}"
+                          th:if="${user.admin}">
+                        <button th:action="submit" class="btn btn-danger">Reject Submission</button>
+                    </form>
+                </div>
+                <span th:text="${message.dateSent}" class="timeStamp ml-auto"></span>
             </div>
 
         </div>

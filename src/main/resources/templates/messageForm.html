@@ -15,11 +15,19 @@
 
 <main>
     <div class="mx-auto" style="width: 20em">
+        <div th:if="${reject != null}" class="text-center">
+            <p>If you would like to give details about the rejection, fill out this form. If not, click the back button</p>
+            <a th:href="@{/}" class="btn my-3" style="background-color: #28699F; color: white">Back
+            </a>
+        </div>
         <form th:action="@{/message/create}" method="POST" th:object="${message}">
-            <div class="form-group">
+            <div class="form-group" th:if="${reject == null}">
                 <label for="toUser">To</label>
                 <input type="text" class="form-control" id="toUser" aria-describedby="emailHelp" name="to">
-
+            </div>
+            <div class="form-group" th:if="${reject != null}">
+                <label for="toUser">To</label>
+                <input type="text" class="form-control" id="reject" aria-describedby="emailHelp" name="to" th:value="${reject.username}">
             </div>
             <div class="form-group">
                 <label for="title">Title</label>
@@ -27,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label for="body">Body</label>
-                <input type="text" class="form-control" id="body" th:field="*{body}">
+                <textarea class="form-control" id="body" th:field="*{body}"></textarea>
             </div>
             <button type="submit" name="forgot" class="btn btn-success btn-block">Send</button>
         </form>

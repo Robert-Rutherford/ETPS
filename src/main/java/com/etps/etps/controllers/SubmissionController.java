@@ -79,7 +79,7 @@ public class SubmissionController {
 
 
     @PostMapping("/message/{id}/submission/approved")
-    public String approveTest(@PathVariable String id, RedirectAttributes attributes){
+    public String approveSubmission(@PathVariable String id, RedirectAttributes attributes){
 //        User user = userDao.findByUserProviderId(900);
         Message message = messageDao.findById(Long.parseLong(id));
         User receivedUser = message.getReceivedUser();
@@ -98,4 +98,27 @@ public class SubmissionController {
 
         return "redirect:/message/approved";
     }
+
+    @PostMapping("/message/{id}/submission/rejected")
+    public String rejectSubmission(@PathVariable String id, RedirectAttributes attributes){
+//        User user = userDao.findByUserProviderId(900);
+        Message message = messageDao.findById(Long.parseLong(id));
+        User receivedUser = message.getReceivedUser();
+        User sentUser = message.getSentUser();
+        User submissionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (!sentUser.isAdmin()){
+            submissionUser = sentUser;
+        }else {
+            submissionUser = receivedUser;
+        }
+        StatusChange statusChange = new StatusChange(submissionDao,providerDao);
+        statusChange.RejectSubmission(submissionUser);
+        attributes.addFlashAttribute("flashMessage", message);
+        attributes.addAttribute("message", message);
+
+        return "redirect:/message/rejected";
+    }
+
+
 }
