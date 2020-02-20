@@ -76,13 +76,13 @@ public class UserController {
         emailTest.setPassword(passwordEncoder.encode("ghost"));
         emailTest.setEmail("ethan.joiner@gmail.com");
 
-        User codeUpUser = new User();
-        codeUpUser.setUsername("codeup");
-        codeUpUser.setPassword(passwordEncoder.encode("test"));
-        codeUpUser.setEmail("test@testing.com");
-        codeUpUser.setUserProviderId(900);
+        User acUser = new User();
+        acUser.setUsername("acUser");
+        acUser.setPassword(passwordEncoder.encode("test"));
+        acUser.setEmail("testing@testing.com");
+        acUser.setUserProviderId(802);
 //        codeUpUser.setProvider(codeUp);
-        codeUpUser.setAdmin(false);
+        acUser.setAdmin(false);
 
         System.out.println(admin);
 
@@ -95,8 +95,8 @@ public class UserController {
         if (userDao.findByUsername("admin") == null){
             userDao.save(admin);
         }
-        if (userDao.findByUsername("codeup") == null){
-        userDao.save(codeUpUser);
+        if (userDao.findByUsername("acUser") == null){
+        userDao.save(acUser);
         }
 
         if (userDao.findByUsername("emailTest") == null){

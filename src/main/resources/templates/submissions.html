@@ -2,27 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <th:block th:insert="partials/head :: head('Home')"></th:block>
-    <th:block th:replace="${user != null} ? ~{/partials/head :: sidenav} : _"></th:block>
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <main>
 
-    <th:block th:replace="${user != null} ? ~{/partials/sideNav :: side-nav} : _"></th:block>
-
     <section class="main-content">
-        <form action="">
-            <label for=""></label>
-            <input type="text" id="">
-        </form>
-<!--        <form>-->
-<!--            <div class="form-group">-->
-<!--                <label for="exampleFormControlFile1">Select file: </label>-->
-<!--                <input type="file" class="form-control-file" id="exampleFormControlFile1">-->
-<!--            </div>-->
-<!--            <input type="submit" value="Upload">-->
-<!--        </form>-->
             <form th:method="POST" enctype="multipart/form-data" th:action="@{|/uploadFile|}">
                 <table>
                     <tr><td>Select excel file (.xlsx):</td><td><input type="file" name="file" /></td></tr>
@@ -34,6 +20,6 @@
 
 <footer th:replace="partials/footer :: footer"></footer>
 
-<th:block th:replace="partials/scripts :: scripts">
+<th:block th:replace="partials/scripts :: scripts"></th:block>
 </body>
 </html>
