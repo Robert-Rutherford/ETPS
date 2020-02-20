@@ -8,10 +8,7 @@ import com.etps.etps.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.DateFormat;
@@ -87,8 +84,6 @@ public class MessageController {
 
     @PostMapping("/message/create")
     public String submitMessage(Message message, @RequestParam String to, Model model) throws ParseException {
-//        LocalDateTime date = LocalDateTime.now();
-//        System.out.println(date);
         Date date = new Date();
 
         User receivedUser = userDao.findByUsername(to);
@@ -96,6 +91,40 @@ public class MessageController {
         message.setSentUser(currentUser());
         message.setDateSent(df.parse(df.format(date)));
         message.setBeenRead(false);
+        messageDao.save(message);
+        emailService.prepareAndSend(message, "New Message From " + message.getSentUser().getUsername(), "You have a new message!");
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/message/approved")
+    public String autoApproveMsg(@ModelAttribute("flashMessage") Message message) throws ParseException {
+        Date date = new Date();
+        User receivedUser = userDao.findByUsername(message.getSentUser().getUsername());
+        Message approved = new Message();
+        approved.setReceivedUser(receivedUser);
+        approved.setSentUser(currentUser());
+        approved.setDateSent(df.parse(df.format(date)));
+        approved.setBeenRead(false);
+        approved.setTitle("Approved");
+        approved.setBody("Your submission has been approved.");
+        messageDao.save(approved);
+        emailService.prepareAndSend(approved, "New Message From " + approved.getSentUser().getUsername(), "You have a new message!");
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/message/submission")
+    public String autoSubmitMsg() throws ParseException {
+        Date date = new Date();
+
+        Message message = new Message();
+        message.setSentUser(currentUser());
+        message.setReceivedUser(userDao.findByUsername("admin"));
+        message.setDateSent(df.parse(df.format(date)));
+        message.setBeenRead(false);
+        message.setTitle("New Submission");
+        message.setBody("You have received a new submission from " + currentUser().getUsername() + ".");
         messageDao.save(message);
         emailService.prepareAndSend(message, "New Message From " + message.getSentUser().getUsername(), "You have a new message!");
 

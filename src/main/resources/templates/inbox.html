@@ -29,7 +29,7 @@
 
                             <p>Sent From : <span th:text="${message.sentUser.username}"></span>
                                 At :
-                                <span th:text="${message.dateSent}"></span>
+                                <span th:text="${message.dateSent}" class="timeStamp"></span>
                             </p>
                             <div class="d-flex justify-content-between">
                                 <a th:href="@{|/message/${message.id}|}" class="btn btn-success mr-auto">View

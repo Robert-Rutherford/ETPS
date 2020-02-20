@@ -14,10 +14,9 @@
                     <div class="card-header" id="headingOne">
                         <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseOne"
                                 aria-expanded="true" aria-controls="collapseOne">
-                            <span class="test">Messages <span th:text="${unread}" class="badge badge-danger"></span>
+                            <span class="test">Messages <span th:text="${unread}" class="badge badge-danger" th:if="${unread} > 0"></span></span>
                         </button>
                     </div>
-
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                          data-parent="#accordionExample">
                         <div class="card-body">
@@ -35,6 +34,38 @@
                     </div>
                 </div>
             </a></li>
+            <li><div class="accordion" id="excelQuickDownload">
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                                aria-expanded="true" aria-controls="collapseThree">
+                             <span class="test">Quick Download</span>
+                        </button>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            <br>
+                            <form th:method="POST" th:action="@{|/download/All|}" th:if="${user.isAdmin()}">
+                                <button class="btn btn-link btn-lg btn-block" th:action="submit">All</button>
+                                <hr>
+                            </form>
+                            <form th:method="POST" th:action="@{|/download/Approved|}">
+                                <button class="btn btn-link btn-lg btn-block" th:action="submit">Approved</button>
+                                <hr>
+                            </form>
+                            <form th:method="POST" th:action="@{|/download/Pending|}">
+                                <button class="btn btn-link btn-lg btn-block" th:action="submit">Pending</button>
+                                <hr>
+                            </form>
+                            <form th:method="POST" th:action="@{|/download/Expired|}">
+                                <button class="btn btn-link btn-lg btn-block" th:action="submit">Expired</button>
+                            </form>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div></li>
         </ul>
     </div>
 </div>

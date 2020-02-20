@@ -1,6 +1,5 @@
 **/.DS_Store
 
-
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -16,6 +15,7 @@ src/main/resources/application.properties
 .settings
 .springBeans
 .sts4-cache
+.DS_STORE
 
 ### IntelliJ IDEA ###
 .idea
@@ -33,4 +33,5 @@ build/
 
 ### VS Code ###
 .vscode/
-src/main/resources/application.properties
+
+

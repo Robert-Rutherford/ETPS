@@ -20,8 +20,8 @@ public class StatusChange {
     }
 
     public void ApproveSubmission(User user){
+        setExpired(user);
         long submitterID = user.getUserProviderId();
-        List<Submission> submissions = submissionDao.findAll();
         List<Provider> providerList = providerDao.findAll();
         for (Provider provider: providerList) {
             if (provider.getProvId() == submitterID){
@@ -32,11 +32,32 @@ public class StatusChange {
             }
         }
 
-
-
-
     }
 
+    public void setExpired(User user){
+        long submitterID = user.getUserProviderId();
+        List<Provider> providerList = providerDao.findAll();
+        for (Provider provider: providerList) {
+            if (provider.getProvId() == submitterID){
+                if (provider.getSubmission().getStatus().equalsIgnoreCase("approved")){
+                    provider.getSubmission().setStatus("expired");
+                    submissionDao.save(provider.getSubmission());
+                }
+            }
+        }
+    }
 
+    public void RejectSubmission(User user){
+        long submitterID = user.getUserProviderId();
+        List<Provider> providerList = providerDao.findAll();
+        for (Provider provider: providerList) {
+            if (provider.getProvId() == submitterID){
+                if (provider.getSubmission().getStatus().equalsIgnoreCase("pending")){
+                    provider.getSubmission().setStatus("rejected");
+                    submissionDao.save(provider.getSubmission());
+                }
+            }
+        }
+    }
 
 }
