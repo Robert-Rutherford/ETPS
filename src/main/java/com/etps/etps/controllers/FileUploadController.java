@@ -41,23 +41,23 @@ public class FileUploadController {
             User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
             ReadFromExcel readFromExcel = new ReadFromExcel(providerDao, campusDao, programDao, submissionDao);
-            String filetype = readFromExcel.getFileExtension(file.getName());
-            if (filetype.equalsIgnoreCase("xlsx")){
+//            String filetype = readFromExcel.getFileExtension(file.getName());
+//            if (filetype.equalsIgnoreCase("xlsx")){
                 File readFile = File.createTempFile("testFile",".xlsx");
                 file.transferTo(readFile);
-                readFromExcel.ReadExcelxlsx(readFile,loggedInUser);
+                readFromExcel.ReadExcel(readFile,loggedInUser);
                 readFile.delete();
-            }else if (filetype.equalsIgnoreCase("xls")){
-                File readFile = File.createTempFile("testFile",".xlsx");
-                file.transferTo(readFile);
-                readFromExcel.ReadExcelxls(readFile,loggedInUser);
-                readFile.delete();
-            }
+//            }else if (filetype.equalsIgnoreCase("xls")){
+//                File readFile = File.createTempFile("testFile",".xls");
+//                file.transferTo(readFile);
+//                readFromExcel.ReadExcelxls(readFile,loggedInUser);
+//                readFile.delete();
+//            }
 
     } catch (IOException e) {
         e.printStackTrace();
     }
-        return "redirect:/profile";
+        return "redirect:/home";
     }
 
 }

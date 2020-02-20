@@ -138,7 +138,8 @@ public class FileDownloadController {
                 writeToExcel.WriteExcel(writeData, writeFile);
 
                 InputStream is = new FileInputStream(writeFile);
-                response.setContentType("application/vnd.ms-excel");
+//                response.setContentType("application/vnd.ms-excel");
+                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 
                 org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
                 response.flushBuffer();

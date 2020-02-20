@@ -33,14 +33,14 @@ public class ReadFromExcel {
         this.submissionDao = submissionDao;
     }
 
-    public String getFileExtension(String fullName) {
-//        checkNotNull(fullName);
-        String fileName = new File(fullName).getName();
-        int dotIndex = fileName.lastIndexOf('.');
-        return (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
-    }
+//    public String getFileExtension(String fullName) {
+////        checkNotNull(fullName);
+//        String fileName = new File(fullName).getName();
+//        int dotIndex = fileName.lastIndexOf('.');
+//        return (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
+//    }
 
-    public void ReadExcelxlsx(File filePath , User user) {
+    public void ReadExcel(File filePath , User user) {
         try {
             FileInputStream file = new FileInputStream(filePath);
 
@@ -118,83 +118,83 @@ public class ReadFromExcel {
 
     }
 
-    public void ReadExcelxls(File filePath , User user) {
-        try {
-            FileInputStream file = new FileInputStream(filePath);
-
-            HSSFWorkbook workbook = new HSSFWorkbook(file);
-
-            HSSFSheet sheet = workbook.getSheetAt(0);
-
-            Iterator<Row> rowIterator = sheet.iterator();
-            rowIterator.next(); //skip header
-            while (rowIterator.hasNext()) {
-                Row row = rowIterator.next();
-                //For each row, iterate through all the columns
-                if (row.getRowNum() == 0) {
-                    continue;
-                }
-
-                Provider newProvider = new Provider();
-                Program newProgram = new Program();
-                Campus newCampus = new Campus();
-
-                newCampus.setProvider(newProvider);
-                newProgram.setCampus(newCampus);
-
-                Iterator<Cell> cellIterator = row.cellIterator();
-
-                while (cellIterator.hasNext()) {
-                    Cell cell = cellIterator.next();
-
-                    //Check the cell type and format accordingly
-                    int columnIndex = cell.getColumnIndex();
-                    switch (columnIndex) {
-                        case 0:
-                            long provider_id = (long) cell.getNumericCellValue();
-                            newProvider.setProvId(provider_id);
-                            break;
-                        case 1:
-                            newProvider.setProviderName(cell.getStringCellValue());
-                            break;
-                        case 2:
-                            newProvider.setDescription(cell.getStringCellValue());
-                            break;
-                        case 3:
-                            long campus_id = (long) cell.getNumericCellValue();
-                            newCampus.setCampId(campus_id);
-                            break;
-                        case 4:
-                            newCampus.setCampusName(cell.getStringCellValue());
-                            break;
-                        case 5:
-                            long program_id = (long) cell.getNumericCellValue();
-                            newProgram.setProgId(program_id);
-                            break;
-                        case 6:
-                            newProgram.setName(cell.getStringCellValue());
-                            break;
-                        case 7:
-                            newProgram.setDescription(cell.getStringCellValue());
-                            break;
-                        case 8:
-                            newProgram.setEtpCodeId(cell.getStringCellValue());
-                            break;
-                        case 9:
-//                            status column would be here. Not needed as new submissions will always be pending
-                            break;
-                    }
-                }
-
-                ReadExcelObject excelData = new ReadExcelObject(newProvider, newCampus, newProgram);
-                readToDatabase(excelData,user);
-            }
-            file.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
+//    public void ReadExcelxls(File filePath , User user) {
+//        try {
+//            FileInputStream file = new FileInputStream(filePath);
+//
+//            HSSFWorkbook workbook = new HSSFWorkbook(file);
+//
+//            HSSFSheet sheet = workbook.getSheetAt(0);
+//
+//            Iterator<Row> rowIterator = sheet.iterator();
+//            rowIterator.next(); //skip header
+//            while (rowIterator.hasNext()) {
+//                Row row = rowIterator.next();
+//                //For each row, iterate through all the columns
+//                if (row.getRowNum() == 0) {
+//                    continue;
+//                }
+//
+//                Provider newProvider = new Provider();
+//                Program newProgram = new Program();
+//                Campus newCampus = new Campus();
+//
+//                newCampus.setProvider(newProvider);
+//                newProgram.setCampus(newCampus);
+//
+//                Iterator<Cell> cellIterator = row.cellIterator();
+//
+//                while (cellIterator.hasNext()) {
+//                    Cell cell = cellIterator.next();
+//
+//                    //Check the cell type and format accordingly
+//                    int columnIndex = cell.getColumnIndex();
+//                    switch (columnIndex) {
+//                        case 0:
+//                            long provider_id = (long) cell.getNumericCellValue();
+//                            newProvider.setProvId(provider_id);
+//                            break;
+//                        case 1:
+//                            newProvider.setProviderName(cell.getStringCellValue());
+//                            break;
+//                        case 2:
+//                            newProvider.setDescription(cell.getStringCellValue());
+//                            break;
+//                        case 3:
+//                            long campus_id = (long) cell.getNumericCellValue();
+//                            newCampus.setCampId(campus_id);
+//                            break;
+//                        case 4:
+//                            newCampus.setCampusName(cell.getStringCellValue());
+//                            break;
+//                        case 5:
+//                            long program_id = (long) cell.getNumericCellValue();
+//                            newProgram.setProgId(program_id);
+//                            break;
+//                        case 6:
+//                            newProgram.setName(cell.getStringCellValue());
+//                            break;
+//                        case 7:
+//                            newProgram.setDescription(cell.getStringCellValue());
+//                            break;
+//                        case 8:
+//                            newProgram.setEtpCodeId(cell.getStringCellValue());
+//                            break;
+//                        case 9:
+////                            status column would be here. Not needed as new submissions will always be pending
+//                            break;
+//                    }
+//                }
+//
+//                ReadExcelObject excelData = new ReadExcelObject(newProvider, newCampus, newProgram);
+//                readToDatabase(excelData,user);
+//            }
+//            file.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
     private void readToDatabase(ReadExcelObject data ,User user) {
 

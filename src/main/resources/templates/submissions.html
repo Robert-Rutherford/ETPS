@@ -25,7 +25,7 @@
 <!--        </form>-->
             <form th:method="POST" enctype="multipart/form-data" th:action="@{|/uploadFile|}">
                 <table>
-                    <tr><td>Select excel file (.xlsx):</td><td><input type="file" name="file" /></td></tr>
+                    <tr><td>Select excel file (.xlsx):</td><td><input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" /></td></tr>
                     <tr><td></td><td><input type="submit" value="Submit" /></td></tr>
                 </table>
             </form>
