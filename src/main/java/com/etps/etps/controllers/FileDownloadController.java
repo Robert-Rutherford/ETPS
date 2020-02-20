@@ -185,6 +185,7 @@ public class FileDownloadController {
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             response.setHeader("ETPS_"+submissionUser.getUserProviderId()+"_Pending",".xlsx");
 
+
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
 

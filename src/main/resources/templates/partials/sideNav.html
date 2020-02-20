@@ -17,7 +17,6 @@
                             <span class="test">Messages <span th:text="${unread}" class="badge badge-danger" th:if="${unread} > 0"></span></span>
                         </button>
                     </div>
-
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                          data-parent="#accordionExample">
                         <div class="card-body">
@@ -25,7 +24,6 @@
                             <a href="/messages/out">Outbox</a>
                             <a href="/message/create">New Message</a>
                         </div>
-
                     </div>
                 </div>
             </div></li>
@@ -36,7 +34,6 @@
                     </div>
                 </div>
             </a></li>
-<!--            <li><div class="card-body" th:if="${user.isAdmin()}">-->
             <li><div class="accordion" id="excelQuickDownload">
                 <div class="card">
                     <div class="card-header" id="headingThree">
@@ -48,10 +45,6 @@
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
                          data-parent="#accordionExample">
                         <div class="card-body">
-<!--                            <a th:method="POST" href="/download/Approved">Approved</a>-->
-<!--                            <a th:method="POST" href="/download/Expired">Expired</a>-->
-<!--                            <a th:method="POST" href="/download/Pending">Pending</a>-->
-<!--                            <a th:method="POST" th:if="${user.isAdmin()}" href="/download/All">All</a>-->
                             <br>
                             <form th:method="POST" th:action="@{|/download/All|}" th:if="${user.isAdmin()}">
                                 <button class="btn btn-link btn-lg btn-block" th:action="submit">All</button>
@@ -70,25 +63,9 @@
                             </form>
                             <br>
                         </div>
-
                     </div>
                 </div>
             </div></li>
-<!--            <li><div class="card-body">-->
-<!--                <h5>Download excels:</h5>-->
-<!--                <form th:method="POST" th:action="@{|/download/All|}" th:if="${user.isAdmin()}">-->
-<!--                    <button th:action="submit">All</button>-->
-<!--                </form>-->
-<!--                <form th:method="POST" th:action="@{|/download/Approved|}">-->
-<!--                    <button th:action="submit">Approved</button>-->
-<!--                </form>-->
-<!--                <form th:method="POST" th:action="@{|/download/Pending|}">-->
-<!--                    <button th:action="submit">Pending</button>-->
-<!--                </form>-->
-<!--                <form th:method="POST" th:action="@{|/download/Expired|}">-->
-<!--                    <button th:action="submit">Expired</button>-->
-<!--                </form>-->
-<!--            </div></li>-->
         </ul>
     </div>
 </div>
