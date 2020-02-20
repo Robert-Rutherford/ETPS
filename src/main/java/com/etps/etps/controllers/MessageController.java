@@ -87,8 +87,6 @@ public class MessageController {
 
     @PostMapping("/message/create")
     public String submitMessage(Message message, @RequestParam String to, Model model) throws ParseException {
-//        LocalDateTime date = LocalDateTime.now();
-//        System.out.println(date);
         Date date = new Date();
 
         User receivedUser = userDao.findByUsername(to);
@@ -96,6 +94,23 @@ public class MessageController {
         message.setSentUser(currentUser());
         message.setDateSent(df.parse(df.format(date)));
         message.setBeenRead(false);
+        messageDao.save(message);
+        emailService.prepareAndSend(message, "New Message From " + message.getSentUser().getUsername(), "You have a new message!");
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/message/approved")
+    public String autoApproveMsg(Message message) throws ParseException {
+        Date date = new Date();
+        User receivedUser = userDao.findByUsername(message.getReceivedUser().getUsername());
+        Message approved = new Message();
+        approved.setReceivedUser(currentUser());
+        approved.setSentUser(receivedUser);
+        approved.setDateSent(df.parse(df.format(date)));
+        approved.setBeenRead(false);
+        approved.setTitle("Approved");
+        approved.setBody("Your submission has been approved.");
         messageDao.save(message);
         emailService.prepareAndSend(message, "New Message From " + message.getSentUser().getUsername(), "You have a new message!");
 

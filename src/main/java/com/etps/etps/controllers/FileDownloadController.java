@@ -52,7 +52,8 @@ public class FileDownloadController {
             writeToExcel.WriteExcel(writeData, writeFile);
 
             InputStream is = new FileInputStream(writeFile);
-            response.setContentType("application/vnd.ms-excel");
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Approved",".xlsx");
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
@@ -85,7 +86,8 @@ public class FileDownloadController {
             writeToExcel.WriteExcel(writeData, writeFile);
 
             InputStream is = new FileInputStream(writeFile);
-            response.setContentType("application/vnd.ms-excel");
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Pending",".xlsx");
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
@@ -111,7 +113,8 @@ public class FileDownloadController {
             Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(loggedInUser,"expired");
             writeToExcel.WriteExcel(writeData, writeFile);
             InputStream is = new FileInputStream(writeFile);
-            response.setContentType("application/vnd.ms-excel");
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Expired",".xlsx");
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
 
@@ -138,7 +141,9 @@ public class FileDownloadController {
                 writeToExcel.WriteExcel(writeData, writeFile);
 
                 InputStream is = new FileInputStream(writeFile);
-                response.setContentType("application/vnd.ms-excel");
+//                response.setContentType("application/vnd.ms-excel");
+                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_All",".xlsx");
 
                 org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
                 response.flushBuffer();
@@ -177,7 +182,8 @@ public class FileDownloadController {
             writeToExcel.WriteExcel(writeData, writeFile);
 
             InputStream is = new FileInputStream(writeFile);
-            response.setContentType("application/vnd.ms-excel");
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.setHeader("ETPS_"+submissionUser.getUserProviderId()+"_Pending",".xlsx");
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();

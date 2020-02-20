@@ -35,10 +35,11 @@
 
             <p th:text="${message.body}" class="text-center"></p>
 
-            <form th:method="GET" th:action="@{|/download/pending|}">
+            <form th:method="POST" th:action="@{|/message/${message.id}/download/submission}">
                 <button th:action="submit">Download Submission</button>
             </form>
 
+<<<<<<< HEAD
             <form th:action="@{|/message/${message.id}/submission/approved|}" th:if="${message.receivedUser.admin}" th:method="POST">
                 <input type="hidden" th:value="${message.id}" name="id" class="mt-auto">
                 <button class="btn btn-success">Approve Submission</button>
@@ -47,6 +48,12 @@
 
 
 
+=======
+            <form th:method="POST" th:action="@{|/message/${message.id}/submission/approved}" th:if="${message.receivedUser.admin}">
+                <button th:action="submit" class="btn btn-success">Approve</button>
+            </form>
+
+>>>>>>> ee444bb17c5c0c583c8affdab0f6b47b0e7635a3
 
         </div>
     </div>
