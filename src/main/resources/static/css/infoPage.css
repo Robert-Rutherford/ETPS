@@ -51,6 +51,11 @@
     width: 3em;
 }
 
+.tab-icon-container > img:hover {
+    width: 3.5em;
+    transition: .3s;
+}
+
 /* ===== TAB UNIVERSAL ===== */
 .tab-title {
     text-align: center;
@@ -60,6 +65,106 @@
 }
 
 /* ===== REQUIREMENTS ====== */
+#nav-tab {
+    padding-top: 100px;
+    margin-top: -100px;
+}
+
+.req-card {
+    width: 60em;
+    margin: 1em auto;
+    border: 1px solid black;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.disclaimer {
+    margin: 2em auto;
+    width: 65em;
+    background-color: #F7CF79;
+    box-shadow: 2px 2px 2px;
+    padding: 1em;
+}
+
+.disclaimer > span {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    color: firebrick;
+    font-weight: bold;
+    font-size: 15pt;
+    margin-bottom: .5em;
+}
+
+.disclaimer > h3 {
+    border-bottom: 2px solid firebrick;
+    text-align: center;
+}
+
+.req-parent {
+    /*background: linear-gradient(0deg, #8AC152, #ebf8e1, #DEEAEE);*/
+    background-color: #F6F1C9;
+    border: 1px solid silver;
+    width: 65em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.req-parent > h4 {
+    width: 100%;
+}
+
+.req-parent > img {
+    width: 25em;
+    margin: 1em 0;
+    border-radius: 1em;
+    border: 2px solid silver;
+    box-shadow: 4px 4px 4px grey;
+}
+
+.req-card > h4 {
+    text-align: center;
+    color: white;
+    padding: .25em;
+}
+
+.req-card:nth-of-type(odd) > h4 {
+    background-color: #8AC152;
+    border-bottom: 3px solid #1B649A;
+}
+
+.req-odd-card {
+    background-color: #F6FFEE;
+}
+
+.req-parent > div:nth-child(odd) {
+    background-color: #F6FFEE;
+}
+
+.req-card:nth-of-type(even) > h4 {
+    background-color: #053B68;
+    border-bottom: 3px solid #8AC152;
+}
+
+.req-parent > div:nth-child(even) {
+    background-color: #DEEAEE;
+}
+
+.req-parent > div:last-child {
+    margin-bottom: 0;
+}
+
+.req-parent .req-card:nth-child(4) > a {
+    float: right;
+    margin: 0 2em;
+}
+
+span.text-center {
+    display: block;
+    font-style: italic;
+}
+
 
 /* ===== SUBMISSIONS TAB ===== */
 .submissions-container h3 {

@@ -21,7 +21,7 @@
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                    aria-controls="nav-home" aria-selected="true">
                     <div class="tab-icon-container">
-                        <img src="/images/submissions.svg" alt="Requirements" style="width: 3em">
+                        <img src="/images/submissions.svg" alt="Requirements">
                     </div>
                     <span>Requirements</span>
                 </a>
@@ -66,8 +66,8 @@
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                      aria-labelledby="nav-home-tab">
                     <section class="requirements-tab">
-                        <h1>ETP Requirements</h1>
-                        <div>
+                        <h1 class="tab-title">ETP Requirements</h1>
+                        <div class="req-card disclaimer">
                             <h3>Interested in Becoming a WIOA Eligible Training Provider (ETP)?</h3>
                             <span>Step 1. Meet Regulatory Requirements</span>
                             <ul>
@@ -87,10 +87,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <div>
+                        <div class="req-card req-parent">
                             <h4>Registered Apprenticeship</h4>
-                            <img src="" alt="Registered Apprenticeship">
-                            <div>
+                            <img src="/images/more-info-images/requirements/1.registered-apprentice.png" alt="Registered Apprenticeship" class="sub-img">
+                            <div class="req-card">
                                 <h4>ETP System</h4>
                                 <ul>
                                     <li>The Legacy ETPS system is no longer available for external login.</li>
@@ -102,15 +102,16 @@
                                                 Solutions Alama (WSA) Board Website.
                                             </li>
                                             <li>If your school is not listed please contact:<br>
+                                                <span class="text-center">
                                                 Texas Workforce Commission<br>
                                                 Workforce Programs & Policy - ETP Unit<br>
-                                                <span>ETP.Helpdesk@twc.state.tx.us</span>
+                                                ETP.Helpdesk@twc.state.tx.us</span>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
-                            <div>
+                            <div class="req-card">
                                 <h4>What is the Statewide ETPL?</h4>
                                 <a href="https://twc.texas.gov/partners/elible-training-providers">View Eligible
                                     Training Providers</a>
@@ -119,14 +120,14 @@
                                     <li>Includes all currently approved programs</li>
                                 </ul>
                             </div>
-                            <div>
+                            <div class="req-card">
                                 <h4>Information</h4>
                                 <ul>
                                     <li>General programs information, including location and cost</li>
                                     <li>Performance Information</li>
                                 </ul>
                             </div>
-                            <div>
+                            <div class="req-card">
                                 <h4>Listed Cost of Programs</h4>
                                 <ul>
                                     <li>The listed cost of a program on the statewide ETPL is based on average cost for
@@ -138,7 +139,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div>
+                            <div class="req-card">
                                 <h4>Board Approval?</h4>
                                 <ul>
                                     <li>Statewide Approval, Local Relationship</li>
@@ -146,7 +147,7 @@
                                     <li>Local criteria for students</li>
                                 </ul>
                             </div>
-                            <div>
+                            <div class="req-card">
                                 <h4>Expiration?</h4>
                                 <ul>
                                     <li>Created Date/Updated Date</li>
@@ -222,14 +223,6 @@
                                 <img src="/images/more-info-images/submissions/5.eligibility.png" alt=""
                                      style="width: 25em" class="sub-img">
                             </div>
-                        </div>
-                        <div id="myModal" class="modal">
-                            <!-- The Close Button -->
-                            <span class="close">&times;</span>
-                            <!-- Modal Content (The Image) -->
-                            <img class="modal-content" id="img01">
-                            <!-- Modal Caption (Image Text) -->
-                            <div id="caption"></div>
                         </div>
                     </section>
                 </div>
@@ -311,7 +304,24 @@
                         </p>
                     </section>
                 </div>
+                <div id="myModal" class="modal">
+                    <!-- The Close Button -->
+                    <span class="close">&times;</span>
+                    <!-- Modal Content (The Image) -->
+                    <img class="modal-content" id="img01">
+                    <!-- Modal Caption (Image Text) -->
+                    <div id="caption"></div>
+                </div>
             </div>
+<!--            <div id="myModal" class="modal">-->
+<!--                &lt;!&ndash; The Close Button &ndash;&gt;-->
+<!--                <span class="close">&times;</span>-->
+<!--                &lt;!&ndash; Modal Content (The Image) &ndash;&gt;-->
+<!--                <img class="modal-content" id="img01">-->
+<!--                &lt;!&ndash; Modal Caption (Image Text) &ndash;&gt;-->
+<!--                <div id="caption"></div>-->
+<!--            </div>-->
+            <a href="#nav-tab">Back to top</a>
         </section>
     </section>
 </main>
@@ -319,7 +329,7 @@
 <footer th:replace="partials/footer :: footer"></footer>
 
 <th:block th:replace="partials/scripts :: scripts"></th:block>
-<th:block th:replace="partials/scripts :: jquery"></th:block>
+<!--<th:block th:replace="partials/scripts :: jquery"></th:block>-->
 <script>
     // Get the modal
     var modal = document.getElementById("myModal");
