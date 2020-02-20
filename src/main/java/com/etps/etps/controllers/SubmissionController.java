@@ -71,6 +71,7 @@ public class SubmissionController {
         model.addAttribute("approvedList",approvedList);
         model.addAttribute("pendingList",pendingList);
         model.addAttribute("expiredList",expiredList);
+        model.addAttribute("user", loggedInUser);
 
 
         return "submissions";
@@ -93,11 +94,7 @@ public class SubmissionController {
         StatusChange statusChange = new StatusChange(submissionDao,providerDao);
         statusChange.ApproveSubmission(submissionUser);
         attributes.addFlashAttribute("flashMessage", message);
-
         attributes.addAttribute("message", message);
-
-//
-
 
         return "redirect:/message/approved";
     }

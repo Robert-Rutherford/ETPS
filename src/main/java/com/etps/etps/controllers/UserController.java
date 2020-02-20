@@ -59,10 +59,10 @@ public class UserController {
     @GetMapping("users/test")
     public String createTestUsers(){
 
-        Provider codeUp = new Provider();
-        codeUp.setId(900);
-        codeUp.setProviderName("Codeup");
-        codeUp.setDescription("At Codeup, we have one goal: To solve meaningful problems that bring the tech community together through empowerment. As a Codeup student, you have the opportunity to learn in a supportive environment with staff, instructors, and employer partners that do their part to innovate and lead the future of tech. Together, we are making our corner of the world a better place — one techie at a time.");
+//        Provider codeUp = new Provider();
+//        codeUp.setId(900);
+//        codeUp.setProviderName("Codeup");
+//        codeUp.setDescription("At Codeup, we have one goal: To solve meaningful problems that bring the tech community together through empowerment. As a Codeup student, you have the opportunity to learn in a supportive environment with staff, instructors, and employer partners that do their part to innovate and lead the future of tech. Together, we are making our corner of the world a better place — one techie at a time.");
 
         User admin = new User();
         admin.setUsername("admin");
@@ -76,13 +76,13 @@ public class UserController {
         emailTest.setPassword(passwordEncoder.encode("ghost"));
         emailTest.setEmail("ethan.joiner@gmail.com");
 
-        User codeUpUser = new User();
-        codeUpUser.setUsername("codeup");
-        codeUpUser.setPassword(passwordEncoder.encode("test"));
-        codeUpUser.setEmail("test@testing.com");
-        codeUpUser.setUserProviderId(900);
+        User acUser = new User();
+        acUser.setUsername("acUser");
+        acUser.setPassword(passwordEncoder.encode("test"));
+        acUser.setEmail("testing@testing.com");
+        acUser.setUserProviderId(802);
 //        codeUpUser.setProvider(codeUp);
-        codeUpUser.setAdmin(false);
+        acUser.setAdmin(false);
 
         System.out.println(admin);
 
@@ -90,22 +90,22 @@ public class UserController {
 //        codeUpUser.setProvider(codeUp);
 
 
-        providerDao.save(codeUp);
-        if (userDao.findByUsername("codeup") == null){
-        userDao.save(codeUpUser);
-        }
+//        providerDao.save(codeUp);
 
         if (userDao.findByUsername("admin") == null){
-        userDao.save(admin);
+            userDao.save(admin);
+        }
+        if (userDao.findByUsername("acUser") == null){
+        userDao.save(acUser);
         }
 
         if (userDao.findByUsername("emailTest") == null){
             userDao.save(emailTest);
         }
 
-        if (providerDao.findById(900) == null){
-            providerDao.save(codeUp);
-        }
+//        if (providerDao.findById(900) == null){
+//            providerDao.save(codeUp);
+//        }
 
         return "redirect:/";
     }

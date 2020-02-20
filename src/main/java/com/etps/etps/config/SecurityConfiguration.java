@@ -52,10 +52,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/message/**",
+                        "/message/**/**",
                         "/messages/**",
                         "/download/**",
-                        "/uploadFile"// only authenticated users
+                        "/uploadFile",
+                        "/submission"// only authenticated users
                 )
                 .authenticated()
         ;

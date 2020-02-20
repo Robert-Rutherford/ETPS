@@ -2,16 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head('Home')"></th:block>
-    <th:block th:replace="${user != null} ? ~{/partials/head :: sidenav} : _"></th:block>
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <main>
 
-    <th:block th:replace="${user != null} ? ~{/partials/sideNav :: side-nav} : _"></th:block>
-
     <section class="main-content">
+
 
         <div class="card" id="submissionCard">
             <div class="card-header text-white bg-primary">
@@ -21,18 +19,11 @@
                 <p class="card-text">To create a ETPS Submission, please select a Excel (.xlsx) spread sheet and click
                     submit. If you need the format for the Excel sheet, You can download any of the tables below and use
                 the format from them.</p>
-                <form enctype="multipart/form-data" th:action="@{|/uploadFile|}" th:method="POST">
-                    <table>
-                        <tr>
-                            <td>Select Excel file (.xlsx):</td>
-                            <td><input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="file"
-                                       type="file"/></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" value="Submit"/></td>
-                        </tr>
-                    </table>
+                <form th:method="POST" enctype="multipart/form-data" th:action="@{|/uploadFile|}">
+                <table>
+                    <tr><td>Select excel file (.xlsx):</td><td><input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" /></td></tr>
+                    <tr><td></td><td><input type="submit" value="Submit" /></td></tr>
+                </table>
                 </form>
             </div>
         </div>
@@ -150,6 +141,6 @@
 
 <footer th:replace="partials/footer :: footer"></footer>
 
-<th:block th:replace="partials/scripts :: scripts">
+<th:block th:replace="partials/scripts :: scripts"></th:block>
 </body>
 </html>
