@@ -138,7 +138,7 @@ public class testController {
 //        readFromExcel.ReadExcel(file);
 //        readFromExcel.ReadExcel(pathTest);
         User user = userDao.findByUserProviderId(900);
-        readFromExcel.ReadExcel(newFile,user);
+//        readFromExcel.ReadExcel(newFile,user);
         return "redirect:/test";
     }
 

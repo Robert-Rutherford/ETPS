@@ -25,14 +25,14 @@
 <!--        </form>-->
             <form th:method="POST" enctype="multipart/form-data" th:action="@{|/uploadFile|}">
                 <table>
-                    <tr><td>Select excel file (.xlsx):</td><td><input type="file" name="file" /></td></tr>
+                    <tr><td>Select excel file (.xlsx):</td><td><input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" /></td></tr>
                     <tr><td></td><td><input type="submit" value="Submit" /></td></tr>
                 </table>
             </form>
 
         <div>
             <h5>Approved Table</h5>
-            <table>
+            <table class="table table-bordered">
                 <tr th:each="approvedObj : ${approvedList}">
                     <th th:text="${approvedObj.getProviderID()}"></th>
                     <th th:text="${approvedObj.getProviderName()}"></th>
@@ -47,7 +47,7 @@
                 </tr>
             </table>
             <h5>Pending Table</h5>
-            <table>
+            <table class="table table-bordered">
                 <tr th:each="pendingObj : ${pendingList}">
                     <th th:text="${pendingObj.getProviderID()}"></th>
                     <th th:text="${pendingObj.getProviderName()}"></th>
@@ -62,7 +62,7 @@
                 </tr>
             </table>
             <h5>Expired Table</h5>
-            <table>
+            <table class="table table-bordered">
                 <tr th:each="expiredObj : ${expiredList}">
                     <th th:text="${expiredObj.getProviderID()}"></th>
                     <th th:text="${expiredObj.getProviderName()}"></th>
