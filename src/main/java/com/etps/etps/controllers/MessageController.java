@@ -110,8 +110,16 @@ public class MessageController {
         approved.setBody("Your submission has been approved.");
         messageDao.save(approved);
         emailService.prepareAndSend(approved, "New Message From " + approved.getSentUser().getUsername(), "You have a new message!");
-
         return "redirect:/";
+    }
+
+    @GetMapping("/message/rejected")
+    public String autoRejectMsg(@ModelAttribute("flashMessage") Message message, Model model) throws ParseException {
+        User receivedUser = userDao.findByUsername(message.getSentUser().getUsername());
+        model.addAttribute("reject", receivedUser);
+        model.addAttribute("message", new Message());
+
+        return "messageForm";
     }
 
     @GetMapping("/message/submission")
