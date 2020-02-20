@@ -7,8 +7,9 @@
 </head>
 
 <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400" rel="stylesheet">
+<link rel="stylesheet" href="css/error.css">
 <body class="loading">
-<h1>500</h1>
+<h1 th:text="${error}"></h1>
 <h2>Unexpected Error <b></b></h2>
 <div class="gears">
     <div class="gear one">
@@ -40,5 +41,15 @@
 <!--    </div>-->
 <!--</th:block>-->
 
+<script>
+    $(function() {
+        setTimeout(function(){
+            $('body').removeClass('loading');
+        }, 1000);
+    });
+</script>
+
 </body>
+
+
 </html>
