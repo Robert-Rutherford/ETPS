@@ -37,21 +37,58 @@
                 </div>
             </a></li>
 <!--            <li><div class="card-body" th:if="${user.isAdmin()}">-->
-            <li><div class="card-body">
-                <h5>Download excels:</h5>
-                <form th:method="POST" th:action="@{|/download/All|}" th:if="${user.isAdmin()}">
-                    <button th:action="submit">All</button>
-                </form>
-                <form th:method="POST" th:action="@{|/download/Approved|}">
-                    <button th:action="submit">Approved</button>
-                </form>
-                <form th:method="POST" th:action="@{|/download/Pending|}">
-                    <button th:action="submit">Pending</button>
-                </form>
-                <form th:method="POST" th:action="@{|/download/Expired|}">
-                    <button th:action="submit">Expired</button>
-                </form>
+            <li><div class="accordion" id="excelQuickDownload">
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                                aria-expanded="true" aria-controls="collapseThree">
+                             <span class="test">Quick Download</span>
+                        </button>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+<!--                            <a th:method="POST" href="/download/Approved">Approved</a>-->
+<!--                            <a th:method="POST" href="/download/Expired">Expired</a>-->
+<!--                            <a th:method="POST" href="/download/Pending">Pending</a>-->
+<!--                            <a th:method="POST" th:if="${user.isAdmin()}" href="/download/All">All</a>-->
+                            <br>
+                            <form th:method="POST" th:action="@{|/download/All|}" th:if="${user.isAdmin()}">
+                                <button class="btn btn-link btn-lg btn-block" th:action="submit">All</button>
+                                <hr>
+                            </form>
+                            <form th:method="POST" th:action="@{|/download/Approved|}">
+                                <button class="btn btn-link btn-lg btn-block" th:action="submit">Approved</button>
+                                <hr>
+                            </form>
+                            <form th:method="POST" th:action="@{|/download/Pending|}">
+                                <button class="btn btn-link btn-lg btn-block" th:action="submit">Pending</button>
+                                <hr>
+                            </form>
+                            <form th:method="POST" th:action="@{|/download/Expired|}">
+                                <button class="btn btn-link btn-lg btn-block" th:action="submit">Expired</button>
+                            </form>
+                            <br>
+                        </div>
+
+                    </div>
+                </div>
             </div></li>
+<!--            <li><div class="card-body">-->
+<!--                <h5>Download excels:</h5>-->
+<!--                <form th:method="POST" th:action="@{|/download/All|}" th:if="${user.isAdmin()}">-->
+<!--                    <button th:action="submit">All</button>-->
+<!--                </form>-->
+<!--                <form th:method="POST" th:action="@{|/download/Approved|}">-->
+<!--                    <button th:action="submit">Approved</button>-->
+<!--                </form>-->
+<!--                <form th:method="POST" th:action="@{|/download/Pending|}">-->
+<!--                    <button th:action="submit">Pending</button>-->
+<!--                </form>-->
+<!--                <form th:method="POST" th:action="@{|/download/Expired|}">-->
+<!--                    <button th:action="submit">Expired</button>-->
+<!--                </form>-->
+<!--            </div></li>-->
         </ul>
     </div>
 </div>
