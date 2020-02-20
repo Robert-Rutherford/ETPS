@@ -4,11 +4,17 @@
 </head>
 <body style="background-color: #E9ECEF">
 <nav th:replace="partials/navbar :: navbar"></nav>
-
-<form th:action="@{/}" class="d-flex justify-content-center">
-    <button class="btn my-3" style="background-color: #28699F; color: white">Back</button>
-</form>
-
+<div class="d-flex justify-content-center">
+    <form th:action="@{/}" >
+        <button class="btn my-3" style="background-color: #28699F; color: white">Back</button>
+    </form>
+    <form th:action="@{/messages/in}" >
+        <button class="btn my-3 mx-5" style="background-color: #28699F; color: white">Inbox</button>
+    </form>
+    <form th:action="@{/message/create}" >
+        <button class="btn my-3" style="background-color: #28699F; color: white">Send</button>
+    </form>
+</div>
 <div class="container" style="height: 80vh; overflow-y: scroll">
     <div class="card w-100 d-flex justify-content-center" style="background-color: #28699F">
         <div class="card-body w-100">

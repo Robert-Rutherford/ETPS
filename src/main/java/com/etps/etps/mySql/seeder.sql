@@ -1,7 +1,7 @@
 
-drop database etps_db;
-
-use etps_db;
+# drop database etps_db;
+#
+# use etps_db;
 
 # submissions
 INSERT INTO submissions (deadline, status) VALUES
@@ -32,8 +32,8 @@ INSERT INTO programs ( prog_id, name,etp_code_id, description, campus_id) VALUES
 
 
 # users table
-INSERT INTO users (email, is_admin, password,  username, user_provider_id) VALUES
-('testuser@email.com', false,'password1','testuser',802),
-('testuser2@email.com', false,'password2','testuser2',803),
-('testAdmin@email.com', true,'pass','testAdmin',1),
-('testuser3@email.com', false,'pass','testuser3',900);
+# INSERT INTO users (email, is_admin, password,  username, user_provider_id) VALUES
+# ('testuser@email.com', false,'password1','testuser',802),
+# ('testuser2@email.com', false,'password2','testuser2',803),
+# ('testAdmin@email.com', true,'pass','testAdmin',1),
+# ('testuser3@email.com', false,'pass','testuser3',900);
