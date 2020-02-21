@@ -1,12 +1,10 @@
 package com.etps.etps.excelConversions;
 
 import com.etps.etps.models.Provider;
-import com.etps.etps.models.Submission;
 import com.etps.etps.models.User;
 import com.etps.etps.repositories.Providers;
 import com.etps.etps.repositories.Submissions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StatusChange {
@@ -58,6 +56,19 @@ public class StatusChange {
                 }
             }
         }
+    }
+
+    public Boolean NoSubmission(User user){
+        long submitterID = user.getUserProviderId();
+        List<Provider> providerList = providerDao.findAll();
+        for (Provider provider: providerList) {
+            if (provider.getProvId() == submitterID){
+                if (provider.getSubmission().getStatus().equalsIgnoreCase("pending")){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }

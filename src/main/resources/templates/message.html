@@ -44,7 +44,7 @@
                 <p th:text="${message.body}" class="text-center"></p>
 
                 <div class="d-flex">
-                    <div th:if="${message.receivedUser.id == user.id}" class="d-flex">
+                    <div th:if="${(message.receivedUser.id == user.id) && !subCheck}" class="d-flex">
                         <form th:method="POST" th:action="@{|/message/${message.id}/download/submission|}">
                             <button th:action="submit" class="btn btn-light">Download Submission</button>
                         </form>
