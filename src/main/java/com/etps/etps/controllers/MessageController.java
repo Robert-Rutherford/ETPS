@@ -1,8 +1,11 @@
 package com.etps.etps.controllers;
 
+import com.etps.etps.excelConversions.StatusChange;
 import com.etps.etps.models.Message;
 import com.etps.etps.models.User;
 import com.etps.etps.repositories.Messages;
+import com.etps.etps.repositories.Providers;
+import com.etps.etps.repositories.Submissions;
 import com.etps.etps.repositories.Users;
 import com.etps.etps.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +23,8 @@ import java.util.List;
 public class MessageController {
 
     private final EmailService emailService;
+    private Submissions submissionDao;
+    private Providers providerDao;
 
 
     private DateFormat returnFormater() {
@@ -39,11 +44,13 @@ public class MessageController {
     private final Messages messageDao;
     private final Users userDao;
 
-    public MessageController(Messages messageDao, Users userDao, EmailService emailService){
+    public MessageController(Messages messageDao, Users userDao, EmailService emailService,Submissions submissionDao,Providers providerDao){
         this.messageDao = messageDao;
         this.userDao = userDao;
         this.df = returnFormater();
         this.emailService = emailService;
+        this.providerDao = providerDao;
+        this.submissionDao = submissionDao;
     }
 
 
@@ -51,10 +58,14 @@ public class MessageController {
     @GetMapping("/message/{id}")
     public String showMessage(@PathVariable long id, Model model){
         Message message = messageDao.findById(id);
+        StatusChange statusChange = new StatusChange(submissionDao,providerDao);
 
         if (currentUser().getId() == message.getReceivedUser().getId()) {
             message.setBeenRead(true);
         }
+        boolean subCheck = !message.getSentUser().isAdmin() && statusChange.NoSubmission(message.getSentUser());
+
+        model.addAttribute("subCheck",subCheck);
         model.addAttribute("user", currentUser());
         model.addAttribute("message", message);
         messageDao.save(message);
