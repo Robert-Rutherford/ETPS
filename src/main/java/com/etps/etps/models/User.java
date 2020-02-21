@@ -26,9 +26,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-//    @ManyToOne
-//    @JoinColumn(name = "provId")
-//    private Provider provider;
+
 
     private boolean isAdmin;
 
