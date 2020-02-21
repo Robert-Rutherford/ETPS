@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Messages')">
-    <style>
-        a:visited {
-            color: black;
-        }
+<!--<head th:replace="partials/head :: head('Messages')">-->
+<!--    <style>-->
+<!--        a:visited {-->
+<!--            color: black;-->
+<!--        }-->
 
-        a {
-            color: black;
-        }
+<!--        a {-->
+<!--            color: black;-->
+<!--        }-->
 
-        a:hover {
-            color: black;
-            text-decoration: none;
-        }
-    </style>
+<!--        a:hover {-->
+<!--            color: black;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+
+<head>
+    <th:block th:insert="partials/head :: head('Messages')"></th:block>
+    <th:block th:insert="partials/head :: inbox"></th:block>
 </head>
 <body style="background-color: #E9ECEF">
 

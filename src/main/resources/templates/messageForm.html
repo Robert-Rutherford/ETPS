@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Login')"></head>
-<style>
-    .extra-buttons {
-        display: flex;
-        flex-direction: column;
-    }
+<!--<head th:replace="partials/head :: head('Login')"></head>-->
+<!--<style>-->
+<!--    .extra-buttons {-->
+<!--        display: flex;-->
+<!--        flex-direction: column;-->
+<!--    }-->
 
-    .extra-buttons span {
-        text-align: center;
-    }
-</style>
+<!--    .extra-buttons span {-->
+<!--        text-align: center;-->
+<!--    }-->
+<!--</style>-->
+<head>
+    <th:block th:insert="partials/head :: head('Messages')"></th:block>
+    <th:block th:insert="partials/head :: message-form"></th:block>
+</head>
+
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
