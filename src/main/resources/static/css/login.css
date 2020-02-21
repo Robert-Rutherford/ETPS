@@ -2,15 +2,16 @@ body {
     background-color: #F5F5F5;
 }
 
-main {
-    margin-top: 2em;
-}
+/*main {*/
+/*    margin-top: 2em;*/
+/*}*/
 
 .login-form {
     padding: 1em;
     border-radius: 1em;
     border: 1px solid lightgray;
     box-shadow: 5px 10px 2px grey;
+    margin: 2em;
 }
 .extra-buttons {
     text-align: center;

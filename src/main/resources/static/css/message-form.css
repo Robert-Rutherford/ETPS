@@ -1,0 +1,16 @@
+.extra-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.extra-buttons span {
+    text-align: center;
+}
+/* ===== MESSAGE FORM CONTAINER ===== */
+.message-form-container {
+    width: 20em
+}
+
+.message-form {
+
+}
