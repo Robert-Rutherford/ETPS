@@ -75,7 +75,7 @@ public class MessageController {
 
     @GetMapping("/message/create")
     public String showMessageForm(Model model){
-
+        model.addAttribute("user", currentUser());
         model.addAttribute("message", new Message());
         return "messageForm";
     }
