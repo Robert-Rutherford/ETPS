@@ -132,7 +132,7 @@ public class MessageController {
         message.setDateSent(df.parse(df.format(date)));
         message.setBeenRead(false);
         message.setTitle("New Submission");
-        message.setBody("You have received a new submission from " + currentUser().getUsername() + ".");
+        message.setBody("You have received a new submission from " + currentUser().getUsername() + ". Please review.");
         messageDao.save(message);
         emailService.prepareAndSend(message, "New Message From " + message.getSentUser().getUsername(), "You have a new message!");
 

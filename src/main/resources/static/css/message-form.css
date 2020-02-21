@@ -1,0 +1,43 @@
+.extra-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.extra-buttons span {
+    text-align: center;
+}
+
+h1 {
+    color: #12395B;
+    text-align: center;
+}
+
+/* ===== MESSAGE FORM CONTAINER ===== */
+.message-form-container {
+    border: 1px solid red;
+    margin: 1em;
+    padding: 1em;
+}
+
+.message-form {
+    border: 1px solid black;
+    border-radius: 1em;
+    padding: 1em;
+    width: 35em;
+}
+
+.message-text {
+    min-height: 10em;
+}
+
+.msg-prop {
+    display: flex;
+}
+
+.msg-prop > label {
+    min-width: 3em;
+}
+
+textarea {
+    min-height: 10em;
+}

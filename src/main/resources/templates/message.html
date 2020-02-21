@@ -1,62 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Messages')">
+<!--<head th:replace="partials/head :: head('Messages')">-->
+<!--</head>-->
+<head>
+    <th:block th:insert="partials/head :: head('Messages')"></th:block>
+    <th:block th:insert="partials/head :: message"></th:block>
 </head>
+
 <body style="background-color: #E9ECEF">
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div class="d-flex justify-content-center" th:if="${message.beenRead}">
-    <a th:href="@{/messages/in}" class="btn btn-success my-3 mx-4"
-       style="background-color: #28699F; color: white; border: none">Back</a>
-</div>
+<main>
 
-<div class="d-flex justify-content-center" th:if="${!message.beenRead}">
-    <a th:href="@{/messages/out}" class="btn btn-success my-3 mx-4"
-       style="background-color: #28699F; color: white; border: none">Back</a>
-</div>
+    <div class="d-flex justify-content-center" th:if="${message.beenRead}">
+        <a th:href="@{/messages/in}" class="btn btn-success my-3 mx-4"
+           style="background-color: #28699F; color: white; border: none">Back</a>
+    </div>
 
-<div class="container" style="height: 80vh; overflow-y: scroll">
-    <div class="card w-100 d-flex justify-content-center" style="border: 5px solid #28699F">
-        <div class="card-body w-100">
+    <div class="d-flex justify-content-center" th:if="${!message.beenRead}">
+        <a th:href="@{/messages/out}" class="btn btn-success my-3 mx-4"
+           style="background-color: #28699F; color: white; border: none">Back</a>
+    </div>
 
-
-            <h2 class="text-center"><span th:text="${message.title}"></span>
-            </h2>
+    <div class="container" style="height: 80vh; overflow-y: scroll">
+        <div class="card w-100 d-flex justify-content-center" style="border: 5px solid #28699F">
+            <div class="card-body w-100">
 
 
-            <p th:if="${message.receivedUser.id == user.id}" class="text-center"> From: <span
-                    th:text="${message.sentUser.username}"></span>
-                <!--                <span th:text="${message.dateSent}" class="timeStamp"></span>-->
-            </p>
+                <h2 class="text-center"><span th:text="${message.title}"></span>
+                </h2>
 
-            <p th:if="${message.sentUser.id == user.id}" class="text-center">To: <span
-                    th:text="${message.receivedUser.username}"></span>
-                <!--                <span th:text="${message.dateSent}"></span>-->
-            </p>
 
-            <p th:text="${message.body}" class="text-center"></p>
+                <p th:if="${message.receivedUser.id == user.id}" class="text-center"> From: <span
+                        th:text="${message.sentUser.username}"></span>
+                    <!--                <span th:text="${message.dateSent}" class="timeStamp"></span>-->
+                </p>
 
-            <div class="d-flex">
-                <div th:if="${message.receivedUser.id == user.id}" class="d-flex">
-                    <form th:method="POST" th:action="@{|/message/${message.id}/download/submission|}">
-                        <button th:action="submit" class="btn btn-light">Download Submission</button>
-                    </form>
+                <p th:if="${message.sentUser.id == user.id}" class="text-center">To: <span
+                        th:text="${message.receivedUser.username}"></span>
+                    <!--                <span th:text="${message.dateSent}"></span>-->
+                </p>
 
-                    <form th:method="POST" th:action="@{|/message/${message.id}/submission/approved|}"
-                          th:if="${user.admin}">
-                        <button th:action="submit" class="btn btn-success">Approve Submission</button>
-                    </form>
-                    <form th:method="POST" th:action="@{|/message/${message.id}/submission/rejected|}"
-                          th:if="${user.admin}">
-                        <button th:action="submit" class="btn btn-danger">Reject Submission</button>
-                    </form>
+                <p th:text="${message.body}" class="text-center"></p>
+
+                <div class="d-flex">
+                    <div th:if="${message.receivedUser.id == user.id}" class="d-flex">
+                        <form th:method="POST" th:action="@{|/message/${message.id}/download/submission|}">
+                            <button th:action="submit" class="btn btn-light">Download Submission</button>
+                        </form>
+
+                        <form th:method="POST" th:action="@{|/message/${message.id}/submission/approved|}"
+                              th:if="${user.admin}">
+                            <button th:action="submit" class="btn btn-success">Approve Submission</button>
+                        </form>
+                        <form th:method="POST" th:action="@{|/message/${message.id}/submission/rejected|}"
+                              th:if="${user.admin}">
+                            <button th:action="submit" class="btn btn-danger">Reject Submission</button>
+                        </form>
+                    </div>
+                    <span th:text="${message.dateSent}" class="timeStamp ml-auto"></span>
                 </div>
-                <span th:text="${message.dateSent}" class="timeStamp ml-auto"></span>
-            </div>
 
+            </div>
         </div>
     </div>
-</div>
+</main>
+
+<th:block th:replace="partials/footer :: footer"></th:block>
 
 
 <th:block th:replace="partials/scripts :: scripts"></th:block>
