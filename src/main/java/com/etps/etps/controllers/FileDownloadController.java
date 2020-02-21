@@ -53,7 +53,7 @@ public class FileDownloadController {
 
             InputStream is = new FileInputStream(writeFile);
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Approved",".xlsx");
+//            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Approved",".xlsx");
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
@@ -73,7 +73,6 @@ public class FileDownloadController {
         User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
         WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
 
-
         try {
 
             if (loggedInUser.isAdmin()){
@@ -87,7 +86,7 @@ public class FileDownloadController {
 
             InputStream is = new FileInputStream(writeFile);
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Pending",".xlsx");
+//            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Pending",".xlsx");
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
@@ -95,7 +94,6 @@ public class FileDownloadController {
         } catch (IOException ex) {
             throw new RuntimeException("IOError writing file to output stream");
         }
-
 
 //        return "redirect:/home";
     }
@@ -114,7 +112,7 @@ public class FileDownloadController {
             writeToExcel.WriteExcel(writeData, writeFile);
             InputStream is = new FileInputStream(writeFile);
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Expired",".xlsx");
+//            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Expired",".xlsx");
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
 
@@ -143,7 +141,7 @@ public class FileDownloadController {
                 InputStream is = new FileInputStream(writeFile);
 //                response.setContentType("application/vnd.ms-excel");
                 response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_All",".xlsx");
+//                response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_All",".xlsx");
 
                 org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
                 response.flushBuffer();
@@ -171,7 +169,6 @@ public class FileDownloadController {
             submissionUser = receivedUser;
         }
 
-
             WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
 
         try {
@@ -183,8 +180,7 @@ public class FileDownloadController {
 
             InputStream is = new FileInputStream(writeFile);
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            response.setHeader("ETPS_"+submissionUser.getUserProviderId()+"_Pending",".xlsx");
-
+//            response.setHeader("ETPS_"+submissionUser.getUserProviderId()+"_Pending",".xlsx");
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
