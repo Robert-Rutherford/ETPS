@@ -3,38 +3,46 @@
 <head th:replace="partials/head :: head('Messages')">
 </head>
 <body style="background-color: #E9ECEF">
+
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div class="d-flex justify-content-center">
-    <form th:action="@{/}">
-        <button class="btn my-3" style="background-color: #28699F; color: white">Back</button>
-    </form>
-    <form th:action="@{/messages/in}">
-        <button class="btn my-3 mx-5" style="background-color: #28699F; color: white">Inbox</button>
-    </form>
-    <form th:action="@{/message/create}">
-        <button class="btn my-3" style="background-color: #28699F; color: white">Send</button>
-    </form>
-</div>
-<div class="container" style="height: 80vh; overflow-y: scroll">
-    <div class="card w-100 d-flex justify-content-center" style="background-color: #28699F">
-        <div class="card-body w-100">
-            <h1 class="card-title text-center" style="color: white">Sent</h1>
-            <ul th:each="message : ${user.sent}" class="list-group">
-                <a th:href="@{|/message/${message.id}|}" style="color:black; text-decoration: none">
-                    <div>
-                        <li class="list-group-item">
-                            <h4 th:text="${message.title}"></h4>
-                            <p>Sent To : <span th:text="${message.receivedUser.username}"></span>
-                                At :
-                                <span th:text="${message.dateSent}" class="timeStamp"></span>
-                            </p>
-                        </li>
-                    </div>
-                </a>
-            </ul>
+
+<main>
+
+    <div class="d-flex justify-content-center">
+        <form th:action="@{/}">
+            <button class="btn my-3" style="background-color: #28699F; color: white">Back</button>
+        </form>
+        <form th:action="@{/messages/in}">
+            <button class="btn my-3 mx-5" style="background-color: #28699F; color: white">Inbox</button>
+        </form>
+        <form th:action="@{/message/create}">
+            <button class="btn my-3" style="background-color: #28699F; color: white">Send</button>
+        </form>
+    </div>
+    <div class="container" style="height: 80vh; overflow-y: scroll">
+        <div class="card w-100 d-flex justify-content-center" style="background-color: #28699F">
+            <div class="card-body w-100">
+                <h1 class="card-title text-center" style="color: white">Sent</h1>
+                <ul th:each="message : ${user.sent}" class="list-group">
+                    <a th:href="@{|/message/${message.id}|}" style="color:black; text-decoration: none">
+                        <div>
+                            <li class="list-group-item">
+                                <h4 th:text="${message.title}"></h4>
+                                <p>Sent To : <span th:text="${message.receivedUser.username}"></span>
+                                    At :
+                                    <span th:text="${message.dateSent}" class="timeStamp"></span>
+                                </p>
+                            </li>
+                        </div>
+                    </a>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+</main>
+
+<th:block th:replace="partials/footer :: footer"></th:block>
+
 <th:block th:replace="partials/scripts :: scripts"></th:block>
 </body>
 </html>
