@@ -53,6 +53,14 @@ public class MessageController {
         this.submissionDao = submissionDao;
     }
 
+//    TODO: TESTER MESSAGES
+    @GetMapping("/message/new")
+    public String showNewMessage(Model model) {
+//        To get user inbox and outbox
+        model.addAttribute("user", currentUser());
+
+        return "messageTest";
+    }
 
 
     @GetMapping("/message/{id}")
