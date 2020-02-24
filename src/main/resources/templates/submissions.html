@@ -3,6 +3,7 @@
 <head>
     <th:block th:insert="partials/head :: head('Home')"></th:block>
 </head>
+<link rel="stylesheet" href="css/submissions.css">
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
@@ -12,7 +13,7 @@
 
 
         <div class="card" id="submissionCard">
-            <div class="card-header text-white bg-primary">
+            <div class="card-header text-white header-background">
                 Create a Submission
             </div>
             <div class="card-body">
@@ -22,7 +23,7 @@
                 <form th:method="POST" enctype="multipart/form-data" th:action="@{|/uploadFile|}">
                 <table>
                     <tr><td>Select excel file (.xlsx):</td><td><input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" /></td></tr>
-                    <tr><td></td><td><input type="submit" value="Submit" /></td></tr>
+                    <tr><td></td><td><input type="submit" value="Submit" class="btn header-background" /></td></tr>
                 </table>
                 </form>
             </div>
@@ -53,12 +54,12 @@
         <div class="tab-content" id="dataTables">
             <div aria-labelledby="approvedTable" class="card tab-pane fade show active" id="approvedTable"
                  role="tabpanel">
-                <div class="card-header text-white bg-primary">
+                <div class="card-header text-white header-background">
                     Approved Table
                 </div>
                 <div class="card-body">
                     <form th:action="@{|/download/Approved|}" th:method="POST">
-                        <button th:action="submit">Download</button>
+                        <button th:action="submit" class="btn header-background">Download</button>
                     </form>
                     <br>
                     <table class="table table-bordered">
@@ -79,12 +80,12 @@
             </div>
             <div aria-labelledby="pendingTable" class="card tab-pane fade show active" id="pendingTable"
                  role="tabpanel">
-                <div class="card-header text-white bg-primary">
+                <div class="card-header text-white header-background">
                     Pending Table
                 </div>
                 <div class="card-body">
                     <form th:action="@{|/download/Pending|}" th:method="POST">
-                        <button th:action="submit">Download</button>
+                        <button th:action="submit" class="btn header-background">Download</button>
                     </form>
                     <br>
                     <table class="table table-bordered">
@@ -105,12 +106,12 @@
             </div>
             <div aria-labelledby="expiredTable" class="card tab-pane fade show active" id="expiredTable"
                  role="tabpanel">
-                <div class="card-header text-white bg-primary">
+                <div class="card-header text-white header-background">
                     Expired Table
                 </div>
                 <div class="card-body">
                     <form th:action="@{|/download/Expired|}" th:method="POST">
-                        <button th:action="submit">Download</button>
+                        <button th:action="submit" class="btn header-background">Download</button>
                     </form>
                     <br>
                     <table class="table table-bordered">
