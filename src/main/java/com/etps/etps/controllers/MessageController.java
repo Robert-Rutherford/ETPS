@@ -78,7 +78,7 @@ public class MessageController {
         model.addAttribute("user", currentUser());
         model.addAttribute("message", message);
         messageDao.save(message);
-        return "message";
+        return "messageDisplay";
     }
 
     @GetMapping("/messages/out")
@@ -139,7 +139,7 @@ public class MessageController {
         model.addAttribute("reject", receivedUser);
         model.addAttribute("message", new Message());
 
-        return "messageForm";
+        return "messageDisplay";
     }
 
     @GetMapping("/message/submission")

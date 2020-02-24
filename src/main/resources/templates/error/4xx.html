@@ -1,33 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-<title th:text="'Ooops, ' + ${error}"></title>
+    <title th:text="'Ooops, ' + ${error}"></title>
+    <th:block th:insert="partials/head :: head('Error')"></th:block>
+
 </head>
 
 <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400" rel="stylesheet">
 <link rel="stylesheet" href="/css/error.css">
 <body class="loading">
-<h1 th:switch="${error}"><span th:case="'Not Found'">404</span><span th:case="'Forbidden'">403</span></h1>
-<h2 th:switch="${error}"><span th:case="'Not Found'">Page Not Found</span><span th:case="'Forbidden'">Forbidden Action</span><b></b></h2>
-<div class="gears">
-    <div class="gear one">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<section class="main-content">
+
+    <h1 th:switch="${error}"><span th:case="'Not Found'">404</span><span th:case="'Forbidden'">403</span></h1>
+    <h2 th:switch="${error}"><span th:case="'Not Found'">Page Not Found</span><span th:case="'Forbidden'">Forbidden Action</span><b></b>
+    </h2>
+    <div class="gears">
+        <div class="gear one">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="gear two">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="gear three">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
     </div>
-    <div class="gear two">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-    <div class="gear three">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-</div>
+</section>
+
+<th:block th:replace="partials/footer :: footer"></th:block>
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="js/main.js" type="text/javascript"></script>
@@ -43,8 +53,8 @@
 <!--</th:block>-->
 
 <script>
-    $(function() {
-        setTimeout(function(){
+    $(function () {
+        setTimeout(function () {
             $('body').removeClass('loading');
         }, 1000);
     });
