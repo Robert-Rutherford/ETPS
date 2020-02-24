@@ -1,4 +1,4 @@
-www.etps.site
+Domain - https://etps.site/
 
 A Codeup capstone project created using Java, Spring Boot, Hibernate, JPA, Thymeleaf, jQuery, Moment JS, Apache POI, and SendGrid API.
 
