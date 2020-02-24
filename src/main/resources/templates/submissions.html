@@ -2,12 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head('Home')"></th:block>
+    <th:block th:insert="${user != null} ? ~{partials/head :: sidenav} : ~{}"></th:block>
+
 </head>
 <link rel="stylesheet" href="css/submissions.css">
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <main>
+    <th:block th:replace="${user != null} ? ~{partials/sideNav :: side-nav} : ~{}"></th:block>
 
     <section class="main-content">
 

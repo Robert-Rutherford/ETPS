@@ -17,7 +17,7 @@
                                     data-target="#collapseOne"
                                     aria-expanded="true" aria-controls="collapseOne">
                                 <span class="test">Messages <span th:text="${unread}" class="badge badge-danger"
-                                                                  th:if="${unread} > 0"></span></span>
+                                                                  th:if="${unread != null && unread > 0}"></span></span>
                             </button>
                         </div>
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
