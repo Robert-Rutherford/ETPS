@@ -68,6 +68,15 @@ public class SubmissionController {
             expiredList.add(newData);
         }
 
+        int unread = 0;
+
+        for (Message message: loggedInUser.getReceived()){
+            if (!message.isBeenRead()){
+                unread++;
+            }
+        }
+
+        model.addAttribute("unread", unread);
         model.addAttribute("approvedList",approvedList);
         model.addAttribute("pendingList",pendingList);
         model.addAttribute("expiredList",expiredList);
