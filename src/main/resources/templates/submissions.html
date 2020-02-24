@@ -22,8 +22,12 @@
                 the format from them.</p>
                 <form th:method="POST" enctype="multipart/form-data" th:action="@{|/uploadFile|}">
                 <table>
-                    <tr><td>Select excel file (.xlsx):</td><td><input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" /></td></tr>
-                    <tr><td></td><td><input type="submit" value="Submit" class="btn header-background" /></td></tr>
+<!--                    <tr><td>Select excel file (.xlsx):</td><td><input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" /></td></tr>-->
+<!--                    <tr><td></td><td><input type="submit" value="Submit" class="btn header-background" /></td></tr>-->
+                    <tr><td><div class="custom-file">
+                        <input type="file" th:name="file" class="custom-file-input" id="submitFileBrowser" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                        <label class="custom-file-label" for="submitFileBrowser">Choose file...</label></div></td></tr>
+                    <tr><td><input type="submit" value="Submit File" class="btn header-background"/></td></tr>
                 </table>
                 </form>
             </div>
@@ -143,5 +147,15 @@
 <footer th:replace="partials/footer :: footer"></footer>
 
 <th:block th:replace="partials/scripts :: scripts"></th:block>
+
+
+<script>
+    $('#submitFileBrowser').on('change',function(){
+        //get the file name
+        var fileName = $(this).val().replace('C:\\fakepath\\', " ");
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>
 </body>
 </html>
