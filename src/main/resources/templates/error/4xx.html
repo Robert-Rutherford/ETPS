@@ -7,10 +7,10 @@
 </head>
 
 <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400" rel="stylesheet">
-<link rel="stylesheet" href="css/error.css">
+<link rel="stylesheet" href="/css/error.css">
 <body class="loading">
-<h1 th:text="${error}"></h1>
-<h2>Unexpected Error <b></b></h2>
+<h1 th:switch="${error}"><span th:case="'Not Found'">404</span><span th:case="'Forbidden'">403</span></h1>
+<h2 th:switch="${error}"><span th:case="'Not Found'">Page Not Found</span><span th:case="'Forbidden'">Forbidden Action</span><b></b></h2>
 <div class="gears">
     <div class="gear one">
         <div class="bar"></div>
