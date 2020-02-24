@@ -1,5 +1,6 @@
 package com.etps.etps.controllers;
 
+import com.etps.etps.models.Message;
 import com.etps.etps.models.User;
 import com.etps.etps.repositories.Users;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,7 +28,18 @@ public class infoController {
 
     @GetMapping("/info")
     public String showInfo(Model model) {
+
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            int unread = 0;
+
+            for (Message message: currentUser().getReceived()){
+                if (!message.isBeenRead()){
+                    unread++;
+                }
+            }
+            model.addAttribute("unread", unread);
         model.addAttribute("user", currentUser());
-        return "infoPage";
     }
+        return "infoPage";
+}
 }
