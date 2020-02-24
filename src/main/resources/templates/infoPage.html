@@ -3,7 +3,7 @@
 <head>
     <th:block th:insert="partials/head :: head('More Info')"></th:block>
     <th:block th:insert="partials/head :: info"></th:block>
-    <th:block th:replace="${user != null} ? ~{/partials/head :: sidenav} : ~{}"></th:block>
+    <th:block th:insert="partials/head :: sidenav" th:if="${user != 'anonymousUser'}"></th:block>
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>

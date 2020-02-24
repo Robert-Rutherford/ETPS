@@ -156,7 +156,7 @@ public class MessageController {
         messageDao.save(message);
         emailService.prepareAndSend(message, "New Message From " + message.getSentUser().getUsername(), "You have a new message!");
 
-        return "redirect:/";
+        return "redirect:/submission";
     }
 
     @GetMapping("/message/delete")
