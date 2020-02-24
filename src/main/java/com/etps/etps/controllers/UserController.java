@@ -74,7 +74,7 @@ public class UserController {
 
         User acUser = new User();
         acUser.setUsername("acUser");
-        acUser.setPassword(passwordEncoder.encode("test"));
+        acUser.setPassword(passwordEncoder.encode("test2"));
         acUser.setEmail("testing@testing.com");
         acUser.setUserProviderId(802);
         acUser.setAdmin(false);
