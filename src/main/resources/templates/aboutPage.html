@@ -4,7 +4,7 @@
     <th:block th:insert="partials/head :: head('About Us')"></th:block>
     <link rel="stylesheet" href="/css/aboutPage.css">
 <!--    testing sidenav if user is logged in-->
-    <th:block th:replace="${user != null} ? ~{/partials/head :: sidenav} : _"></th:block>
+    <th:block th:insert="partials/head :: sidenav" th:if="${user != 'anonymousUser'}"></th:block>
 <!--    <link rel="stylesheet" href="/css/loggedInNav.css">-->
 </head>
 <body>
@@ -15,7 +15,7 @@
 
 <!--    <th:block th:replace="/partials/sideNav :: side-nav"></th:block>-->
     <!--    testing sidenav if user is logged in-->
-        <th:block th:replace="${user != null} ? ~{/partials/sideNav :: side-nav} : _"></th:block>
+    <th:block th:insert="partials/sideNav :: side-nav" th:if="${user != null}"></th:block>
 
     <section class="main-content">
         <h1 class="page-header" style="display: none">About Us</h1>
