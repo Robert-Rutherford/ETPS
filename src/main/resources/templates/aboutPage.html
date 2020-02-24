@@ -18,16 +18,16 @@
         <th:block th:replace="${user != null} ? ~{/partials/sideNav :: side-nav} : _"></th:block>
 
     <section class="main-content">
-        <h1 class="page-header">About Us</h1>
-        <p class="project-description">
+        <h1 class="page-header" style="display: none">About Us</h1>
+        <p class="project-description" style="display: none">
             Eligible Training Provider System Portal is a web application created to directly connect Texas Workforce
             Commission to eligible training providers to achieve a higher quality of communication and data submissions.
             E.T.P.S. Portal provides straightforward displays for simpler navigation and essential functionality to
             effortlessly manage provider data.
         </p>
-        <hr>
 
         <h1 class="team-header">Development Team</h1>
+        <hr>
         <section class="member-container">
             <div class="member">
                 <img th:src="@{images/robert-rutherford.jpg}" alt="member image" class="member-image">

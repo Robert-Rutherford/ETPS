@@ -28,7 +28,7 @@ hr {
 }
 
 .member {
-    width: 15em;
+    width: 17em;
     height: auto;
     border: 1px solid grey;
     border-radius: 1em;
@@ -43,8 +43,8 @@ hr {
 }
 
 .member-image {
-    width: 12em;
-    height: 12em;
+    width: 15em;
+    height: 15em;
     border-radius: 50%;
     grid-area: 1 / 1 / 2 / 4;
     margin-top: .5em;
@@ -54,6 +54,7 @@ hr {
 .member > span {
     grid-area: 2 / 1 / 3 / 4;
     margin-top: .5em;
+    font-size: 18pt;
 }
 
 .member a {
