@@ -2,17 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head('Home')"></th:block>
+    <th:block th:insert="${user != null} ? ~{partials/head :: sidenav} : ~{}"></th:block>
+
 </head>
+<link rel="stylesheet" href="css/submissions.css">
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <main>
+    <th:block th:replace="${user != null} ? ~{partials/sideNav :: side-nav} : ~{}"></th:block>
 
     <section class="main-content">
 
 
         <div class="card" id="submissionCard">
-            <div class="card-header text-white bg-primary">
+            <div class="card-header text-white header-background">
                 Create a Submission
             </div>
             <div class="card-body">
@@ -21,10 +25,34 @@
                 the format from them.</p>
                 <form th:method="POST" enctype="multipart/form-data" th:action="@{|/uploadFile|}">
                 <table>
-                    <tr><td>Select excel file (.xlsx):</td><td><input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" /></td></tr>
-                    <tr><td></td><td><input type="submit" value="Submit" /></td></tr>
+<!--                    <tr><td>Select excel file (.xlsx):</td><td><input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" /></td></tr>-->
+<!--                    <tr><td></td><td><input type="submit" value="Submit" class="btn header-background" /></td></tr>-->
+                    <tr><td><div class="custom-file">
+                        <input type="file" th:name="file" class="custom-file-input" id="submitFileBrowser" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                        <label class="custom-file-label" for="submitFileBrowser">Choose file...</label></div></td></tr>
+                    <tr><td><input type="submit" value="Submit File" data-toggle="modal" data-target="#submitModal" class="btn header-background"/></td></tr>
                 </table>
                 </form>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="submitModalTitle">Submitting Form...</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Submitting file to TWC Representative for approval. This page will redirect to home page on successful submission...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -53,12 +81,12 @@
         <div class="tab-content" id="dataTables">
             <div aria-labelledby="approvedTable" class="card tab-pane fade show active" id="approvedTable"
                  role="tabpanel">
-                <div class="card-header text-white bg-primary">
+                <div class="card-header text-white header-background">
                     Approved Table
                 </div>
                 <div class="card-body">
                     <form th:action="@{|/download/Approved|}" th:method="POST">
-                        <button th:action="submit">Download</button>
+                        <button th:action="submit" class="btn header-background">Download</button>
                     </form>
                     <br>
                     <table class="table table-bordered">
@@ -79,12 +107,12 @@
             </div>
             <div aria-labelledby="pendingTable" class="card tab-pane fade show active" id="pendingTable"
                  role="tabpanel">
-                <div class="card-header text-white bg-primary">
+                <div class="card-header text-white header-background">
                     Pending Table
                 </div>
                 <div class="card-body">
                     <form th:action="@{|/download/Pending|}" th:method="POST">
-                        <button th:action="submit">Download</button>
+                        <button th:action="submit" class="btn header-background">Download</button>
                     </form>
                     <br>
                     <table class="table table-bordered">
@@ -105,12 +133,12 @@
             </div>
             <div aria-labelledby="expiredTable" class="card tab-pane fade show active" id="expiredTable"
                  role="tabpanel">
-                <div class="card-header text-white bg-primary">
+                <div class="card-header text-white header-background">
                     Expired Table
                 </div>
                 <div class="card-body">
                     <form th:action="@{|/download/Expired|}" th:method="POST">
-                        <button th:action="submit">Download</button>
+                        <button th:action="submit" class="btn header-background">Download</button>
                     </form>
                     <br>
                     <table class="table table-bordered">
@@ -142,5 +170,15 @@
 <footer th:replace="partials/footer :: footer"></footer>
 
 <th:block th:replace="partials/scripts :: scripts"></th:block>
+
+
+<script>
+    $('#submitFileBrowser').on('change',function(){
+        //get the file name
+        var fileName = $(this).val().replace('C:\\fakepath\\', " ");
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>
 </body>
 </html>

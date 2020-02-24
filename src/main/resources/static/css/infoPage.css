@@ -61,7 +61,27 @@
     text-align: center;
     color: #12395B;
     margin-bottom: .5em;
+}
 
+h2.lined-header {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.lined-header {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.lined-header:before,
+.lined-header:after {
+    content: '';
+    border-top: 2px solid;
+    margin: 0 20px 0 20px;
+    flex: 1 0 20px;
 }
 
 /* ===== REQUIREMENTS ====== */
@@ -305,9 +325,43 @@ div.eligible-disclaimer > h3.pre-requisites {
     opacity: .7;
 }
 
+/* ====== APPLICATIONS ===== */
+.applications-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.app-img-container > h4 {
+    padding: .25em;
+    text-align: center;
+    color: white;
+    background-color: #8AC152;
+    border-bottom: 3px solid #053B68;
+}
+
+.app-img-container {
+    overflow: hidden;
+    border: 1px solid black;
+    border-radius: 2em;
+    width: 65em;
+}
+
+.app-img-content {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.app-img-content > img {
+    width: 25em;
+    margin: 1em 0;
+    border-radius: 1em;
+    border: 2px solid silver;
+    box-shadow: 4px 4px 4px grey;
+}
+
 /* ----- SUBMISSIONS: ELIGIBILITY ----- */
 .eligibility-card {
-    width: min-content;
+    width: 65em;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -334,6 +388,108 @@ div.eligible-disclaimer > h3.pre-requisites {
     border-radius: 1em;
 }
 
+/* ===== NEXT STEPS ===== */
+.nxt-step-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 65em;
+    background-color: #F6F1C9;
+    border: 1px solid silver;
+}
+
+.nxt-step-container h3 {
+    color: #28699F;
+}
+
+.nxt-card {
+    border: 1px solid black;
+    width: 60em;
+    margin: 1em auto;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.nxt-parent-card {
+    border: 1px solid silver;
+}
+
+.nxt-card > h4 {
+    padding: .25em;
+    text-align: center;
+    width: 100%;
+    background-color: #28699F;
+}
+
+.nxt-parent-card > .nxt-card {
+    width: 55em;
+}
+
+.nxt-card > img {
+    width: 25em;
+    margin: 1em 0;
+    border-radius: 1em;
+    border: 2px solid silver;
+    box-shadow: 4px 4px 4px grey;
+}
+
+.next-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nxt-grn {
+    background-color: #F6FFEE;
+}
+
+.nxt-grn > h4 {
+    color: white;
+    background-color: #8AC152;
+    border-bottom: 3px solid #1B649A;
+}
+
+.nxt-blue {
+    background-color: #DEEAEE;
+}
+
+.nxt-blue > h4 {
+    color: white;
+    border-bottom: 3px solid #8AC152;
+}
+
+.nxt-card-slide {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-align: center;
+    scroll-behavior: smooth;
+}
+
+.nxt-card-slide > div {
+    display: flex;
+    justify-content: space-evenly;
+    width: 60em;
+    margin: 1em auto;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.nxt-steps-list li ul li {
+    text-decoration: underline;
+}
+
+.nxt-steps-list > li {
+    margin: 2em 0;
+    padding: 0 1em;
+}
+
+.nxt-steps-list > li:last-child {
+    margin-bottom: 1em;
+}
+
+
 /* ====== CONTACT TAB ======*/
 .contact-tab {
     display: flex;
@@ -341,6 +497,13 @@ div.eligible-disclaimer > h3.pre-requisites {
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.inner-contact {
+    border: 1px solid grey;
+    border-radius: 2em;
+    padding: 1em;
+    background-color: rgba(247, 207, 121, .6);
 }
 
 /*.tab-content > div:nth-child(5) {*/
@@ -388,10 +551,11 @@ div.eligible-disclaimer > h3.pre-requisites {
 
 .contact-information {
     margin: 1rem 0;
-    background-color: #DEEAEE;
     padding: 1em;
     border-radius: 1em;
     font-size: 14pt;
+    background-color: rgba(247, 207, 121, 1);
+    box-shadow: 2px 2px 2px grey;
 }
 
 /* ===== MODAL IMAGE ===== */
