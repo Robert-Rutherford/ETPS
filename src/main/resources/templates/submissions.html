@@ -27,9 +27,29 @@
                     <tr><td><div class="custom-file">
                         <input type="file" th:name="file" class="custom-file-input" id="submitFileBrowser" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                         <label class="custom-file-label" for="submitFileBrowser">Choose file...</label></div></td></tr>
-                    <tr><td><input type="submit" value="Submit File" class="btn header-background"/></td></tr>
+                    <tr><td><input type="submit" value="Submit File" data-toggle="modal" data-target="#submitModal" class="btn header-background"/></td></tr>
                 </table>
                 </form>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="submitModalTitle">Submitting Form...</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Submitting file to TWC Admin for approval. This page will redirect to home page on successful submission...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
 
