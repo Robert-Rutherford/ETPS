@@ -51,7 +51,7 @@
 
                         <form th:method="POST" th:action="@{|/message/${message.id}/submission/approved|}"
                               th:if="${user.admin}">
-                            <button th:action="submit" class="btn btn-success">Approve Submission</button>
+                            <button th:action="submit" class="btn btn-success" data-toggle="modal" data-target="#approveModal">Approve Submission</button>
                         </form>
                         <form th:method="POST" th:action="@{|/message/${message.id}/submission/rejected|}"
                               th:if="${user.admin}">
@@ -64,6 +64,27 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="approveModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="approveModalTitle">Approving Submission...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Approving submission. This page will redirect to home page on successful submission...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
 
 <th:block th:replace="partials/footer :: footer"></th:block>
