@@ -26,6 +26,15 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 .5em;
 }
 
+/* ===== CAROUSEL ===== */
+.carousel-item > img {
+    vertical-align: middle;
+    border-style: none;
+    margin: 0 auto;
+    width: 65em;
+    height: 22em;
+}
+
 /* ====== Provided Services ====== */
 .service-container {
     display: flex;
