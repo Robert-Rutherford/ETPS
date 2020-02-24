@@ -91,6 +91,7 @@
                         <button th:action="submit" class="btn header-background">Download</button>
                     </form>
                     <br>
+
                     <table class="table table-bordered">
                         <tr th:each="approvedObj : ${approvedList}">
                             <th th:text="${approvedObj.getProviderID()}"></th>
