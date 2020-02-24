@@ -58,6 +58,7 @@ public class MessageController {
     public String showNewMessage(Model model) {
 //        To get user inbox and outbox
         model.addAttribute("user", currentUser());
+        model.addAttribute("message", new Message());
 
         return "messageTest";
     }

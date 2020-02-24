@@ -1,16 +1,29 @@
 main {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 3fr;
-    grid-template-rows: 3em auto;
+    grid-template-rows: 4em auto;
 }
 
 /* ===== MESSAGE NAV ===== */
 .message-nav {
-    border: 1px solid red;
-    grid-area: 1 / 1 / 2 / 3;
+    border-bottom: 2px solid #1B649A;
+    grid-area: 1 / 2 / 2 / 3;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 1em;
+}
+
+.rtn-sub-btn {
+    border-radius: 2em;
+}
+
+.new-msg-btn {
+    border-radius: 2em;
+}
+
+.delete-msg-btn {
+    border-radius: 2em;
 }
 
 /* ----------- IN/OUT TOGGLE SWITCH ----------- */
@@ -94,11 +107,27 @@ main {
 }
 
 
+/* ===== REEL TITLE ===== */
+.reel-title {
+    grid-area: 1 / 1 / 2 / 2;
+    text-align: center;
+    color: #12395B;
+    border-right: 2px solid #12395B;
+    border-bottom: 2px solid #12395B;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* ===== MESSAGE REEL ===== */
 .message-reel {
-    border: 1px solid green;
+    border-right: 2px solid #1B649A;
     grid-area: 2 / 1 / 3 / 2;
     overflow-y: scroll;
+    background-color: white;
 }
 
 .inbox-reel,
@@ -106,8 +135,89 @@ main {
     height: 0;
 }
 
+.msg-desc-container:hover {
+    background-color: rgba(211, 211, 211, 1);
+}
+
+.message-nav:last-child
+.msg-description {
+    margin-bottom: .5em;
+}
+
+.timeStamp {
+    font-size: 10pt;
+}
+
+.unread {
+    margin: 0;
+}
+
+.msg-select-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.msg-checkbox {
+    height: 22px;
+    width: 22px;
+}
+
+.msg-checkbox[type="checkbox"]:before {
+    width: 20px;
+    height: 20px;
+}
+
+.msg-checkbox[type="checkbox"]:after {
+    top: -20px;
+    width: 16px;
+    height: 16px;
+}
+
 /* ===== MESSAGE VIEW ===== */
 .message-view {
     border: 1px solid mediumpurple;
     grid-area: 2 / 2 / 3 / 3;
+}
+
+.msg-view-disclaimer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.msg-view-disclaimer > span {
+    font-size: 35pt;
+    font-style: italic;
+    color: lightgray;
+}
+
+/* ===== MESSAGE CREATE ===== */
+.new-msg-modal {
+    position: absolute;
+}
+
+.modal-dialog {
+    max-width: calc(100vw - 40%);
+}
+
+.msg-prop {
+    display: flex;
+}
+
+.msg-prop > label {
+    min-width: auto;
+    margin-right: 1em;
+}
+
+.msg-txt-area {
+    min-height: 10em;
+    resize: none;
+    outline: none;
+    overflow: auto;
+}
+
+.modal-footer {
+    justify-content: space-between;
 }
