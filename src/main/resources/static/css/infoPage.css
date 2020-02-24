@@ -129,6 +129,7 @@ h2.lined-header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 1em;
 }
 
 .req-parent > h4 {
@@ -187,8 +188,13 @@ span.text-center {
 
 
 /* ===== SUBMISSIONS TAB ===== */
+.submission-card > h3 {
+    text-decoration: underline;
+}
+
 .submissions-container h3 {
     color: #28699F;
+    text-align: center;
 }
 
 .submissions-center {
@@ -205,6 +211,7 @@ span.text-center {
     /*background-color: #FAFAD2;*/
     background-color: rgba(246, 195, 88, .8);;
     box-shadow: 2px 2px 2px;
+    width: 65em;
 }
 
 div.eligible-disclaimer > h3.pre-requisites {
@@ -401,6 +408,9 @@ div.eligible-disclaimer > h3.pre-requisites {
 
 .nxt-step-container h3 {
     color: #28699F;
+    margin-bottom: 0;
+    margin-top: .5em;
+    text-decoration: underline;
 }
 
 .nxt-card {
@@ -471,9 +481,13 @@ div.eligible-disclaimer > h3.pre-requisites {
     display: flex;
     justify-content: space-evenly;
     width: 60em;
-    margin: 1em auto;
+    margin: 0 auto;
     border-radius: 1em;
     overflow: hidden;
+}
+
+.nxt-steps-list {
+    list-style: none;
 }
 
 .nxt-steps-list li ul li {
@@ -487,6 +501,13 @@ div.eligible-disclaimer > h3.pre-requisites {
 
 .nxt-steps-list > li:last-child {
     margin-bottom: 1em;
+}
+
+.question,
+.answer {
+    font-size: 14pt;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 
@@ -632,4 +653,11 @@ div.eligible-disclaimer > h3.pre-requisites {
     .modal-content {
         width: 100%;
     }
+}
+
+.back-to-top-btn > img {
+    width: 2em;
+    height: auto;
+    float: right;
+    margin-bottom: 5px;
 }

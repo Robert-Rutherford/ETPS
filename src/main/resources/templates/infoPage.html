@@ -258,22 +258,27 @@
                                 <img src="/images/more-info-images/next-steps/2.emp-partnership.png" alt=""
                                      class="sub-img">
                             </div>
-                            <div class="nxt-card nxt-parent-card" style="background-color: rgba(247, 207, 121, .6)">
+                            <div class="nxt-card nxt-parent-card"
+                                 style="background-color: rgba(247, 207, 121, .6); border-color: black">
                                 <h4 style="color: white; border-bottom: 3px solid #8AC152">Letter of Support
                                     Requirements</h4>
                                 <ul class="nxt-steps-list">
-                                    <li>Question: Would <span style="font-weight: bold">one letter of Support</span> for
+                                    <li><span class="question">Question : </span>Would <span style="font-weight: bold">one letter of Support</span>
+                                        for
                                         partnership meet the requirements?
                                         <ul>
-                                            <li>Answer: <span style="font-weight: bold">Yes one letter</span> of support
+                                            <li><span class="answer">Answer : </span><span style="font-weight: bold">Yes one letter</span>
+                                                of support
                                                 meets these Requirements
                                             </li>
                                         </ul>
                                     </li>
-                                    <li>Question: As it pertains to the employer letter of support, what exactly is the
+                                    <li><span class="question">Question : </span>As it pertains to the employer letter
+                                        of support, what exactly is the
                                         employer supporting?
                                         <ul>
-                                            <li>Answer: We are looking for letters of support from local Businesses that
+                                            <li><span class="answer">Answer : </span>We are looking for letters of
+                                                support from local Businesses that
                                                 show that the training program will <span style="font-weight: bold">mee their need for qualified workers</span>
                                                 and thus has value to the student community and local economy
                                             </li>
@@ -299,7 +304,8 @@
                                 </div>
                                 <div class="nxt-card next-center nxt-blue">
                                     <h4>Eligible Training Providers Page</h4>
-                                    <p>Visit for additional information and tools</p>
+                                    <p><a href="https://twc.texas.gov/partners/eligible-training-providers">Click
+                                        Here</a> to visit for additional information and tools</p>
                                 </div>
                             </div>
                         </div>
@@ -339,7 +345,10 @@
                     <div id="caption"></div>
                 </div>
             </div>
-            <a href="#nav-tab">Back to top</a>
+            <a href="#nav-tab" class="back-to-top-btn"><img src="/images/up-arrow.svg" alt="Back To Top Arrow">
+            </a>
+
+
         </section>
     </section>
 </main>
@@ -347,7 +356,6 @@
 <footer th:replace="partials/footer :: footer"></footer>
 
 <th:block th:replace="partials/scripts :: scripts"></th:block>
-<!--<th:block th:replace="partials/scripts :: jquery"></th:block>-->
 <script>
     // Get the modal
     var modal = document.getElementById("myModal");
