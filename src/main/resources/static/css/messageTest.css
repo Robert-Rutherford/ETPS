@@ -176,7 +176,7 @@ main {
 
 /* ===== MESSAGE VIEW ===== */
 .message-view {
-    border: 1px solid mediumpurple;
+    /*border: 1px solid mediumpurple;*/
     grid-area: 2 / 2 / 3 / 3;
 }
 
