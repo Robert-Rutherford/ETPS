@@ -78,7 +78,7 @@ public class MessageController {
         model.addAttribute("user", currentUser());
         model.addAttribute("message", message);
         messageDao.save(message);
-        return "messageDisplay";
+        return "message";
     }
 
     @GetMapping("/messages/out")
