@@ -7,72 +7,75 @@
 <body>
 
 <div th:fragment="side-nav" class="side-nav-container">
-        <div class="side-nav">
-            <ul>
-                <li>
-                    <div class="accordion" id="accordionExample">
-                        <a href="/message/new" style="border: none">
+    <div class="side-nav">
+        <ul>
+            <li>
+                <div class="accordion" id="accordionExample">
+                    <a href="/message/new" style="border: none">
 
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-
-
-                                <span class="test d-flex justify-content-between align-items-center">Messages <span th:text="${unread}" class="badge badge-danger d-flex align-items-center"
-                                                                         th:if="${unread != null && unread > 0}" style="height: 80%; border-radius: 50%"></span></span>
-
-                            </div>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <a href="/submission">
                         <div class="card">
-                            <div class="card-header">
-                                <span>Submissions</span>
+                            <div class="card-header" id="headingOne">
+
+
+                                <span class="test d-flex justify-content-between align-items-center">Messages <span
+                                        th:text="${unread}" class="badge badge-danger d-flex align-items-center"
+                                        th:if="${unread != null && unread > 0}"
+                                        style="height: 80%; border-radius: 50%"></span></span>
+
                             </div>
                         </div>
                     </a>
-                </li>
-                <li>
-                    <div class="accordion" id="excelQuickDownload">
-                        <div class="card">
-                            <div class="card-header" id="headingThree">
-                                <button class="btn collapsed" type="button" data-toggle="collapse"
-                                        data-target="#collapseThree"
-                                        aria-expanded="true" aria-controls="collapseThree">
-                                    <span class="test">Quick Download</span>
-                                </button>
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                 data-parent="#accordionExample">
-                                <div class="card-body">
-                                    <br>
-                                    <form th:method="POST" th:action="@{|/download/All|}" th:if="${user.isAdmin()}">
-                                        <button class="btn btn-link btn-lg btn-block" th:action="submit">All</button>
-                                        <hr>
-                                    </form>
-                                    <form th:method="POST" th:action="@{|/download/Approved|}">
-                                        <button class="btn btn-link btn-lg btn-block" th:action="submit">Approved
-                                        </button>
-                                        <hr>
-                                    </form>
-                                    <form th:method="POST" th:action="@{|/download/Pending|}">
-                                        <button class="btn btn-link btn-lg btn-block" th:action="submit">Pending
-                                        </button>
-                                        <hr>
-                                    </form>
-                                    <form th:method="POST" th:action="@{|/download/Expired|}">
-                                        <button class="btn btn-link btn-lg btn-block" th:action="submit">Expired
-                                        </button>
-                                    </form>
-                                    <br>
-                                </div>
+                </div>
+            </li>
+            <li>
+                <a href="/submission">
+                    <div class="card">
+                        <div class="card-header">
+                            <span>Submissions</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <div class="accordion" id="excelQuickDownload">
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <button class="btn collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapseThree"
+                                    aria-expanded="true" aria-controls="collapseThree">
+                                <span class="test">Quick Download</span>
+                            </button>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                             data-parent="#accordionExample">
+                            <div class="card-body">
+                                <br>
+                                <form th:method="POST" th:action="@{|/download/All|}" th:if="${user.isAdmin()}">
+                                    <button class="btn btn-link btn-lg btn-block" th:action="submit">All</button>
+                                    <hr>
+                                </form>
+                                <form th:method="POST" th:action="@{|/download/Approved|}">
+                                    <button class="btn btn-link btn-lg btn-block" th:action="submit">Approved
+                                    </button>
+                                    <hr>
+                                </form>
+                                <form th:method="POST" th:action="@{|/download/Pending|}">
+                                    <button class="btn btn-link btn-lg btn-block" th:action="submit">Pending
+                                    </button>
+                                    <hr>
+                                </form>
+                                <form th:method="POST" th:action="@{|/download/Expired|}">
+                                    <button class="btn btn-link btn-lg btn-block" th:action="submit">Expired
+                                    </button>
+                                </form>
+                                <br>
                             </div>
                         </div>
                     </div>
-                </li>
-            </ul>
-        </div>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>
 
 </body>
