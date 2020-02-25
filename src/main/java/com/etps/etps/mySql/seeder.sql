@@ -1,7 +1,7 @@
 
 # drop database etps_db;
 #
-# use etps_db;
+use etps_db;
 
 # submissions
 INSERT INTO submissions (deadline, status) VALUES

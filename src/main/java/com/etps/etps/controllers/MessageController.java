@@ -130,7 +130,7 @@ public class MessageController {
         approved.setBody("Your submission has been approved.");
         messageDao.save(approved);
         emailService.prepareAndSend(approved, "New Message From " + approved.getSentUser().getUsername(), "You have a new message!");
-        return "redirect:/";
+        return "redirect:/message/new";
     }
 
     @GetMapping("/message/rejected")
@@ -139,7 +139,7 @@ public class MessageController {
         model.addAttribute("reject", receivedUser);
         model.addAttribute("message", new Message());
 
-        return "messageDisplay";
+        return "redirect:/message/new";
     }
 
     @GetMapping("/message/submission")
