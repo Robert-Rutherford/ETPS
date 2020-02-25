@@ -6,6 +6,10 @@ h1, h2, h3, h4, h5, h6 {
     /*margin: 0 .5em;*/
 }
 
+.head-container {
+    margin-bottom: 2em;
+}
+
 .jumbotron {
     background-image: url(/images/bluebonnet7.jpg);
     background-position: center;
@@ -33,6 +37,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
     width: 65em;
     height: 22em;
+    border-radius: 1em;
 }
 
 .carousel-inner .carousel-item:first-child {
@@ -45,6 +50,98 @@ h1, h2, h3, h4, h5, h6 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-size: 40pt;
+    color: white;
+    text-shadow: 2px 2px black;
+    /*-webkit-text-stroke: 1px #8AC152;*/
+    background-color: rgba(191, 191, 191, .6);
+    border-radius: .25em;
+    padding: 0 .5em;
+    width: 75%;
+}
+
+/* ===== MAIN SPLASH CONTAINER ===== */
+.main-splash-container {
+    display: flex;
+    flex-direction: column;
+    /*border: 1px solid red;*/
+    padding-bottom: 1em;
+}
+
+.main-splash-container > h1 {
+    text-align: center;
+}
+
+.pillar-list {
+    display: flex;
+    justify-content: space-evenly;
+    /*flex-direction: column;*/
+}
+
+.service-container h2 {
+
+}
+
+.choice-head {
+    margin-bottom: .5em;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.choice-head:before,
+.choice-head:after {
+    content: '';
+    border-top: 2px solid;
+    margin: 0 20px 0 0;
+    flex: 1 0 20px;
+}
+
+.choice-head:after {
+    margin: 0 0 0 20px;
+}
+
+.pillar {
+    width: 25em;
+    height: 25em;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.pillar-list-ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1em;
+    /*list-style: none;*/
+}
+
+.pillar-list-ul > li {
+    margin: 1em;
+}
+
+.pillar > h3 {
+    padding: .25em;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+.admin-rsn {
+    border: 1px solid silver;
+}
+.admin-rsn > h3 {
+    background-color: #053B68;
+    border-bottom: 3px solid #8AC152;
+}
+
+.provider-rsn {
+    border: 1px solid silver;
+}
+
+.provider-rsn > h3 {
+    background-color: #8AC152;
+    border-bottom: 3px solid #053B68;
 }
 
 /* ====== Provided Services ====== */
