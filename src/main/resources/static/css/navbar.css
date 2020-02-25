@@ -1,5 +1,6 @@
 nav {
     border-bottom: 3px solid #8AC152;
+    font-size: 14pt;
 }
 
 .fa-user:hover
@@ -15,7 +16,7 @@ nav {
 }
 
 .twc-logo-link img {
-    height: 3.5em;
+    height: 3.5rem;
     width: auto;
     border-radius: 50%;
 }

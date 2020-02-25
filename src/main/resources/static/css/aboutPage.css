@@ -29,6 +29,7 @@ hr {
 
 .member {
     width: 17em;
+    /*width: 20em;*/
     height: auto;
     border: 1px solid grey;
     border-radius: 1em;
@@ -45,6 +46,8 @@ hr {
 .member-image {
     width: 15em;
     height: 15em;
+    /*width: 18em;*/
+    /*height: 18em;*/
     border-radius: 50%;
     grid-area: 1 / 1 / 2 / 4;
     margin-top: .5em;
