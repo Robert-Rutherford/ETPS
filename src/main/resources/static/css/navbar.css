@@ -1,6 +1,7 @@
 nav {
     border-bottom: 3px solid #8AC152;
     font-size: 14pt;
+    min-height: 77px;
 }
 
 .fa-user:hover
