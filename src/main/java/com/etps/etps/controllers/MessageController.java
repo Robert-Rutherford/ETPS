@@ -139,7 +139,7 @@ public class MessageController {
         model.addAttribute("reject", receivedUser);
         model.addAttribute("message", new Message());
 
-        return "messageForm";
+        return "messageDisplay";
     }
 
     @GetMapping("/message/submission")
