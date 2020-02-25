@@ -12,9 +12,9 @@ INSERT INTO submissions (deadline, status) VALUES
 # providers table (MUST BE GENERATED FIRST)
 INSERT INTO providers ( prov_id, provider_name,description, submission_id) VALUES
 (1, 'TWC', 'Admins of the TWC/ this column should never appear',null),
-(802,'ACCD Northwest Vista Collage','an alamo collage',1),
-(803,'ACCD Palo Alto Collage','an alamo collage',2),
-(900,'Codeup','an alamo school',3);
+(802,'ACCD Northwest Vista Collage','An Alamo College',1),
+(803,'ACCD Palo Alto Collage','An Alamo College',2),
+(900,'Codeup','An Alamo Cchool',3);
 
 # campus table
 INSERT INTO campuses (camp_id, name, provider_id) VALUES
