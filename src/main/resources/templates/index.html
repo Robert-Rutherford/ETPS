@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <th:block th:insert="partials/head :: head('Home')"></th:block>
+    <th:block th:insert="partials/head :: head('ETPS: Home')"></th:block>
     <th:block th:insert="partials/head :: index"></th:block>
     <th:block th:insert="${user != null} ? ~{partials/head :: sidenav} : ~{}"></th:block>
 </head>
@@ -74,7 +74,7 @@
                 <div>
                     <img src="/images/database-images/db-update.svg" alt="database update" class="service-img">
                     <p>
-                        <span class="service-title">Updates</span>
+                        <span class="service-title right">Updates</span>
                         Your information retained in our database available for updates at any time. Be prompt with your
                         business changes.
                     </p>
@@ -82,7 +82,7 @@
                 <div>
                     <img src="/images/database-images/db-secure.svg" alt="database secure" class="service-img">
                     <p>
-                        <span class="service-title">Security</span>
+                        <span class="service-title left">Security</span>
                         Provider data privately secured away from everyone but yourself and a TWC Administrator.
                     </p>
                 </div>
@@ -90,14 +90,14 @@
                     <img src="/images/database-images/db-import-export.jpg" alt="" class="service-img"
                          style="border-radius: 1em">
                     <p>
-                        <span class="service-title">Data Recordings</span>
+                        <span class="service-title right">Data Recordings</span>
                         Featured import and exporting of provider data for clear data adjustments and provider records.
                     </p>
                 </div>
                 <div>
                     <img src="/images/database-images/db-collaboration.svg" alt="" class="service-img">
                     <p>
-                        <span class="service-title">Reliable Communication</span>
+                        <span class="service-title left">Reliable Communication</span>
                         Dependable communication between providers and TWC Administrators available for record
                         approvals, denials, adjustments etc...
                     </p>

@@ -7,6 +7,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .head-container {
+    margin-top: 1em;
     margin-bottom: 2em;
 }
 
@@ -193,6 +194,16 @@ h1, h2, h3, h4, h5, h6 {
     flex: 1 0 20px;
 }
 
+.service-title.right:before,
+.service-title.right:after {
+    border-color: #8AC152;
+}
+
+.service-title.left:before,
+.service-title.left:after {
+    border-color: #053B68;
+}
+
 /*.service-title {*/
 /*    margin: 0 0 0 20px;*/
 /*}*/
@@ -219,9 +230,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .services div:nth-child(odd) p {
     grid-area: 1 / 2 / 2 / 3;
-    background-color: rgba(27, 100, 154, .6);
+    /*background-color: rgba(27, 100, 154, .6);*/
+    background-color: rgba(27, 100, 154, 1);
     color: #FFFFFF;
-    border: 3px solid #FFC314;
+    /*border: 3px solid #FFC314;*/
+    border: 3px solid #C0C0C0;
+
 }
 
 .services div:nth-child(even) p {
@@ -229,7 +243,6 @@ h1, h2, h3, h4, h5, h6 {
     background-color: white;
     color: #0E2E49;
     border: 3px solid #C0C0C0;
-
 }
 
 .services > div:nth-child(odd) {
