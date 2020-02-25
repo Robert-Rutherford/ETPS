@@ -11,34 +11,27 @@
         <ul>
             <li>
                 <div class="accordion" id="accordionExample">
-                    <div class="card">
-                        <div class="card-header" id="headingOne">
-                            <button class="btn collapsed" type="button" data-toggle="collapse"
-                                    data-target="#collapseOne"
-                                    aria-expanded="true" aria-controls="collapseOne">
-                                <span class="test">Messages <span th:text="${unread}" class="badge badge-danger"
-                                                                  th:if="${unread != null && unread > 0}"></span></span>
-                            </button>
-                        </div>
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                             data-parent="#accordionExample">
-                            <div class="card-body">
-                                <a href="/messages/in">Inbox</span></a>
-                                <a href="/messages/out">Outbox</a>
-                                <a href="/message/create">New Message</a>
+                    <a href="/message/new" style="border: none">
+
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+
+                                <span class="test d-flex">Messages <span th:text="${unread}" class="badge badge-danger"
+                                                                         style="line-height: normal; height: 80%"
+                                                                         th:if="${unread != null && unread > 0}"></span></span>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </li>
             <li>
                 <a href="/submission">
-                <div class="card">
-                    <div class="card-header">
-                        <span>Submissions</span>
+                    <div class="card">
+                        <div class="card-header">
+                            <span>Submissions</span>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
             </li>
             <li>
                 <div class="accordion" id="excelQuickDownload">

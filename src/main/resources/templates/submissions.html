@@ -3,6 +3,12 @@
 <head>
     <th:block th:insert="partials/head :: head('Home')"></th:block>
     <th:block th:insert="${user != null} ? ~{partials/head :: sidenav} : ~{}"></th:block>
+    <style>
+        .green-hover:hover {
+            color: white;
+            background-color: green;
+        }
+    </style>
 
 </head>
 <link rel="stylesheet" href="css/submissions.css">
@@ -38,7 +44,7 @@
                         </tr>
                         <tr>
                             <td><input type="submit" value="Submit File" data-toggle="modal" data-target="#submitModal"
-                                       class="btn header-background"/></td>
+                                       class="btn header-background green-hover"/></td>
                         </tr>
                     </table>
                 </form>
@@ -88,7 +94,7 @@
                 </div>
                 <div class="card-body">
                     <form th:action="@{|/download/Approved|}" th:method="POST">
-                        <button th:action="submit" class="btn header-background">Download</button>
+                        <button th:action="submit" class="btn header-background green-hover">Download</button>
                     </form>
                     <br>
 
@@ -114,7 +120,7 @@
                 </div>
                 <div class="card-body">
                     <form th:action="@{|/download/Pending|}" th:method="POST">
-                        <button th:action="submit" class="btn header-background">Download</button>
+                        <button th:action="submit" class="btn header-background green-hover">Download</button>
                     </form>
                     <br>
                     <table class="table table-bordered">
@@ -139,7 +145,7 @@
                 </div>
                 <div class="card-body">
                     <form th:action="@{|/download/Expired|}" th:method="POST">
-                        <button th:action="submit" class="btn header-background">Download</button>
+                        <button th:action="submit" class="btn header-background green-hover">Download</button>
                     </form>
                     <br>
                     <table class="table table-bordered">

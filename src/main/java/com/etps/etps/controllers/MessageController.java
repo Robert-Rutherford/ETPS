@@ -76,9 +76,9 @@ public class MessageController {
 
         model.addAttribute("subCheck",subCheck);
         model.addAttribute("user", currentUser());
-        model.addAttribute("message", message);
+        model.addAttribute("viewMessage", message);
         messageDao.save(message);
-        return "message";
+        return "messageDisplay";
     }
 
     @GetMapping("/messages/out")
@@ -114,7 +114,7 @@ public class MessageController {
         messageDao.save(message);
         emailService.prepareAndSend(message, "New Message From " + message.getSentUser().getUsername(), "You have a new message!");
 
-        return "redirect:/";
+        return "redirect:/message/new";
     }
 
     @GetMapping("/message/approved")
