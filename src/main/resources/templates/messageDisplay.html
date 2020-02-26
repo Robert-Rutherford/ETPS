@@ -108,7 +108,7 @@
 
                                 <form th:method="POST" th:action="@{|/message/${viewMessage.id}/submission/approved|}"
                                       th:if="${user.admin}">
-                                    <button th:action="submit" class="btn btn-success" data-toggle="modal" data-target="#approveModal">Approve Submission</button>
+                                    <button th:action="submit" class="btn btn-success px-2" data-toggle="modal" data-target="#approveModal">Approve Submission</button>
                                 </form>
                                 <form th:method="POST" th:action="@{|/message/${viewMessage.id}/submission/rejected|}"
                                       th:if="${user.admin}">
