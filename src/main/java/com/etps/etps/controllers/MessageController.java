@@ -168,6 +168,6 @@ public class MessageController {
             messageDao.findById((long) deleteid).setBeenRead(true);
             messageDao.save(messageDao.findById((long) deleteid));
         }
-        return "redirect:/messages/in";
+        return "redirect:/message/new";
     }
 }
