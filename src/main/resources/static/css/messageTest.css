@@ -221,3 +221,19 @@ main {
 .modal-footer {
     justify-content: space-between;
 }
+
+/* admin messages */
+.message-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-buttons-container {
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.received-timestamp {
+    align-self: flex-start;
+    margin-top: auto;
+}
