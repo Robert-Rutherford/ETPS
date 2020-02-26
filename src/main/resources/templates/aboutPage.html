@@ -4,8 +4,10 @@
     <th:block th:insert="partials/head :: head('About Us')"></th:block>
     <link rel="stylesheet" href="/css/aboutPage.css">
 <!--    testing sidenav if user is logged in-->
-    <th:block th:insert="partials/head :: sidenav" th:if="${user != 'anonymousUser'}"></th:block>
+<!--    <th:block th:insert="partials/head :: sidenav" th:if="${user != 'anonymousUser'}"></th:block>-->
 <!--    <link rel="stylesheet" href="/css/loggedInNav.css">-->
+    <th:block th:insert="${user != null} ? ~{partials/head :: sidenav} : ~{}"></th:block>
+
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
