@@ -94,7 +94,6 @@
                             th:text="${viewMessage.receivedUser.username}"></span>
                     </p>
                     <p th:text="${viewMessage.body}" class="text-center"></p>
-
                     <div class="d-flex">
                         <div th:if="${(viewMessage.receivedUser.id == user.id) && !subCheck}" class="d-flex message-buttons-container">
                             <form th:method="POST" th:action="@{|/message/${viewMessage.id}/download/submission|}">
