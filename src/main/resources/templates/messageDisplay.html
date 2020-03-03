@@ -88,7 +88,6 @@
 
                     <p th:if="${viewMessage.receivedUser.id == user.id}" class="text-center"> From: <span
                             th:text="${viewMessage.sentUser.username}"></span>
-                        <!--                <span th:text="${message.dateSent}" class="timeStamp"></span>-->
                     </p>
 
                     <p th:if="${viewMessage.sentUser.id == user.id}" class="text-center">To: <span
