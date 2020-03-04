@@ -19,6 +19,7 @@ public class ProfileController {
 
     private Users userDao;
 
+//    I don't think this is used. Can be expanded upon if project continues
     public ProfileController(Users userDao){
         this.userDao = userDao;
     }
