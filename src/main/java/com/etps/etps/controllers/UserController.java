@@ -25,6 +25,7 @@ public class UserController {
         this.providerDao = providerDao;
     }
 
+//    Grabs currently logged in user via spring security
     private User currentUser(){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.findById(user.getId());
@@ -37,6 +38,7 @@ public class UserController {
         return "redirect:/";
     }
 
+//    Loads home page
     @GetMapping(value = {"/", "/home"})
     public String showHomePage(Model model) {
         if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
