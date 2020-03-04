@@ -26,6 +26,7 @@ public class infoController {
             return user;
     }
 
+//    This could probably be added to the user controller as well
     @GetMapping("/info")
     public String showInfo(Model model) {
 

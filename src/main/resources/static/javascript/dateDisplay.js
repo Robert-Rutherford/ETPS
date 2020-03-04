@@ -1,6 +1,6 @@
 "use strict";
 
-
+// This is using Moment.js to format the way the date is displayed to users
 $(document).ready(function() {
 let momentDate ;
 
