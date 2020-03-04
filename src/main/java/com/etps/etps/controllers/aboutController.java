@@ -17,15 +17,16 @@ public class aboutController {
         this.userDao = userDao;
     }
 
+//    Grabs current user via spring security
     private User currentUser() {
         if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
-
             user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             user = userDao.findById(user.getId());
         }
         return user;
     }
 
+//    Probably could refactor this to be absorbed into user controller
     @GetMapping("/about")
     public String showAbout(Model model) {
         if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
