@@ -26,13 +26,14 @@ public class MessageController {
     private Submissions submissionDao;
     private Providers providerDao;
 
-
+// Used to format the date to match the mySql database
     private DateFormat returnFormater() {
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
         return df;
     }
 
+//    Grabs current user logged in with spring security
     private User currentUser(){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.findById(user.getId());
@@ -53,7 +54,7 @@ public class MessageController {
         this.submissionDao = submissionDao;
     }
 
-//    TODO: TESTER MESSAGES
+//    No longer a test, used for the updated message display
     @GetMapping("/message/new")
     public String showNewMessage(Model model) {
 //        To get user inbox and outbox
@@ -63,7 +64,7 @@ public class MessageController {
         return "messageTest";
     }
 
-
+// Used to display an individual message based on ID
     @GetMapping("/message/{id}")
     public String showMessage(@PathVariable long id, Model model){
         Message message = messageDao.findById(id);
@@ -81,18 +82,21 @@ public class MessageController {
         return "messageDisplay";
     }
 
+//    OUTDATED: Used to display outbox
     @GetMapping("/messages/out")
     public String showOutbox(Model model){
         model.addAttribute("user", currentUser());
         return "outbox";
     }
 
+//    OUTDATED: Used to display inbox
     @GetMapping("/messages/in")
     public String showInbox(Model model){
         model.addAttribute("user", currentUser());
         return "inbox";
     }
 
+//    Used to display the new message form
     @GetMapping("/message/create")
     public String showMessageForm(Model model){
         model.addAttribute("user", currentUser());
@@ -101,7 +105,7 @@ public class MessageController {
     }
 
 
-
+// Actual logic for creating the new message and sending the automated email
     @PostMapping("/message/create")
     public String submitMessage(Message message, @RequestParam String to, Model model) throws ParseException {
         Date date = new Date();
@@ -117,6 +121,7 @@ public class MessageController {
         return "redirect:/message/new";
     }
 
+//    Sends an automated message to providers upon approval of a submission
     @GetMapping("/message/approved")
     public String autoApproveMsg(@ModelAttribute("flashMessage") Message message) throws ParseException {
         Date date = new Date();
@@ -133,6 +138,7 @@ public class MessageController {
         return "redirect:/message/new";
     }
 
+//    Prompts admin to include message with a rejection
     @GetMapping("/message/rejected")
     public String autoRejectMsg(@ModelAttribute("flashMessage") Message message, Model model) throws ParseException {
         User receivedUser = userDao.findByUsername(message.getSentUser().getUsername());
@@ -142,6 +148,7 @@ public class MessageController {
         return "redirect:/message/new";
     }
 
+//    Sends an automated message to the TWC upon upload of a submission
     @GetMapping("/message/submission")
     public String autoSubmitMsg() throws ParseException {
         Date date = new Date();
@@ -159,6 +166,7 @@ public class MessageController {
         return "redirect:/submission";
     }
 
+//    Used to delete messages from inbox
     @GetMapping("/message/delete")
     public String deleteMessage(@RequestParam List<Long> id){
 
