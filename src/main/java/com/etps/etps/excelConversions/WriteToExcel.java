@@ -1,6 +1,9 @@
 package com.etps.etps.excelConversions;
 
-import com.etps.etps.models.*;
+import com.etps.etps.models.Campus;
+import com.etps.etps.models.Program;
+import com.etps.etps.models.Provider;
+import com.etps.etps.models.User;
 import com.etps.etps.repositories.Campuses;
 import com.etps.etps.repositories.Programs;
 import com.etps.etps.repositories.Providers;
@@ -20,7 +23,7 @@ public class WriteToExcel {
     private Programs programDao;
     private Submissions submissionDao;
 
-    public WriteToExcel(Providers providerDao, Campuses campusDao, Programs programDao,Submissions submissionDao) {
+    public WriteToExcel(Providers providerDao, Campuses campusDao, Programs programDao, Submissions submissionDao) {
         this.providerDao = providerDao;
         this.campusDao = campusDao;
         this.programDao = programDao;
@@ -63,13 +66,13 @@ public class WriteToExcel {
     public Map<String, Object[]> GenerateAllUserData(User user) {
         TreeMap<String, Object[]> data = new TreeMap<>();
         data.put("1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
-                "Program ID", "Program Name", "Program Description", "ETP ID","Status"});
+                "Program ID", "Program Name", "Program Description", "ETP ID", "Status"});
         int treeNum = 2;
         List<Provider> providers = providerDao.findAll();
         if (!user.isAdmin()) {
             List<Provider> searchProviders = new ArrayList<>();
-            for (Provider provider: providers) {
-                if (provider.getProvId() == user.getUserProviderId()){
+            for (Provider provider : providers) {
+                if (provider.getProvId() == user.getUserProviderId()) {
                     searchProviders.add(provider);
                 }
             }
@@ -83,7 +86,8 @@ public class WriteToExcel {
 
         return data;
     }
-    public Map<String, Object[]> GenerateByStatus(User user,String status) {
+
+    public Map<String, Object[]> GenerateByStatus(User user, String status) {
         TreeMap<String, Object[]> data = new TreeMap<>();
         data.put("1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
                 "Program ID", "Program Name", "Program Description", "ETP ID", "Status"});
@@ -93,15 +97,15 @@ public class WriteToExcel {
 
         if (user.isAdmin()) {
             for (Provider provider : providers) {
-                if ( (provider.getSubmission() != null) && provider.getSubmission().getStatus().equalsIgnoreCase(status)){
+                if ((provider.getSubmission() != null) && provider.getSubmission().getStatus().equalsIgnoreCase(status)) {
 //                    treeNum = getTreeNum(data, treeNum, submission);
                     treeNum = getTreeNum(data, treeNum, provider);
                 }
             }
         } else {
             for (Provider provider : providers) {
-                if ((provider.getSubmission() != null) && provider.getSubmission().getStatus().equalsIgnoreCase(status)&&
-                        (user.getUserProviderId() == provider.getProvId())){
+                if ((provider.getSubmission() != null) && provider.getSubmission().getStatus().equalsIgnoreCase(status) &&
+                        (user.getUserProviderId() == provider.getProvId())) {
 //                    treeNum = getTreeNum(data, treeNum, submission);
                     treeNum = getTreeNum(data, treeNum, provider);
                 }
@@ -122,7 +126,7 @@ public class WriteToExcel {
                 data.put(Integer.toString(treeNum),
                         new Object[]{Long.toString(provider.getProvId()), provider.getProviderName(), provider.getDescription(),
                                 campus.getCampId(), campus.getCampusName(), program.getProgId(), program.getName(),
-                                program.getDescription(), program.getEtpCodeId(),provider.getSubmission().getStatus()});
+                                program.getDescription(), program.getEtpCodeId(), provider.getSubmission().getStatus()});
                 treeNum++;
             }
         }

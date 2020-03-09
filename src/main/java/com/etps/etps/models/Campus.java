@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name= "campuses")
+@Table(name = "campuses")
 public class Campus {
 
     @Id
@@ -28,7 +28,10 @@ public class Campus {
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "campus")
 //    private List<Submission> submissions;
 
-    public Campus(){};
+    public Campus() {
+    }
+
+    ;
 
     public long getId() {
         return id;

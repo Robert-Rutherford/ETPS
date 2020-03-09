@@ -1,9 +1,8 @@
 package com.etps.etps.models;
 
 
-
 public class DisplayData {
-//    "1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
+    //    "1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
 //            "Program ID", "Program Name", "Program Description", "ETP ID","Status"}
     private String providerID;
     private String providerName;
@@ -29,9 +28,9 @@ public class DisplayData {
         this.status = status;
     }
 
-    public DisplayData(Object[] objArr){
+    public DisplayData(Object[] objArr) {
         int count = 0;
-        for (Object obj: objArr) {
+        for (Object obj : objArr) {
             switch (count) {
                 case 0:
                     this.providerID = obj.toString();

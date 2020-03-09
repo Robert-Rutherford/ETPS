@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head('Messages')"></th:block>
     <th:block th:insert="partials/head :: messageNew"></th:block>
@@ -11,64 +11,64 @@
 
 <main>
     <section class="message-nav">
-        <a href="/submission" class="btn btn-secondary rtn-sub-btn">
+        <a class="btn btn-secondary rtn-sub-btn" href="/submission">
             Back to Submissions
         </a>
-        <div id="onOffSwitch" class="onoffswitch">
-            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+        <div class="onoffswitch" id="onOffSwitch">
+            <input checked class="onoffswitch-checkbox" id="myonoffswitch" name="onoffswitch" type="checkbox">
             <label class="onoffswitch-label" for="myonoffswitch">
                 <span class="onoffswitch-inner"></span>
                 <span class="onoffswitch-switch"></span>
             </label>
         </div>
         <form th:action="@{/message/create}">
-            <button type="submit" class="btn btn-primary new-msg-btn">Create
+            <button class="btn btn-primary new-msg-btn" type="submit">Create
                 New Message
             </button>
         </form>
-        <button id="msgDelete" type="submit" class="btn btn-danger delete-msg-btn" form="deleteMessages">Delete
+        <button class="btn btn-danger delete-msg-btn" form="deleteMessages" id="msgDelete" type="submit">Delete
             Message(s)
         </button>
     </section>
-    <h4 id="reel-title" class="reel-title">Received Messages</h4>
+    <h4 class="reel-title" id="reel-title">Received Messages</h4>
     <section class="message-reel">
-        <div id="inbox" class="inbox-reel">
+        <div class="inbox-reel" id="inbox">
             <form id="deleteMessages" th:action="@{/message/delete}">
                 <div th:each="message : ${user.received}" th:if="${!message.deleted}">
                     <ul class="list-group">
-                        <a th:href="@{|/message/${message.id}|}" style="color:black; text-decoration: none">
+                        <a style="color:black; text-decoration: none" th:href="@{|/message/${message.id}|}">
                             <li class="list-group-item msg-desc-container">
                                 <div class="d-flex justify-content-start">
                                     <h4 th:text="${message.title}"></h4>
                                 </div>
                                 <p class="msg-description">From : <span
                                         th:text="${message.sentUser.username}"></span><br>
-                                    On : <span th:text="${message.dateSent}" class="timeStamp"></span>
+                                    On : <span class="timeStamp" th:text="${message.dateSent}"></span>
                                 </p>
                         </a>
                         <div class="msg-select-footer">
-                            <h4 th:if="${!message.beenRead}" class="unread">
+                            <h4 class="unread" th:if="${!message.beenRead}">
                                 <span class="badge badge-danger">Unread</span>
                             </h4>
-                            <h4 th:if="${message.id == viewMessage.id}" class="unread">
+                            <h4 class="unread" th:if="${message.id == viewMessage.id}">
                                 <span class="badge badge-success">Viewing</span>
                             </h4>
-                            <input type="checkbox" th:value="${message.id}" name="id" class="ml-auto msg-checkbox">
+                            <input class="ml-auto msg-checkbox" name="id" th:value="${message.id}" type="checkbox">
                         </div>
                         </li>
                     </ul>
                 </div>
             </form>
         </div>
-        <div id="outbox" class="outbox-reel">
-            <ul th:each="message : ${user.sent}" class="list-group">
-                <a th:href="@{|/message/${message.id}|}" style="color:black; text-decoration: none">
+        <div class="outbox-reel" id="outbox">
+            <ul class="list-group" th:each="message : ${user.sent}">
+                <a style="color:black; text-decoration: none" th:href="@{|/message/${message.id}|}">
                     <div>
                         <li class="list-group-item">
                             <h4 th:text="${message.title}"></h4>
                             <p>Sent To : <span th:text="${message.receivedUser.username}"></span>
                                 At :
-                                <span th:text="${message.dateSent}" class="timeStamp"></span>
+                                <span class="timeStamp" th:text="${message.dateSent}"></span>
                             </p>
                         </li>
                     </div>
@@ -86,48 +86,49 @@
                 <div class="card-body w-100 message-card">
                     <h2 class="text-center"><span th:text="${viewMessage.title}"></span></h2>
 
-                    <p th:if="${viewMessage.receivedUser.id == user.id}" class="text-center"> From: <span
+                    <p class="text-center" th:if="${viewMessage.receivedUser.id == user.id}"> From: <span
                             th:text="${viewMessage.sentUser.username}"></span>
                     </p>
 
-                    <p th:if="${viewMessage.sentUser.id == user.id}" class="text-center">To: <span
+                    <p class="text-center" th:if="${viewMessage.sentUser.id == user.id}">To: <span
                             th:text="${viewMessage.receivedUser.username}"></span>
                     </p>
-                    <p th:text="${viewMessage.body}" class="text-center"></p>
+                    <p class="text-center" th:text="${viewMessage.body}"></p>
                     <div class="d-flex">
-                        <div th:if="${(viewMessage.receivedUser.id == user.id) && !subCheck}" class="d-flex message-buttons-container">
-                            <form th:method="POST" th:action="@{|/message/${viewMessage.id}/download/submission|}">
-                                <button th:action="submit" class="btn btn-light">Download Submission</button>
+                        <div class="d-flex message-buttons-container"
+                             th:if="${(viewMessage.receivedUser.id == user.id) && !subCheck}">
+                            <form th:action="@{|/message/${viewMessage.id}/download/submission|}" th:method="POST">
+                                <button class="btn btn-light" th:action="submit">Download Submission</button>
                             </form>
-                            <form th:method="POST" th:action="@{|/message/${viewMessage.id}/submission/approved|}"
-                                  th:if="${user.admin}">
-                                <button th:action="submit" class="btn btn-success px-2" data-toggle="modal"
-                                        data-target="#approveModal">Approve Submission
+                            <form th:action="@{|/message/${viewMessage.id}/submission/approved|}" th:if="${user.admin}"
+                                  th:method="POST">
+                                <button class="btn btn-success px-2" data-target="#approveModal" data-toggle="modal"
+                                        th:action="submit">Approve Submission
                                 </button>
                             </form>
-                            <form th:method="POST" th:action="@{|/message/${viewMessage.id}/submission/rejected|}"
-                                  th:if="${user.admin}">
-                                <button th:action="submit" class="btn btn-danger">Reject Submission</button>
+                            <form th:action="@{|/message/${viewMessage.id}/submission/rejected|}" th:if="${user.admin}"
+                                  th:method="POST">
+                                <button class="btn btn-danger" th:action="submit">Reject Submission</button>
                             </form>
                         </div>
                     </div>
 
                     <div class="received-timestamp">
                         <span>Message received: </span>
-                        <span th:text="${viewMessage.dateSent}" class="timeStamp ml-auto"></span>
+                        <span class="timeStamp ml-auto" th:text="${viewMessage.dateSent}"></span>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="approveModalTitle"
-             aria-hidden="true">
+        <div aria-hidden="true" aria-labelledby="approveModalTitle" class="modal fade" id="approveModal" role="dialog"
+             tabindex="-1">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="approveModalTitle">Approving Submission...</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -135,7 +136,7 @@
                         Approving submission. This page will redirect to your inbox on successful submission...
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
                     </div>
                 </div>
             </div>

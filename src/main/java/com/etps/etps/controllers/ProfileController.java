@@ -11,29 +11,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ProfileController {
 
-    private User currentUser(){
+    private Users userDao;
+
+    public ProfileController(Users userDao) {
+        this.userDao = userDao;
+    }
+
+    private User currentUser() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.findById(user.getId());
         return user;
     }
 
-    private Users userDao;
-
-    public ProfileController(Users userDao){
-        this.userDao = userDao;
-    }
     @GetMapping("/profile")
-    public String displayProfile(Model model){
+    public String displayProfile(Model model) {
 
         int unread = 0;
 
-        for (Message message: currentUser().getReceived()){
-            if (!message.isBeenRead()){
+        for (Message message : currentUser().getReceived()) {
+            if (!message.isBeenRead()) {
                 unread++;
             }
         }
         model.addAttribute("unread", unread);
-        model.addAttribute("user",currentUser());
+        model.addAttribute("user", currentUser());
 
         return "users/profile";
     }

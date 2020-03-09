@@ -1,4 +1,3 @@
-
 package com.etps.etps.controllers;
 
 import com.etps.etps.excelConversions.WriteToExcel;
@@ -43,12 +42,12 @@ public class FileDownloadController {
 
         User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
-        WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
+        WriteToExcel writeToExcel = new WriteToExcel(providerDao, campusDao, programDao, submissionDao);
 
         try {
 
-            File writeFile = File.createTempFile("ETPS_"+loggedInUser.getUserProviderId()+"_Approved",".xlsx");
-            Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(loggedInUser,"approved");
+            File writeFile = File.createTempFile("ETPS_" + loggedInUser.getUserProviderId() + "_Approved", ".xlsx");
+            Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(loggedInUser, "approved");
             writeToExcel.WriteExcel(writeData, writeFile);
 
             InputStream is = new FileInputStream(writeFile);
@@ -71,17 +70,17 @@ public class FileDownloadController {
 
         User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
-        WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
+        WriteToExcel writeToExcel = new WriteToExcel(providerDao, campusDao, programDao, submissionDao);
 
         try {
 
-            if (loggedInUser.isAdmin()){
+            if (loggedInUser.isAdmin()) {
 //                get sender's user and set them as the pending user instead
 
             }
-            File writeFile = File.createTempFile("ETPS_"+loggedInUser.getUserProviderId()+"_Pending",".xlsx");
+            File writeFile = File.createTempFile("ETPS_" + loggedInUser.getUserProviderId() + "_Pending", ".xlsx");
 
-            Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(loggedInUser,"pending");
+            Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(loggedInUser, "pending");
             writeToExcel.WriteExcel(writeData, writeFile);
 
             InputStream is = new FileInputStream(writeFile);
@@ -103,12 +102,12 @@ public class FileDownloadController {
 
         User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
-        WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
+        WriteToExcel writeToExcel = new WriteToExcel(providerDao, campusDao, programDao, submissionDao);
 
         try {
-            File writeFile = File.createTempFile("ETPS_"+loggedInUser.getUserProviderId()+"_Expired",".xlsx");
+            File writeFile = File.createTempFile("ETPS_" + loggedInUser.getUserProviderId() + "_Expired", ".xlsx");
 
-            Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(loggedInUser,"expired");
+            Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(loggedInUser, "expired");
             writeToExcel.WriteExcel(writeData, writeFile);
             InputStream is = new FileInputStream(writeFile);
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -129,11 +128,11 @@ public class FileDownloadController {
 
         User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
-        if (loggedInUser.isAdmin()){
-            WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
+        if (loggedInUser.isAdmin()) {
+            WriteToExcel writeToExcel = new WriteToExcel(providerDao, campusDao, programDao, submissionDao);
 
             try {
-                File writeFile = File.createTempFile("ETPS_"+loggedInUser.getUserProviderId()+"_All",".xlsx");
+                File writeFile = File.createTempFile("ETPS_" + loggedInUser.getUserProviderId() + "_All", ".xlsx");
 
                 Map<String, Object[]> writeData = writeToExcel.GenerateAllUserData(loggedInUser);
                 writeToExcel.WriteExcel(writeData, writeFile);
@@ -163,19 +162,19 @@ public class FileDownloadController {
         User sentUser = message.getSentUser();
         User submissionUser;
 
-        if (!sentUser.isAdmin()){
+        if (!sentUser.isAdmin()) {
             submissionUser = sentUser;
-        }else {
+        } else {
             submissionUser = receivedUser;
         }
 
-            WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
+        WriteToExcel writeToExcel = new WriteToExcel(providerDao, campusDao, programDao, submissionDao);
 
         try {
 
-            File writeFile = File.createTempFile("ETPS_"+submissionUser.getUserProviderId()+"_Pending",".xlsx");
+            File writeFile = File.createTempFile("ETPS_" + submissionUser.getUserProviderId() + "_Pending", ".xlsx");
 
-            Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(submissionUser,"pending");
+            Map<String, Object[]> writeData = writeToExcel.GenerateByStatus(submissionUser, "pending");
             writeToExcel.WriteExcel(writeData, writeFile);
 
             InputStream is = new FileInputStream(writeFile);
@@ -190,10 +189,6 @@ public class FileDownloadController {
         }
 
     }
-
-
-
-
 
 
 //    @RequestMapping(value = "/files/test", method = RequestMethod.GET)

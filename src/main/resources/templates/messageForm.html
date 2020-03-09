@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head('Messages')"></th:block>
     <th:block th:insert="partials/head :: message-form"></th:block>
@@ -11,42 +11,46 @@
 <main>
     <h1>New Message</h1>
     <div class="message-form-container">
-        <div th:if="${reject != null}" class="text-center">
+        <div class="text-center" th:if="${reject != null}">
             <p>If you would like to give details about the rejection, fill out this form. If not, click the back
                 button</p>
-            <a th:href="@{/}" class="btn my-3" style="background-color: #28699F; color: white">Back
+            <a class="btn my-3" style="background-color: #28699F; color: white" th:href="@{/}">Back
             </a>
         </div>
-        <form th:action="@{/message/create}" method="POST" th:object="${message}" class="mx-auto message-form">
+        <form class="mx-auto message-form" method="POST" th:action="@{/message/create}" th:object="${message}">
             <div class="form-group msg-prop" th:if="${reject == null}">
                 <label for="toUser">To</label>
-                <input type="text" class="form-control" id="toUser" aria-describedby="emailHelp" name="to">
+                <input aria-describedby="emailHelp" class="form-control" id="toUser" name="to" type="text">
             </div>
             <div class="form-group msg-prop" th:if="${reject != null}">
                 <label for="toUser">To</label>
-                <input type="text" class="form-control" id="reject" aria-describedby="emailHelp" name="to"
-                       th:value="${reject.username}">
+                <input aria-describedby="emailHelp" class="form-control" id="reject" name="to" th:value="${reject.username}"
+                       type="text">
             </div>
             <div class="form-group msg-prop">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" th:field="*{title}">
+                <input class="form-control" id="title" th:field="*{title}" type="text">
             </div>
             <div class="form-group">
-<!--                <label for="body">Body</label>-->
-                <textarea class="form-control message-text" id="body" placeholder="Enter your message here." th:field="*{body}"></textarea>
+                <!--                <label for="body">Body</label>-->
+                <textarea class="form-control message-text" id="body" placeholder="Enter your message here."
+                          th:field="*{body}"></textarea>
             </div>
-            <button type="submit" name="forgot" data-toggle="modal" data-target="#sendingModal" class="btn btn-success btn-block">Send</button>
+            <button class="btn btn-success btn-block" data-target="#sendingModal" data-toggle="modal" name="forgot"
+                    type="submit">Send
+            </button>
         </form>
 
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="sendingModal" tabindex="-1" role="dialog" aria-labelledby="sendingModalTitle" aria-hidden="true">
+    <div aria-hidden="true" aria-labelledby="sendingModalTitle" class="modal fade" id="sendingModal" role="dialog"
+         tabindex="-1">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="sendingModalTitle">Sending Message...</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -54,7 +58,7 @@
                     Sending message. This page will redirect to your inbox on successful submission...
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
                 </div>
             </div>
         </div>

@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head(test)" ></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head(test)"></head>
 <body>
 
 <!--<form th:method="POST" th:action="@{|/test/write|}">-->
-<form th:method="GET" th:action="@{|/files/test|}">
-<!--    <div class="custom-file">-->
-<!--        <input type="file" class="custom-file-input" id="writeFile">-->
-<!--        <label class="custom-file-label" for="writeFile">Choose file</label>-->
-<!--    </div>-->
+<form th:action="@{|/files/test|}" th:method="GET">
+    <!--    <div class="custom-file">-->
+    <!--        <input type="file" class="custom-file-input" id="writeFile">-->
+    <!--        <label class="custom-file-label" for="writeFile">Choose file</label>-->
+    <!--    </div>-->
     <button th:action="submit">Write</button>
 </form>
-<form th:method="POST" th:action="@{|/uploadFile|}">
-        <div class="form-group">
-            <label th:for="readFile">Example file input</label>
-            <input type="file" th:action="submit" class="form-control-file" name="file" th:id="readFile">
-        </div>
-    <button th:action="submit" >Read</button>
+<form th:action="@{|/uploadFile|}" th:method="POST">
+    <div class="form-group">
+        <label th:for="readFile">Example file input</label>
+        <input class="form-control-file" name="file" th:action="submit" th:id="readFile" type="file">
+    </div>
+    <button th:action="submit">Read</button>
 </form>
 
 
-<form th:method="POST" th:action="@{|/test/approve|}">
+<form th:action="@{|/test/approve|}" th:method="POST">
     <button th:action="submit">Approve Submission</button>
 </form>
 
@@ -30,10 +30,16 @@
 </div>
 
 <div>
-    <form th:method="POST" enctype="multipart/form-data" th:action="@{|/uploadFile|}">
+    <form enctype="multipart/form-data" th:action="@{|/uploadFile|}" th:method="POST">
         <table>
-            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+            <tr>
+                <td>File to upload:</td>
+                <td><input name="file" type="file"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Upload"/></td>
+            </tr>
         </table>
     </form>
 </div>
@@ -41,7 +47,7 @@
 <div>
     <ul>
         <li th:each="file : ${files}">
-            <a th:href="${file}" th:text="${file}" />
+            <a th:href="${file}" th:text="${file}"/>
         </li>
     </ul>
 </div>

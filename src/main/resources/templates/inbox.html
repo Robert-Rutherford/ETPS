@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--<head th:replace="partials/head :: head('Messages')">-->
 <!--    <style>-->
 <!--        a:visited {-->
@@ -31,11 +31,11 @@
 
 
         <div class="d-flex justify-content-center">
-            <a th:href="@{/submission}" class="btn my-3" style="background-color: #28699F; color: white">Back
+            <a class="btn my-3" style="background-color: #28699F; color: white" th:href="@{/submission}">Back
             </a>
-            <a th:href="@{/messages/out}" class="btn my-3 mx-5" style="background-color: #28699F; color: white">Outbox
+            <a class="btn my-3 mx-5" style="background-color: #28699F; color: white" th:href="@{/messages/out}">Outbox
             </a>
-            <a th:href="@{/message/create}" class="btn my-3" style="background-color: #28699F; color: white">Send
+            <a class="btn my-3" style="background-color: #28699F; color: white" th:href="@{/message/create}">Send
             </a>
         </div>
         <div class="d-flex justify-content-center">
@@ -46,11 +46,11 @@
                 <div class="card-body w-100">
                     <h1 class="card-title text-center" style="color: white">Received</h1>
                     <div th:each="message : ${user.received}" th:if="${!message.deleted}">
-                        <a th:href="@{|/message/${message.id}|}" style="color:black; text-decoration: none">
+                        <a style="color:black; text-decoration: none" th:href="@{|/message/${message.id}|}">
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <div class="d-flex justify-content-start">
-                                        <h4 th:if="${!message.beenRead}" class="mr-2">
+                                        <h4 class="mr-2" th:if="${!message.beenRead}">
                                             <span class="badge badge-danger">Unread</span>
                                         </h4>
                                         <h4 th:text="${message.title}"></h4>
@@ -58,11 +58,11 @@
 
                                     <p>From : <span th:text="${message.sentUser.username}"></span>
                                         On :
-                                        <span th:text="${message.dateSent}" class="timeStamp"></span>
+                                        <span class="timeStamp" th:text="${message.dateSent}"></span>
                                     </p>
                                     <div class="d-flex justify-content-end">
 
-                                        <input type="checkbox" th:value="${message.id}" name="id" class="mt-auto">
+                                        <input class="mt-auto" name="id" th:value="${message.id}" type="checkbox">
                                     </div>
                                 </li>
                             </ul>
