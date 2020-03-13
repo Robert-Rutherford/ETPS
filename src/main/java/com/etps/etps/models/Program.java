@@ -2,7 +2,6 @@ package com.etps.etps.models;
 
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "programs")
@@ -30,7 +29,10 @@ public class Program {
 //    @OneToOne
 //    private Submission submission;
 
-    public Program(){};
+    public Program() {
+    }
+
+    ;
 
     public long getId() {
         return id;

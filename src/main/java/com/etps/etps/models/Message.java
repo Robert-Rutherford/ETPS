@@ -1,7 +1,6 @@
 package com.etps.etps.models;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -34,6 +33,9 @@ public class Message {
 
     private boolean deleted = false;
 
+    public Message() {
+    }
+
     public boolean isDeleted() {
         return deleted;
     }
@@ -43,7 +45,7 @@ public class Message {
         this.deleted = deleted;
     }
 
-    public Message(){};
+    ;
 
     public long getId() {
         return id;

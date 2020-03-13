@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head('Login')"></th:block>
-    <link rel="stylesheet" href="css/login.css">
+    <link href="css/login.css" rel="stylesheet">
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -12,27 +12,28 @@
         Invalid Username and Password.
     </div>
     <div class="mx-auto login-form" style="width: 20em">
-        <form th:action="@{/login}" method="POST">
+        <form method="POST" th:action="@{/login}">
             <div class="form-group">
                 <label for="userName">Username</label>
-                <input type="text" class="form-control" id="userName" aria-describedby="emailHelp" name="username">
+                <input aria-describedby="emailHelp" class="form-control" id="userName" name="username" type="text">
 
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password">
+                <input class="form-control" id="password" name="password" type="password">
             </div>
-            <button type="submit" name="forgot" class="btn btn-success btn-block">Login</button>
+            <button class="btn btn-success btn-block" name="forgot" type="submit">Login</button>
         </form>
         <div class="card-body">
             <form action="" class="extra-buttons-container">
                 <div class="extra-buttons">
-                <label for="reset">Forgot your password?</label>
-                <input type="submit" name="reset" id="reset" class="btn btn-primary btn-block" value="Reset Password">
+                    <label for="reset">Forgot your password?</label>
+                    <input class="btn btn-primary btn-block" id="reset" name="reset" type="submit"
+                           value="Reset Password">
                 </div>
                 <div class="extra-buttons">
                     <label for="register">Create an account</label>
-                    <input type="submit" name="register" id="register" class="btn btn-info btn-block" value="Register">
+                    <input class="btn btn-info btn-block" id="register" name="register" type="submit" value="Register">
                 </div>
             </form>
         </div>

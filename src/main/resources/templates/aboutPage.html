@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head('About Us')"></th:block>
-    <link rel="stylesheet" href="/css/aboutPage.css">
-<!--    testing sidenav if user is logged in-->
-<!--    <th:block th:insert="partials/head :: sidenav" th:if="${user != 'anonymousUser'}"></th:block>-->
-<!--    <link rel="stylesheet" href="/css/loggedInNav.css">-->
+    <link href="/css/aboutPage.css" rel="stylesheet">
+    <!--    testing sidenav if user is logged in-->
+    <!--    <th:block th:insert="partials/head :: sidenav" th:if="${user != 'anonymousUser'}"></th:block>-->
+    <!--    <link rel="stylesheet" href="/css/loggedInNav.css">-->
     <th:block th:insert="${user != null} ? ~{partials/head :: sidenav} : ~{}"></th:block>
 
 </head>
@@ -15,9 +15,9 @@
 
 <main>
 
-<!--    <th:block th:replace="/partials/sideNav :: side-nav"></th:block>-->
+    <!--    <th:block th:replace="/partials/sideNav :: side-nav"></th:block>-->
     <!--    testing sidenav if user is logged in-->
-    <th:block th:insert="partials/sideNav :: side-nav" th:if="${user != null}"></th:block>
+    <th:block th:if="${user != null}" th:insert="partials/sideNav :: side-nav"></th:block>
 
     <section class="main-content">
         <h1 class="page-header" style="display: none">About Us</h1>
@@ -32,42 +32,42 @@
         <hr>
         <section class="member-container">
             <div class="member">
-                <img th:src="@{images/robert-rutherford.jpg}" alt="member image" class="member-image">
+                <img alt="member image" class="member-image" th:src="@{images/robert-rutherford.jpg}">
                 <span>Robert Rutherford</span>
                 <a href="https://github.com/Robert-Rutherford">
-                    <img th:src="@{images/github-logo.svg}" alt="GitHub logo" class="profile-logo">
+                    <img alt="GitHub logo" class="profile-logo" th:src="@{images/github-logo.svg}">
                 </a>
                 <a href="https://www.linkedin.com/in/robert-rutherford2/">
-                    <img th:src="@{images/linkedin-logo.svg}" alt="LinkedIn logo" class="profile-logo">
+                    <img alt="LinkedIn logo" class="profile-logo" th:src="@{images/linkedin-logo.svg}">
                 </a>
                 <a href="https://alumni.codeup.com/students/752">
-                    <img th:src="@{images/codeup-logo.jpg}" alt="Codeup logo" class="profile-logo">
+                    <img alt="Codeup logo" class="profile-logo" th:src="@{images/codeup-logo.jpg}">
                 </a>
             </div>
             <div class="member">
-                <img th:src="@{images/ethan-joiner.jpg}" alt="member image" class="member-image">
+                <img alt="member image" class="member-image" th:src="@{images/ethan-joiner.jpg}">
                 <span>Ethan Joiner</span>
                 <a href="https://github.com/Ethan-Joiner">
-                    <img th:src="@{images/github-logo.svg}" alt="GitHub logo" class="profile-logo">
+                    <img alt="GitHub logo" class="profile-logo" th:src="@{images/github-logo.svg}">
                 </a>
                 <a href="https://www.linkedin.com/in/ethan-joiner/">
-                    <img th:src="@{images/linkedin-logo.svg}" alt="LinkedIn logo" class="profile-logo">
+                    <img alt="LinkedIn logo" class="profile-logo" th:src="@{images/linkedin-logo.svg}">
                 </a>
                 <a href="https://alumni.codeup.com/students/747">
-                    <img th:src="@{images/codeup-logo.jpg}" alt="Codeup logo" class="profile-logo">
+                    <img alt="Codeup logo" class="profile-logo" th:src="@{images/codeup-logo.jpg}">
                 </a>
             </div>
             <div class="member">
-                <img th:src="@{images/miguel-garcia.jpg}" alt="member image" class="member-image">
+                <img alt="member image" class="member-image" th:src="@{images/miguel-garcia.jpg}">
                 <span>Miguel Garcia</span>
                 <a href="https://github.com/miguelgarcia210">
-                    <img th:src="@{images/github-logo.svg}" alt="GitHub logo" class="profile-logo">
+                    <img alt="GitHub logo" class="profile-logo" th:src="@{images/github-logo.svg}">
                 </a>
                 <a href="https://www.linkedin.com/in/miguelgarcia210/">
-                    <img th:src="@{images/linkedin-logo.svg}" alt="LinkedIn logo" class="profile-logo">
+                    <img alt="LinkedIn logo" class="profile-logo" th:src="@{images/linkedin-logo.svg}">
                 </a>
                 <a href="https://alumni.codeup.com/students/760">
-                    <img th:src="@{images/codeup-logo.jpg}" alt="Codeup logo" class="profile-logo">
+                    <img alt="Codeup logo" class="profile-logo" th:src="@{images/codeup-logo.jpg}">
                 </a>
             </div>
         </section>

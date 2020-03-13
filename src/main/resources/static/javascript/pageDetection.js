@@ -53,11 +53,11 @@ function resizePop() {
     }
 }
 
-window.onresize = function(){
-    if (resizeTimer){
+window.onresize = function () {
+    if (resizeTimer) {
         clearTimeout(resizeTimer);
     }
-    resizeTimer = setTimeout(function(){
+    resizeTimer = setTimeout(function () {
         resizePop()
     }, 500);
 };

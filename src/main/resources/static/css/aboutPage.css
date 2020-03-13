@@ -69,9 +69,11 @@ hr {
 .member a:nth-child(3) {
     grid-area: 3 / 1 / 4 / 2;
 }
+
 .member a:nth-child(4) {
     grid-area: 3 / 2 / 4 / 3;
 }
+
 .member a:nth-child(5) {
     grid-area: 3 / 3 / 4 / 4;
 }

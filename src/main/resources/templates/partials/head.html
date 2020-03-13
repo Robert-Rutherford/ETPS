@@ -2,28 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <title th:text="${title}"></title>
-<!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- BOOTSTRAP -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
     <!-- Custom CSS-->
-    <link rel="stylesheet" href="/css/pageTemplate.css">
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/footer.css">
-<!-- FONT AWESOME SCRIPT -->
-    <script src="https://kit.fontawesome.com/38130e5fde.js" crossorigin="anonymous"></script>
+    <link href="/css/pageTemplate.css" rel="stylesheet">
+    <link href="/css/navbar.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet">
+    <!-- FONT AWESOME SCRIPT -->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/38130e5fde.js"></script>
 </head>
 
 <!-- CUSTOM CSS INDIVIDUAL FILES-->
-<link th:fragment="sidenav" rel="stylesheet" href="/css/loggedInNav.css">
-<link th:fragment="index" rel="stylesheet" href="/css/index.css">
-<link th:fragment="info" rel="stylesheet" href="/css/infoPage.css">
-<link th:fragment="message" rel="stylesheet" href="/static/css/message.css">
-<link th:fragment="message-form" rel="stylesheet" href="/css/message-form.css">
-<link th:fragment="inbox" rel="stylesheet" href="/css/inbox.css">
-<link th:fragment="outbox" rel="stylesheet" href="/css/outbox.css">
+<link href="/css/loggedInNav.css" rel="stylesheet" th:fragment="sidenav">
+<link href="/css/index.css" rel="stylesheet" th:fragment="index">
+<link href="/css/infoPage.css" rel="stylesheet" th:fragment="info">
+<link href="/static/css/message.css" rel="stylesheet" th:fragment="message">
+<link href="/css/message-form.css" rel="stylesheet" th:fragment="message-form">
+<link href="/css/inbox.css" rel="stylesheet" th:fragment="inbox">
+<link href="/css/outbox.css" rel="stylesheet" th:fragment="outbox">
 
-<link th:fragment="messageNew" rel="stylesheet" href="/css/messageTest.css">
+<link href="/css/messageTest.css" rel="stylesheet" th:fragment="messageNew">
 
 <body></body>
 </html>

@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface Campuses extends JpaRepository<Campus, Long> {
     Campus findById(long id);
+
     List<Campus> findAllByProvider_Id(long id);
 
 }

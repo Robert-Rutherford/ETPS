@@ -13,8 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -23,28 +23,13 @@ import java.util.List;
 public class MessageController {
 
     private final EmailService emailService;
-    private Submissions submissionDao;
-    private Providers providerDao;
-
-
-    private DateFormat returnFormater() {
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
-        return df;
-    }
-
-    private User currentUser(){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        user = userDao.findById(user.getId());
-        return user;
-    }
-
-    private DateFormat df;
-
     private final Messages messageDao;
     private final Users userDao;
+    private Submissions submissionDao;
+    private Providers providerDao;
+    private DateFormat df;
 
-    public MessageController(Messages messageDao, Users userDao, EmailService emailService,Submissions submissionDao,Providers providerDao){
+    public MessageController(Messages messageDao, Users userDao, EmailService emailService, Submissions submissionDao, Providers providerDao) {
         this.messageDao = messageDao;
         this.userDao = userDao;
         this.df = returnFormater();
@@ -53,7 +38,19 @@ public class MessageController {
         this.submissionDao = submissionDao;
     }
 
-//    TODO: TESTER MESSAGES
+    private DateFormat returnFormater() {
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+        return df;
+    }
+
+    private User currentUser() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.findById(user.getId());
+        return user;
+    }
+
+    //    TODO: TESTER MESSAGES
     @GetMapping("/message/new")
     public String showNewMessage(Model model) {
 //        To get user inbox and outbox
@@ -65,16 +62,16 @@ public class MessageController {
 
 
     @GetMapping("/message/{id}")
-    public String showMessage(@PathVariable long id, Model model){
+    public String showMessage(@PathVariable long id, Model model) {
         Message message = messageDao.findById(id);
-        StatusChange statusChange = new StatusChange(submissionDao,providerDao);
+        StatusChange statusChange = new StatusChange(submissionDao, providerDao);
 
         if (currentUser().getId() == message.getReceivedUser().getId()) {
             message.setBeenRead(true);
         }
         boolean subCheck = !message.getSentUser().isAdmin() && statusChange.NoSubmission(message.getSentUser());
 
-        model.addAttribute("subCheck",subCheck);
+        model.addAttribute("subCheck", subCheck);
         model.addAttribute("user", currentUser());
         model.addAttribute("viewMessage", message);
         messageDao.save(message);
@@ -82,24 +79,23 @@ public class MessageController {
     }
 
     @GetMapping("/messages/out")
-    public String showOutbox(Model model){
+    public String showOutbox(Model model) {
         model.addAttribute("user", currentUser());
         return "outbox";
     }
 
     @GetMapping("/messages/in")
-    public String showInbox(Model model){
+    public String showInbox(Model model) {
         model.addAttribute("user", currentUser());
         return "inbox";
     }
 
     @GetMapping("/message/create")
-    public String showMessageForm(Model model){
+    public String showMessageForm(Model model) {
         model.addAttribute("user", currentUser());
         model.addAttribute("message", new Message());
         return "messageForm";
     }
-
 
 
     @PostMapping("/message/create")
@@ -160,9 +156,9 @@ public class MessageController {
     }
 
     @GetMapping("/message/delete")
-    public String deleteMessage(@RequestParam List<Long> id){
+    public String deleteMessage(@RequestParam List<Long> id) {
 
-        for ( Long deleteid : id) {
+        for (Long deleteid : id) {
             System.out.println(messageDao.findById((long) deleteid));
             messageDao.findById((long) deleteid).setDeleted(true);
             messageDao.findById((long) deleteid).setBeenRead(true);

@@ -33,6 +33,7 @@ main {
     padding: 6px 8px 6px 16px;
     border-bottom: 2px solid green;
 }
+
 .side-nav .card a:hover {
     border-color: #1B649A;
 }

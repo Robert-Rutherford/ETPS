@@ -14,7 +14,6 @@ $(document).ready(function () {
     deleteMsg.hide();
 
 
-
     $("#myonoffswitch").change(function () {
         // Change reel title
         if (title.text().toLowerCase() === "outgoing messages") {
@@ -31,14 +30,14 @@ $(document).ready(function () {
 
     function checkedMessages() {
         let boxesChecked = false;
-        checkboxes.each(function() {
+        checkboxes.each(function () {
             if ($(this).is(":checked")) {
                 boxesChecked = true;
             }
         });
 
         if (boxesChecked === true) {
-           deleteMsg.show();
+            deleteMsg.show();
         } else {
             deleteMsg.hide();
         }

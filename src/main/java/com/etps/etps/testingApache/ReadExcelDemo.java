@@ -10,10 +10,8 @@ import java.io.FileInputStream;
 import java.util.Iterator;
 
 public class ReadExcelDemo {
-    public static void main(String[] args)
-    {
-        try
-        {
+    public static void main(String[] args) {
+        try {
             FileInputStream file = new FileInputStream(new File("howtodoinjava_demo.xlsx"));
 
             //Create Workbook instance holding reference to .xlsx file
@@ -24,18 +22,15 @@ public class ReadExcelDemo {
 
             //Iterate through each rows one by one
             Iterator<Row> rowIterator = sheet.iterator();
-            while (rowIterator.hasNext())
-            {
+            while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
                 //For each row, iterate through all the columns
                 Iterator<Cell> cellIterator = row.cellIterator();
 
-                while (cellIterator.hasNext())
-                {
+                while (cellIterator.hasNext()) {
                     Cell cell = cellIterator.next();
                     //Check the cell type and format accordingly
-                    switch (cell.getCellType())
-                    {
+                    switch (cell.getCellType()) {
                         case NUMERIC:
                             System.out.print(cell.getNumericCellValue() + " ");
                             break;
@@ -47,9 +42,7 @@ public class ReadExcelDemo {
                 System.out.println("");
             }
             file.close();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

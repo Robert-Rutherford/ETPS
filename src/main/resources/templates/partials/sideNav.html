@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-<div th:fragment="side-nav" class="side-nav-container">
+<div class="side-nav-container" th:fragment="side-nav">
     <div class="side-nav">
         <ul>
             <li>
@@ -18,9 +18,10 @@
 
 
                                 <span class="test d-flex justify-content-between align-items-center">Messages <span
-                                        th:text="${unread}" class="badge badge-danger d-flex align-items-center"
+                                        class="badge badge-danger d-flex align-items-center"
+                                        style="height: 80%; border-radius: 50%"
                                         th:if="${unread != null && unread > 0}"
-                                        style="height: 80%; border-radius: 50%"></span></span>
+                                        th:text="${unread}"></span></span>
 
                             </div>
                         </div>
@@ -40,31 +41,31 @@
                 <div class="accordion" id="excelQuickDownload">
                     <div class="card">
                         <div class="card-header" id="headingThree">
-                            <button class="btn collapsed" type="button" data-toggle="collapse"
+                            <button aria-controls="collapseThree" aria-expanded="true" class="btn collapsed"
                                     data-target="#collapseThree"
-                                    aria-expanded="true" aria-controls="collapseThree">
+                                    data-toggle="collapse" type="button">
                                 <span class="test">Quick Download</span>
                             </button>
                         </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                             data-parent="#accordionExample">
+                        <div aria-labelledby="headingThree" class="collapse" data-parent="#accordionExample"
+                             id="collapseThree">
                             <div class="card-body">
                                 <br>
-                                <form th:method="POST" th:action="@{|/download/All|}" th:if="${user.isAdmin()}">
+                                <form th:action="@{|/download/All|}" th:if="${user.isAdmin()}" th:method="POST">
                                     <button class="btn btn-link btn-lg btn-block" th:action="submit">All</button>
                                     <hr>
                                 </form>
-                                <form th:method="POST" th:action="@{|/download/Approved|}">
+                                <form th:action="@{|/download/Approved|}" th:method="POST">
                                     <button class="btn btn-link btn-lg btn-block" th:action="submit">Approved
                                     </button>
                                     <hr>
                                 </form>
-                                <form th:method="POST" th:action="@{|/download/Pending|}">
+                                <form th:action="@{|/download/Pending|}" th:method="POST">
                                     <button class="btn btn-link btn-lg btn-block" th:action="submit">Pending
                                     </button>
                                     <hr>
                                 </form>
-                                <form th:method="POST" th:action="@{|/download/Expired|}">
+                                <form th:action="@{|/download/Expired|}" th:method="POST">
                                     <button class="btn btn-link btn-lg btn-block" th:action="submit">Expired
                                     </button>
                                 </form>

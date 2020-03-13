@@ -27,7 +27,6 @@ public class User {
     private String password;
 
 
-
     private boolean isAdmin;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sentUser")
@@ -36,7 +35,10 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "receivedUser")
     private List<Message> received;
 
-    public User(){};
+    public User() {
+    }
+
+    ;
 
     public User(User copy) {
         id = copy.id;

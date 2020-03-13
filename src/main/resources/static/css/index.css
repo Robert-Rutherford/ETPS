@@ -128,9 +128,11 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     color: white;
 }
+
 .admin-rsn {
     border: 1px solid silver;
 }
+
 .admin-rsn > h3 {
     background-color: #053B68;
     border-bottom: 3px solid #8AC152;

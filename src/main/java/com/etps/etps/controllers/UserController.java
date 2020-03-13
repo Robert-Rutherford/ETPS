@@ -1,7 +1,6 @@
 package com.etps.etps.controllers;
 
 import com.etps.etps.models.Message;
-import com.etps.etps.models.Provider;
 import com.etps.etps.models.User;
 import com.etps.etps.repositories.Providers;
 import com.etps.etps.repositories.Users;
@@ -10,8 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -25,25 +22,25 @@ public class UserController {
         this.providerDao = providerDao;
     }
 
-    private User currentUser(){
+    private User currentUser() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.findById(user.getId());
         return user;
     }
 
     @GetMapping("/login/success")
-    public String setLoggedInUser(Model model){
+    public String setLoggedInUser(Model model) {
         model.addAttribute("user", currentUser());
         return "redirect:/";
     }
 
     @GetMapping(value = {"/", "/home"})
     public String showHomePage(Model model) {
-        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             int unread = 0;
 
-            for (Message message: currentUser().getReceived()){
-                if (!message.isBeenRead()){
+            for (Message message : currentUser().getReceived()) {
+                if (!message.isBeenRead()) {
                     unread++;
                 }
             }
@@ -54,10 +51,9 @@ public class UserController {
     }
 
 
-
-//    Creating test users for demonstration
+    //    Creating test users for demonstration
     @GetMapping("users/test")
-    public String createTestUsers(){
+    public String createTestUsers() {
 
 
         User admin = new User();
@@ -87,26 +83,23 @@ public class UserController {
         acUser.setAdmin(false);
 
 
-
-
-        if (userDao.findByUsername("admin") == null){
+        if (userDao.findByUsername("admin") == null) {
             userDao.save(admin);
         }
-        if (userDao.findByUsername("acUser") == null){
-        userDao.save(acUser);
+        if (userDao.findByUsername("acUser") == null) {
+            userDao.save(acUser);
         }
-        if (userDao.findByUsername("codeup") == null){
+        if (userDao.findByUsername("codeup") == null) {
             userDao.save(codeupUser);
         }
 
-        if (userDao.findByUsername("emailTest") == null){
+        if (userDao.findByUsername("emailTest") == null) {
             userDao.save(emailTest);
         }
 
 
         return "redirect:/";
     }
-
 
 
 }
