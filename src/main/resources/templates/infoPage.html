@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head('More Info')"></th:block>
     <th:block th:insert="partials/head :: info"></th:block>
-<!--    <th:block th:insert="partials/head :: sidenav" th:if="${user != 'anonymousUser'}"></th:block>-->
+    <!--    <th:block th:insert="partials/head :: sidenav" th:if="${user != 'anonymousUser'}"></th:block>-->
     <th:block th:insert="${user != null} ? ~{partials/head :: sidenav} : ~{}"></th:block>
 
 </head>
@@ -11,7 +11,7 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <main>
-    <th:block th:insert="partials/sideNav :: side-nav" th:if="${user != null}"></th:block>
+    <th:block th:if="${user != null}" th:insert="partials/sideNav :: side-nav"></th:block>
 
     <section class="main-content">
         <div>
@@ -20,53 +20,55 @@
 
         <section class="info-content-container">
             <div class="nav nav-tabs nav-tab-container" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                   aria-controls="nav-home" aria-selected="true">
+                <a aria-controls="nav-home" aria-selected="true" class="nav-item nav-link active" data-toggle="tab"
+                   href="#nav-home"
+                   id="nav-home-tab" role="tab">
                     <div class="tab-icon-container">
-                        <img src="/images/submissions.svg" alt="Requirements">
+                        <img alt="Requirements" src="/images/submissions.svg">
                     </div>
                     <span>Requirements</span>
                 </a>
 
-                <a class="nav-item nav-link" id="nav-submissions-tab" data-toggle="tab" href="#nav-submissions"
-                   role="tab"
-                   aria-controls="nav-submissions" aria-selected="false">
+                <a aria-controls="nav-submissions" aria-selected="false" class="nav-item nav-link" data-toggle="tab"
+                   href="#nav-submissions"
+                   id="nav-submissions-tab" role="tab">
                     <div class="tab-icon-container">
-                        <img src="/images/submissions1.svg" alt="Submissions">
+                        <img alt="Submissions" src="/images/submissions1.svg">
                     </div>
                     <span>Submissions</span>
                 </a>
 
-                <a class="nav-item nav-link" id="nav-applications-tab" data-toggle="tab" href="#nav-applications"
-                   role="tab"
-                   aria-controls="nav-applications" aria-selected="false">
+                <a aria-controls="nav-applications" aria-selected="false" class="nav-item nav-link" data-toggle="tab"
+                   href="#nav-applications"
+                   id="nav-applications-tab" role="tab">
                     <div class="tab-icon-container">
-                        <img src="/images/requirements1.svg" alt="Applications">
+                        <img alt="Applications" src="/images/requirements1.svg">
                     </div>
                     <span>Applications</span>
                 </a>
 
-                <a class="nav-item nav-link" id="nav-nextSteps-tab" data-toggle="tab" href="#nav-nextSteps"
-                   role="tab"
-                   aria-controls="nav-nextSteps" aria-selected="false">
+                <a aria-controls="nav-nextSteps" aria-selected="false" class="nav-item nav-link" data-toggle="tab"
+                   href="#nav-nextSteps"
+                   id="nav-nextSteps-tab" role="tab">
                     <div class="tab-icon-container">
-                        <img src="/images/next-steps.svg" alt="Next Steps">
+                        <img alt="Next Steps" src="/images/next-steps.svg">
                     </div>
                     <span>Next Steps</span>
                 </a>
 
-                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                   aria-controls="nav-contact" aria-selected="false">
+                <a aria-controls="nav-contact" aria-selected="false" class="nav-item nav-link" data-toggle="tab"
+                   href="#nav-contact"
+                   id="nav-contact-tab" role="tab">
                     <div class="tab-icon-container">
-                        <img src="/images/contact.svg" alt="Contact">
+                        <img alt="Contact" src="/images/contact.svg">
                     </div>
                     <span>Contact</span>
                 </a>
             </div>
 
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                     aria-labelledby="nav-home-tab">
+                <div aria-labelledby="nav-home-tab" class="tab-pane fade show active" id="nav-home"
+                     role="tabpanel">
                     <section class="requirements-tab">
                         <h1 class="tab-title lined-header">ETP Requirements</h1>
                         <div class="req-card disclaimer">
@@ -91,8 +93,9 @@
                         </div>
                         <div class="req-card req-parent">
                             <h4>Registered Apprenticeship</h4>
-                            <img src="/images/more-info-images/requirements/1.registered-apprentice.png"
-                                 alt="Registered Apprenticeship" class="sub-img">
+                            <img alt="Registered Apprenticeship"
+                                 class="sub-img"
+                                 src="/images/more-info-images/requirements/1.registered-apprentice.png">
                             <div class="req-card">
                                 <h4>ETP System</h4>
                                 <ul>
@@ -165,8 +168,8 @@
                         </div>
                     </section>
                 </div>
-                <div class="tab-pane fade submission-tab" id="nav-submissions" role="tabpanel"
-                     aria-labelledby="nav-submissions-tab">
+                <div aria-labelledby="nav-submissions-tab" class="tab-pane fade submission-tab" id="nav-submissions"
+                     role="tabpanel">
                     <h1 class="tab-title lined-header">Submitting Your Application</h1>
                     <section class="submissions-container">
                         <div class="submissions-center">
@@ -192,8 +195,8 @@
                                     <li>Submit new and updated programs to TWC</li>
                                     <li>Include non-ETP for TWIST</li>
                                 </ul>
-                                <img id="myImg" src="/images/more-info-images/submissions/1.board-tool-sample.png"
-                                     alt="board tool sample" class="sub-img">
+                                <img alt="board tool sample" class="sub-img"
+                                     id="myImg" src="/images/more-info-images/submissions/1.board-tool-sample.png">
                             </div>
                         </div>
                         <div class="submission-card">
@@ -202,12 +205,15 @@
                                 <h4>ETP Timeline</h4>
                                 <div class="etp-container">
                                     <div class="etp-process-imgs">
-                                        <img src="/images/more-info-images/submissions/2.statewide-npnep.png"
-                                             alt="Statewide ETPL Process - NPNEP" class="sub-img">
-                                        <img src="/images/more-info-images/submissions/3.statewide-urep.png"
-                                             alt="Statewide ETPL Process - UREP" class="sub-img">
-                                        <img src="/images/more-info-images/submissions/4.monthly-processing-schedule.png.png"
-                                             alt="Monthly Processing Schedule" class="sub-img">
+                                        <img alt="Statewide ETPL Process - NPNEP"
+                                             class="sub-img"
+                                             src="/images/more-info-images/submissions/2.statewide-npnep.png">
+                                        <img alt="Statewide ETPL Process - UREP"
+                                             class="sub-img"
+                                             src="/images/more-info-images/submissions/3.statewide-urep.png">
+                                        <img alt="Monthly Processing Schedule"
+                                             class="sub-img"
+                                             src="/images/more-info-images/submissions/4.monthly-processing-schedule.png.png">
                                     </div>
                                 </div>
                                 <ul style="margin: .5em auto">
@@ -223,42 +229,42 @@
                         <div class="submission-card">
                             <div class="eligibility-card">
                                 <h4>Eligibility</h4>
-                                <img src="/images/more-info-images/submissions/5.eligibility.png" alt=""
-                                     style="width: 25em" class="sub-img">
+                                <img alt="" class="sub-img"
+                                     src="/images/more-info-images/submissions/5.eligibility.png" style="width: 25em">
                             </div>
                         </div>
                     </section>
                 </div>
-                <div class="tab-pane fade" id="nav-applications" role="tabpanel"
-                     aria-labelledby="nav-applications-tab">
+                <div aria-labelledby="nav-applications-tab" class="tab-pane fade" id="nav-applications"
+                     role="tabpanel">
                     <section class="applications-tab">
                         <h1 class="tab-title lined-header">New Program Applications</h1>
                         <div class="app-img-container">
                             <h4>Initial Application Process</h4>
                             <div class="app-img-content">
-                                <img src="/images/more-info-images/applications/1.new-applications.png" alt=""
-                                     class="sub-img new-app-img">
-                                <img src="/images/more-info-images/applications/2.creating-application.png" alt=""
-                                     class="sub-img new-app-img">
+                                <img alt="" class="sub-img new-app-img"
+                                     src="/images/more-info-images/applications/1.new-applications.png">
+                                <img alt="" class="sub-img new-app-img"
+                                     src="/images/more-info-images/applications/2.creating-application.png">
                             </div>
                         </div>
                     </section>
                 </div>
-                <div class="tab-pane fade" id="nav-nextSteps" role="tabpanel"
-                     aria-labelledby="nav-nextstep-tab">
+                <div aria-labelledby="nav-nextstep-tab" class="tab-pane fade" id="nav-nextSteps"
+                     role="tabpanel">
                     <section class="nextSteps-tab">
                         <h1 class="tab-title lined-header">ETP Next Steps</h1>
                         <div class="req-card nxt-step-container">
                             <h3>Letter of Partnerships</h3>
                             <div class="nxt-card next-center nxt-grn">
                                 <h4>Submit Regulatory Evidence</h4>
-                                <img src="/images/more-info-images/next-steps/1.regulatory-evidence.png" alt=""
-                                     class="sub-img">
+                                <img alt="" class="sub-img"
+                                     src="/images/more-info-images/next-steps/1.regulatory-evidence.png">
                             </div>
                             <div class="nxt-card next-center nxt-blue">
                                 <h4>Employer Partnership Requirement</h4>
-                                <img src="/images/more-info-images/next-steps/2.emp-partnership.png" alt=""
-                                     class="sub-img">
+                                <img alt="" class="sub-img"
+                                     src="/images/more-info-images/next-steps/2.emp-partnership.png">
                             </div>
                             <div class="nxt-card nxt-parent-card"
                                  style="background-color: rgba(247, 207, 121, .6); border-color: black">
@@ -289,10 +295,10 @@
                                 </ul>
                                 <div class="nxt-card-slide">
                                     <div class="nxt-card" style="border: none">
-                                        <img src="/images/more-info-images/next-steps/3.approvals.png" alt=""
-                                             class="sub-img">
-                                        <img src="/images/more-info-images/next-steps/4.twc-approval.png" alt=""
-                                             class="sub-img">
+                                        <img alt="" class="sub-img"
+                                             src="/images/more-info-images/next-steps/3.approvals.png">
+                                        <img alt="" class="sub-img"
+                                             src="/images/more-info-images/next-steps/4.twc-approval.png">
                                     </div>
                                 </div>
                                 <div class="nxt-card nxt-grn">
@@ -314,8 +320,8 @@
 
                     </section>
                 </div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                     aria-labelledby="nav-contact-tab">
+                <div aria-labelledby="nav-contact-tab" class="tab-pane fade" id="nav-contact"
+                     role="tabpanel">
                     <section class="contact-tab">
                         <h1 class="tab-title lined-header">Contact Information</h1>
                         <div class="inner-contact">
@@ -338,7 +344,7 @@
                         </div>
                     </section>
                 </div>
-                <div id="myModal" class="modal">
+                <div class="modal" id="myModal">
                     <!-- The Close Button -->
                     <span class="close">&times;</span>
                     <!-- Modal Content (The Image) -->
@@ -347,8 +353,8 @@
                     <div id="caption"></div>
                 </div>
             </div>
-            <a href="#nav-tab" class="back-to-top-btn">
-                <img src="/images/up-arrow.svg" alt="Back To Top Arrow">
+            <a class="back-to-top-btn" href="#nav-tab">
+                <img alt="Back To Top Arrow" src="/images/up-arrow.svg">
             </a>
         </section>
     </section>

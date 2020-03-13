@@ -14,7 +14,7 @@ public class Provider {
     @Column(columnDefinition = ("INT UNSIGNED"))
     private long provId;
 
-//    @Column(unique = true)
+    //    @Column(unique = true)
     private String providerName;
 
     @Column(length = 1000)
@@ -23,7 +23,7 @@ public class Provider {
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
 //    private List<User> users;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
+    //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
 //    private List<Submission> submissions;
     @OneToOne
     private Submission submission;
@@ -31,7 +31,10 @@ public class Provider {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
     private List<Campus> campuses;
 
-    public Provider(){};
+    public Provider() {
+    }
+
+    ;
 
     public long getId() {
         return id;

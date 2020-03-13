@@ -14,32 +14,32 @@ public class infoController {
     private final Users userDao;
     private User user;
 
-    public infoController(Users userDao){
+    public infoController(Users userDao) {
         this.userDao = userDao;
     }
 
-    private User currentUser(){
+    private User currentUser() {
         if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             user = userDao.findById(user.getId());
         }
-            return user;
+        return user;
     }
 
     @GetMapping("/info")
     public String showInfo(Model model) {
 
-        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             int unread = 0;
 
-            for (Message message: currentUser().getReceived()){
-                if (!message.isBeenRead()){
+            for (Message message : currentUser().getReceived()) {
+                if (!message.isBeenRead()) {
                     unread++;
                 }
             }
             model.addAttribute("unread", unread);
-        model.addAttribute("user", currentUser());
-    }
+            model.addAttribute("user", currentUser());
+        }
         return "infoPage";
-}
+    }
 }

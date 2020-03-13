@@ -5,8 +5,6 @@ import com.etps.etps.repositories.Campuses;
 import com.etps.etps.repositories.Programs;
 import com.etps.etps.repositories.Providers;
 import com.etps.etps.repositories.Submissions;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -26,7 +24,7 @@ public class ReadFromExcel {
     private Submissions submissionDao;
 
 
-    public ReadFromExcel(Providers providerDao, Campuses campusDao, Programs programDao,Submissions submissionDao) {
+    public ReadFromExcel(Providers providerDao, Campuses campusDao, Programs programDao, Submissions submissionDao) {
         this.providerDao = providerDao;
         this.campusDao = campusDao;
         this.programDao = programDao;
@@ -40,7 +38,7 @@ public class ReadFromExcel {
 //        return (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
 //    }
 
-    public void ReadExcel(File filePath , User user) {
+    public void ReadExcel(File filePath, User user) {
         try {
             FileInputStream file = new FileInputStream(filePath);
 
@@ -74,8 +72,7 @@ public class ReadFromExcel {
                     switch (columnIndex) {
                         case 0:
                             long provider_id;
-                            switch (cell.getCellType())
-                            {
+                            switch (cell.getCellType()) {
                                 case NUMERIC:
                                     provider_id = (long) cell.getNumericCellValue();
                                     newProvider.setProvId(provider_id);
@@ -98,8 +95,7 @@ public class ReadFromExcel {
                             long campus_id;
 //                            long campus_id = (long) cell.getNumericCellValue();
 //                            newCampus.setCampId(campus_id);
-                            switch (cell.getCellType())
-                            {
+                            switch (cell.getCellType()) {
                                 case NUMERIC:
                                     campus_id = (long) cell.getNumericCellValue();
                                     newCampus.setCampId(campus_id);
@@ -117,8 +113,7 @@ public class ReadFromExcel {
 //                            long program_id = (long) cell.getNumericCellValue();
 //                            newProgram.setProgId(program_id);
                             long program_id;
-                            switch (cell.getCellType())
-                            {
+                            switch (cell.getCellType()) {
                                 case NUMERIC:
                                     program_id = (long) cell.getNumericCellValue();
                                     newProgram.setProgId(program_id);
@@ -145,7 +140,7 @@ public class ReadFromExcel {
                 }
 
                 ReadExcelObject excelData = new ReadExcelObject(newProvider, newCampus, newProgram);
-                readToDatabase(excelData,user);
+                readToDatabase(excelData, user);
             }
             file.close();
         } catch (Exception e) {
@@ -232,12 +227,12 @@ public class ReadFromExcel {
 //
 //    }
 
-    private void readToDatabase(ReadExcelObject data ,User user) {
+    private void readToDatabase(ReadExcelObject data, User user) {
 
         Provider newProvider = data.getNewProvider();
         Campus newCampus = data.getNewCampus();
         Program newProgram = data.getNewProgram();
-        if (user.getUserProviderId() != newProvider.getProvId()){
+        if (user.getUserProviderId() != newProvider.getProvId()) {
             return;
         }
         Submission newSubmission = new Submission();
@@ -258,17 +253,17 @@ public class ReadFromExcel {
 
     }
 
-    private Boolean existingPending(User user){
+    private Boolean existingPending(User user) {
         List<Provider> providers = providerDao.findAll();
-            List<Provider> searchProviders = new ArrayList<>();
-            for (Provider provider: providers) {
-                if (provider.getProvId() == user.getUserProviderId()){
-                    searchProviders.add(provider);
-                }
+        List<Provider> searchProviders = new ArrayList<>();
+        for (Provider provider : providers) {
+            if (provider.getProvId() == user.getUserProviderId()) {
+                searchProviders.add(provider);
             }
+        }
 
-        for (Provider provider: searchProviders) {
-            if (provider.getSubmission().getStatus().equalsIgnoreCase("pending")){
+        for (Provider provider : searchProviders) {
+            if (provider.getSubmission().getStatus().equalsIgnoreCase("pending")) {
                 return true;
             }
         }
@@ -276,8 +271,6 @@ public class ReadFromExcel {
         return false;
 
     }
-
-
 
 
 }

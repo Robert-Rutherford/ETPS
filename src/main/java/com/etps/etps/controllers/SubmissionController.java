@@ -38,31 +38,31 @@ public class SubmissionController {
 
 
     @GetMapping("/submission")
-    public String openSubmissionForm(Model model){
+    public String openSubmissionForm(Model model) {
         User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
-        WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
-        Map<String, Object[]> approveData = writeToExcel.GenerateByStatus(loggedInUser,"approved");
-        Map<String, Object[]> pendingData = writeToExcel.GenerateByStatus(loggedInUser,"pending");
-        Map<String, Object[]> expiredData = writeToExcel.GenerateByStatus(loggedInUser,"expired");
-        ArrayList<DisplayData>  approvedList = new  ArrayList<>();
-        ArrayList<DisplayData>  pendingList = new  ArrayList<>();
-        ArrayList<DisplayData>  expiredList = new  ArrayList<>();
+        WriteToExcel writeToExcel = new WriteToExcel(providerDao, campusDao, programDao, submissionDao);
+        Map<String, Object[]> approveData = writeToExcel.GenerateByStatus(loggedInUser, "approved");
+        Map<String, Object[]> pendingData = writeToExcel.GenerateByStatus(loggedInUser, "pending");
+        Map<String, Object[]> expiredData = writeToExcel.GenerateByStatus(loggedInUser, "expired");
+        ArrayList<DisplayData> approvedList = new ArrayList<>();
+        ArrayList<DisplayData> pendingList = new ArrayList<>();
+        ArrayList<DisplayData> expiredList = new ArrayList<>();
 
         Set<String> keyset = approveData.keySet();
-        for (String key : keyset){
+        for (String key : keyset) {
             Object[] objArr = approveData.get(key);
             DisplayData newData = new DisplayData(objArr);
             approvedList.add(newData);
         }
         Set<String> keyset2 = pendingData.keySet();
-        for (String key : keyset2){
+        for (String key : keyset2) {
             Object[] objArr = pendingData.get(key);
             DisplayData newData = new DisplayData(objArr);
             pendingList.add(newData);
         }
         Set<String> keyset3 = expiredData.keySet();
-        for (String key : keyset3){
+        for (String key : keyset3) {
             Object[] objArr = expiredData.get(key);
             DisplayData newData = new DisplayData(objArr);
             expiredList.add(newData);
@@ -70,16 +70,16 @@ public class SubmissionController {
 
         int unread = 0;
 
-        for (Message message: loggedInUser.getReceived()){
-            if (!message.isBeenRead()){
+        for (Message message : loggedInUser.getReceived()) {
+            if (!message.isBeenRead()) {
                 unread++;
             }
         }
 
         model.addAttribute("unread", unread);
-        model.addAttribute("approvedList",approvedList);
-        model.addAttribute("pendingList",pendingList);
-        model.addAttribute("expiredList",expiredList);
+        model.addAttribute("approvedList", approvedList);
+        model.addAttribute("pendingList", pendingList);
+        model.addAttribute("expiredList", expiredList);
         model.addAttribute("user", loggedInUser);
 
 
@@ -88,19 +88,19 @@ public class SubmissionController {
 
 
     @PostMapping("/message/{id}/submission/approved")
-    public String approveSubmission(@PathVariable String id, RedirectAttributes attributes){
+    public String approveSubmission(@PathVariable String id, RedirectAttributes attributes) {
 //        User user = userDao.findByUserProviderId(900);
         Message message = messageDao.findById(Long.parseLong(id));
         User receivedUser = message.getReceivedUser();
         User sentUser = message.getSentUser();
         User submissionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (!sentUser.isAdmin()){
+        if (!sentUser.isAdmin()) {
             submissionUser = sentUser;
-        }else {
+        } else {
             submissionUser = receivedUser;
         }
-        StatusChange statusChange = new StatusChange(submissionDao,providerDao);
+        StatusChange statusChange = new StatusChange(submissionDao, providerDao);
         statusChange.ApproveSubmission(submissionUser);
         attributes.addFlashAttribute("flashMessage", message);
         attributes.addAttribute("message", message);
@@ -109,19 +109,19 @@ public class SubmissionController {
     }
 
     @PostMapping("/message/{id}/submission/rejected")
-    public String rejectSubmission(@PathVariable String id, RedirectAttributes attributes){
+    public String rejectSubmission(@PathVariable String id, RedirectAttributes attributes) {
 //        User user = userDao.findByUserProviderId(900);
         Message message = messageDao.findById(Long.parseLong(id));
         User receivedUser = message.getReceivedUser();
         User sentUser = message.getSentUser();
         User submissionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (!sentUser.isAdmin()){
+        if (!sentUser.isAdmin()) {
             submissionUser = sentUser;
-        }else {
+        } else {
             submissionUser = receivedUser;
         }
-        StatusChange statusChange = new StatusChange(submissionDao,providerDao);
+        StatusChange statusChange = new StatusChange(submissionDao, providerDao);
         statusChange.RejectSubmission(submissionUser);
         attributes.addFlashAttribute("flashMessage", message);
         attributes.addAttribute("message", message);

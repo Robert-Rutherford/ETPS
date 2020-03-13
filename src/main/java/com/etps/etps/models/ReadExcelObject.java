@@ -6,7 +6,8 @@ public class ReadExcelObject {
     private Campus newCampus;
     private Program newProgram;
 
-    public ReadExcelObject() {}
+    public ReadExcelObject() {
+    }
 
     public ReadExcelObject(Provider provider, Campus campus, Program program) {
         this.newProvider = provider;

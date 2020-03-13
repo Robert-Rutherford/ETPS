@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="partials/head :: head('Messages')"></th:block>
     <th:block th:insert="partials/head :: messageNew"></th:block>
@@ -11,59 +11,61 @@
 
 <main>
     <section class="message-nav">
-        <a href="/submission" class="btn btn-secondary rtn-sub-btn">
+        <a class="btn btn-secondary rtn-sub-btn" href="/submission">
             Back to Submissions
         </a>
-        <div id="onOffSwitch" class="onoffswitch">
-            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+        <div class="onoffswitch" id="onOffSwitch">
+            <input checked class="onoffswitch-checkbox" id="myonoffswitch" name="onoffswitch" type="checkbox">
             <label class="onoffswitch-label" for="myonoffswitch">
                 <span class="onoffswitch-inner"></span>
                 <span class="onoffswitch-switch"></span>
             </label>
         </div>
         <form th:action="@{/message/create}">
-        <button type="submit" class="btn btn-primary new-msg-btn" >Create
-            New Message
-        </button>
+            <button class="btn btn-primary new-msg-btn" type="submit">Create
+                New Message
+            </button>
         </form>
-        <button  id="msgDelete" type="submit" class="btn btn-danger delete-msg-btn" form="deleteMessages">Delete Message(s)</button>
+        <button class="btn btn-danger delete-msg-btn" form="deleteMessages" id="msgDelete" type="submit">Delete
+            Message(s)
+        </button>
     </section>
-    <h4 id="reel-title" class="reel-title">Received Messages</h4>
+    <h4 class="reel-title" id="reel-title">Received Messages</h4>
     <section class="message-reel">
-        <div id="inbox" class="inbox-reel">
+        <div class="inbox-reel" id="inbox">
             <form id="deleteMessages" th:action="@{/message/delete}">
                 <div th:each="message : ${user.received}" th:if="${!message.deleted}">
                     <ul class="list-group">
-                        <a th:href="@{|/message/${message.id}|}" style="color:black; text-decoration: none">
+                        <a style="color:black; text-decoration: none" th:href="@{|/message/${message.id}|}">
                             <li class="list-group-item msg-desc-container">
                                 <div class="d-flex justify-content-start">
                                     <h4 th:text="${message.title}"></h4>
                                 </div>
                                 <p class="msg-description">From : <span
                                         th:text="${message.sentUser.username}"></span><br>
-                                    On : <span th:text="${message.dateSent}" class="timeStamp"></span>
+                                    On : <span class="timeStamp" th:text="${message.dateSent}"></span>
                                 </p>
                         </a>
                         <div class="msg-select-footer">
-                            <h4 th:if="${!message.beenRead}" class="unread">
+                            <h4 class="unread" th:if="${!message.beenRead}">
                                 <span class="badge badge-danger">Unread</span>
                             </h4>
-                            <input type="checkbox" th:value="${message.id}" name="id" class="ml-auto msg-checkbox">
+                            <input class="ml-auto msg-checkbox" name="id" th:value="${message.id}" type="checkbox">
                         </div>
                         </li>
                     </ul>
                 </div>
             </form>
         </div>
-        <div id="outbox" class="outbox-reel">
-            <ul th:each="message : ${user.sent}" class="list-group">
-                <a th:href="@{|/message/${message.id}|}" style="color:black; text-decoration: none">
+        <div class="outbox-reel" id="outbox">
+            <ul class="list-group" th:each="message : ${user.sent}">
+                <a style="color:black; text-decoration: none" th:href="@{|/message/${message.id}|}">
                     <div>
                         <li class="list-group-item">
                             <h4 th:text="${message.title}"></h4>
                             <p>Sent To : <span th:text="${message.receivedUser.username}"></span>
                                 At :
-                                <span th:text="${message.dateSent}" class="timeStamp"></span>
+                                <span class="timeStamp" th:text="${message.dateSent}"></span>
                             </p>
                         </li>
                     </div>
@@ -77,30 +79,30 @@
         </div>
     </section>
     <section class="new-msg-modal">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
+        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog"
+             tabindex="-1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Compose a New Message</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="newMsgForm" th:action="@{/message/create}" method="POST" th:object="${message}">
+                        <form id="newMsgForm" method="POST" th:action="@{/message/create}" th:object="${message}">
                             <div class="form-group msg-prop" th:if="${reject == null}">
-                                <label for="toUser" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="toUser" name="to">
+                                <label class="col-form-label" for="toUser">Recipient:</label>
+                                <input class="form-control" id="toUser" name="to" type="text">
                             </div>
                             <div class="form-group msg-prop" th:if="${reject != null}">
-                                <label for="toUser" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="reject" name="to"
-                                       th:value="${reject.username}">
+                                <label class="col-form-label" for="toUser">Recipient:</label>
+                                <input class="form-control" id="reject" name="to" th:value="${reject.username}"
+                                       type="text">
                             </div>
                             <div class="form-group msg-prop">
-                                <label for="title" class="col-form-label">Title:</label>
-                                <input type="text" class="form-control" id="title" th:field="*{title}">
+                                <label class="col-form-label" for="title">Title:</label>
+                                <input class="form-control" id="title" th:field="*{title}" type="text">
                             </div>
                             <div class="form-group">
                                 <!--                                <label for="message-text" class="col-form-label">Message:</label>-->
@@ -110,8 +112,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                        <button type="submit" name="forgot" class="btn btn-success" form="newMsgForm">Send message
+                        <button class="btn btn-danger" data-dismiss="modal" type="button">Cancel</button>
+                        <button class="btn btn-success" form="newMsgForm" name="forgot" type="submit">Send message
                         </button>
                     </div>
                 </div>

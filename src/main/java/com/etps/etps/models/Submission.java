@@ -30,8 +30,10 @@ public class Submission {
 //    private Program program;
 
 
+    public Submission() {
+    }
 
-    public Submission(){};
+    ;
 
 //    public Provider getProvider() {
 //        return provider;
