@@ -1,6 +1,8 @@
 package com.etps.etps.controllers;
 
 import com.etps.etps.excelConversions.ReadFromExcel;
+import com.etps.etps.models.Provider;
+import com.etps.etps.models.Submission;
 import com.etps.etps.models.User;
 import com.etps.etps.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -40,19 +44,34 @@ public class FileUploadController {
 
             User UserCheck = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User loggedInUser = userDao.findByUsername(UserCheck.getUsername());
+
+            List<Provider> providers = providerDao.findAll();
+            if (!loggedInUser.isAdmin()) {
+                List<Provider> searchProviders = new ArrayList<>();
+                for (Provider provider : providers) {
+                    if (provider.getProvId() == loggedInUser.getUserProviderId()) {
+                        searchProviders.add(provider);
+                    }
+                }
+                providers = searchProviders;
+            }
+
+            for (Provider provider : providers) {
+                if (provider.getSubmission().getStatus().equalsIgnoreCase("pending")){
+                    return "redirect:/submission";
+                }
+            }
+
             ReadFromExcel readFromExcel = new ReadFromExcel(providerDao, campusDao, programDao, submissionDao);
-//            String filetype = readFromExcel.getFileExtension(file.getName());
-//            if (filetype.equalsIgnoreCase("xlsx")){
+
+
+
+
             File readFile = File.createTempFile("testFile", ".xlsx");
             file.transferTo(readFile);
             readFromExcel.ReadExcel(readFile, loggedInUser);
             readFile.delete();
-//            }else if (filetype.equalsIgnoreCase("xls")){
-//                File readFile = File.createTempFile("testFile",".xls");
-//                file.transferTo(readFile);
-//                readFromExcel.ReadExcelxls(readFile,loggedInUser);
-//                readFile.delete();
-//            }
+
 
         } catch (IOException e) {
             e.printStackTrace();
