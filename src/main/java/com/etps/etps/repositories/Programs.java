@@ -8,7 +8,5 @@ import java.util.List;
 public interface Programs extends JpaRepository<Program, Long> {
     Program findById(long id);
 
-    List<Program> findAllByCampus_Id(long id);
-
 
 }
