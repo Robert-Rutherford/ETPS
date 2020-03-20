@@ -25,13 +25,10 @@ public class Campus {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "campus")
     private List<Program> programs;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "campus")
-//    private List<Submission> submissions;
 
     public Campus() {
     }
 
-    ;
 
     public long getId() {
         return id;
@@ -81,11 +78,4 @@ public class Campus {
         this.programs = programs;
     }
 
-//    public List<Submission> getSubmissions() {
-//        return submissions;
-//    }
-//
-//    public void setSubmissions(List<Submission> submissions) {
-//        this.submissions = submissions;
-//    }
 }

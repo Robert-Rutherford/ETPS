@@ -52,7 +52,7 @@ public class FileDownloadController {
 
             InputStream is = new FileInputStream(writeFile);
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-//            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Approved",".xlsx");
+
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
@@ -62,7 +62,6 @@ public class FileDownloadController {
         }
 
 
-//        return "redirect:/home";
     }
 
     @PostMapping("/download/Pending")
@@ -85,7 +84,7 @@ public class FileDownloadController {
 
             InputStream is = new FileInputStream(writeFile);
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-//            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Pending",".xlsx");
+
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
@@ -94,7 +93,7 @@ public class FileDownloadController {
             throw new RuntimeException("IOError writing file to output stream");
         }
 
-//        return "redirect:/home";
+
     }
 
     @PostMapping("/download/Expired")
@@ -111,7 +110,7 @@ public class FileDownloadController {
             writeToExcel.WriteExcel(writeData, writeFile);
             InputStream is = new FileInputStream(writeFile);
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-//            response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_Expired",".xlsx");
+
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
 
@@ -119,7 +118,7 @@ public class FileDownloadController {
             throw new RuntimeException("IOError writing file to output stream");
         }
 
-        //        return "redirect:/home";
+
     }
 
 
@@ -138,9 +137,8 @@ public class FileDownloadController {
                 writeToExcel.WriteExcel(writeData, writeFile);
 
                 InputStream is = new FileInputStream(writeFile);
-//                response.setContentType("application/vnd.ms-excel");
+
                 response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-//                response.setHeader("ETPS_"+loggedInUser.getUserProviderId()+"_All",".xlsx");
 
                 org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
                 response.flushBuffer();
@@ -149,7 +147,6 @@ public class FileDownloadController {
                 throw new RuntimeException("IOError writing file to output stream");
             }
 
-            //        return "redirect:/home";
         }
 
     }
@@ -179,7 +176,6 @@ public class FileDownloadController {
 
             InputStream is = new FileInputStream(writeFile);
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-//            response.setHeader("ETPS_"+submissionUser.getUserProviderId()+"_Pending",".xlsx");
 
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
@@ -190,31 +186,6 @@ public class FileDownloadController {
 
     }
 
-
-//    @RequestMapping(value = "/files/test", method = RequestMethod.GET)
-//    public String getFile(HttpServletResponse response) {
-//        try {
-//                    WriteToExcel writeToExcel = new WriteToExcel(providerDao,campusDao,programDao,submissionDao);
-////        String home = System.getProperty("user.home");
-//        User loggedInUser = userDao.findByUserProviderId(802);
-//
-//            File writeFile = File.createTempFile("ETPS_"+loggedInUser.getUserProviderId()+"_All",".xlsx");
-//
-////            File file = new File(home+"/Downloads/ETPS_"+loggedInUser.getUserProviderId()+"_All.xlsx");
-//            Map<String, Object[]> writeData = writeToExcel.GenerateAllUserData(loggedInUser);
-//            writeToExcel.WriteExcel(writeData, writeFile);
-//            // get your file as InputStream
-//            InputStream is = new FileInputStream(writeFile);
-//            response.setContentType("application/vnd.ms-excel");
-//            // copy it to response's OutputStream
-//            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
-//            response.flushBuffer();
-//        } catch (IOException ex) {
-////            log.info("Error writing file to output stream. Filename was '{}'", fileName, ex);
-//            throw new RuntimeException("IOError writing file to output stream");
-//        }
-//        return "redirect:/test";
-//    }
 
 }
 

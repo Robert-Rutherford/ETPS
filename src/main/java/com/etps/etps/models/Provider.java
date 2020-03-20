@@ -14,17 +14,12 @@ public class Provider {
     @Column(columnDefinition = ("INT UNSIGNED"))
     private long provId;
 
-    //    @Column(unique = true)
+
     private String providerName;
 
     @Column(length = 1000)
     private String description;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
-//    private List<User> users;
-
-    //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
-//    private List<Submission> submissions;
     @OneToOne
     private Submission submission;
 
@@ -34,7 +29,7 @@ public class Provider {
     public Provider() {
     }
 
-    ;
+
 
     public long getId() {
         return id;
@@ -60,14 +55,6 @@ public class Provider {
         this.description = description;
     }
 
-//    public List<User> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(User user) {
-//        this.users.add(user);
-//    }
-
     public long getProvId() {
         return provId;
     }
@@ -75,19 +62,6 @@ public class Provider {
     public void setProvId(long provId) {
         this.provId = provId;
     }
-
-//    public void setUsers(List<User> users) {
-//        this.users = users;
-//    }
-
-//    public List<Submission> getSubmissions() {
-//        return submissions;
-//    }
-//
-//    public void setSubmissions(List<Submission> submissions) {
-//        this.submissions = submissions;
-//    }
-
 
     public Submission getSubmission() {
         return submission;

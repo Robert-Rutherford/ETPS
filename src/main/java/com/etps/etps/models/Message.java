@@ -45,7 +45,6 @@ public class Message {
         this.deleted = deleted;
     }
 
-    ;
 
     public long getId() {
         return id;

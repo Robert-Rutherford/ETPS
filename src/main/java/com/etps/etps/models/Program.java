@@ -24,15 +24,11 @@ public class Program {
     @JoinColumn(name = "campus_id")
     private Campus campus;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "program")
-//    private List<Submission> submissions;
-//    @OneToOne
-//    private Submission submission;
 
     public Program() {
     }
 
-    ;
+
 
     public long getId() {
         return id;
@@ -66,13 +62,6 @@ public class Program {
         this.etpCodeId = etpCodeId;
     }
 
-//    public List<Submission> getSubmissions() {
-//        return submissions;
-//    }
-//
-//    public void setSubmissions(List<Submission> submissions) {
-//        this.submissions = submissions;
-//    }
 
     public Campus getCampus() {
         return campus;
