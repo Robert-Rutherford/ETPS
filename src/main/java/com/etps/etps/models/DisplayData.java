@@ -2,8 +2,7 @@ package com.etps.etps.models;
 
 
 public class DisplayData {
-    //    "1", new Object[]{"Provider ID", "Provider Name", "Provider Description", "Campus ID", "Campus Name",
-//            "Program ID", "Program Name", "Program Description", "ETP ID","Status"}
+
     private String providerID;
     private String providerName;
     private String providerDescription;

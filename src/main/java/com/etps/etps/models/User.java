@@ -26,7 +26,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-
     private boolean isAdmin;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sentUser")
@@ -45,7 +44,6 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
-//        provider = copy.provider;
         isAdmin = copy.isAdmin;
         sent = copy.sent;
         received = copy.received;
@@ -83,14 +81,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-//    public Provider getProvider() {
-//        return provider;
-//    }
-//
-//    public void setProvider(Provider provider) {
-//        this.provider = provider;
-//    }
 
     public boolean isAdmin() {
         return isAdmin;
