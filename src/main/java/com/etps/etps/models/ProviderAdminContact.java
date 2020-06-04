@@ -22,6 +22,7 @@ public class ProviderAdminContact {
 
     private String adminPhone;
     private String adminPhoneExtension;
+    private String adminEmail;
 
     public ProviderAdminContact() {
 
@@ -73,5 +74,13 @@ public class ProviderAdminContact {
 
     public void setAdminPhoneExtension(String adminPhoneExtension) {
         this.adminPhoneExtension = adminPhoneExtension;
+    }
+
+    public String getAdminEmail() {
+        return adminEmail;
+    }
+
+    public void setAdminEmail(String adminEmail) {
+        this.adminEmail = adminEmail;
     }
 }
