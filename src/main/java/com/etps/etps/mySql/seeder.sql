@@ -10,7 +10,7 @@ INSERT INTO submissions (deadline, status) VALUES
 ('2020-01-01','approved');
 
 # providers table (MUST BE GENERATED FIRST)
-# need to add: provider url, address 1, addres 2
+# need to add: provider url, address 1, addres 2, institution type
 INSERT INTO providers ( prov_id, provider_name,description, submission_id) VALUES
 (1, 'TWC', 'Admins of the TWC/ this column should never appear',null),
 (802,'ACCD Northwest Vista Collage','An Alamo College',1),
