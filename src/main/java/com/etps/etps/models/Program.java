@@ -1,5 +1,5 @@
 package com.etps.etps.models;
-
+//# need to move: etp_code_id to table 11
 
 import javax.persistence.*;
 
@@ -19,6 +19,7 @@ public class Program {
     private String description;
 
     private String etpCodeId;
+
 
     @ManyToOne
     @JoinColumn(name = "campus_id")
