@@ -4,7 +4,6 @@ package com.etps.etps.models;
 //values: TWIST provider ID, TWIST Program ID, Action, program id (key)
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "twist")

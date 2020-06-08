@@ -30,7 +30,6 @@ public class Provider {
     }
 
 
-
     public long getId() {
         return id;
     }

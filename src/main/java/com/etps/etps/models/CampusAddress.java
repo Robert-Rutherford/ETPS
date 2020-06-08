@@ -12,7 +12,7 @@ public class CampusAddress {
     private long id;
 
     @OneToOne
-    private Provider provider;
+    private Campus campus;
 
     private String address1;
     private String address2;
@@ -34,12 +34,12 @@ public class CampusAddress {
         this.id = id;
     }
 
-    public Provider getProvider() {
-        return provider;
+    public Campus getCampus() {
+        return campus;
     }
 
-    public void setProvider(Provider provider) {
-        this.provider = provider;
+    public void setCampus(Campus campus) {
+        this.campus = campus;
     }
 
     public String getAddress1() {
