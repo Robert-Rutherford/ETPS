@@ -2,7 +2,6 @@ package com.etps.etps.controllers;
 
 import com.etps.etps.excelConversions.ReadFromExcel;
 import com.etps.etps.models.Provider;
-import com.etps.etps.models.Submission;
 import com.etps.etps.models.User;
 import com.etps.etps.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -57,14 +56,12 @@ public class FileUploadController {
             }
 
             for (Provider provider : providers) {
-                if (provider.getSubmission().getStatus().equalsIgnoreCase("pending")){
+                if (provider.getSubmission().getStatus().equalsIgnoreCase("pending")) {
                     return "redirect:/submission";
                 }
             }
 
             ReadFromExcel readFromExcel = new ReadFromExcel(providerDao, campusDao, programDao, submissionDao);
-
-
 
 
             File readFile = File.createTempFile("testFile", ".xlsx");

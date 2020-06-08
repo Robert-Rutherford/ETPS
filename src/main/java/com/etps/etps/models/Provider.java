@@ -1,5 +1,7 @@
 package com.etps.etps.models;
 
+//# need to add: provider url, address 1, addres 2, institution type, WDA
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,6 +22,15 @@ public class Provider {
     @Column(length = 1000)
     private String description;
 
+    @Column(length = 1000)
+    private String providerURL;
+
+    private String address1;
+    private String address2;
+
+    private String institutionType;
+    private long wda;
+
     @OneToOne
     private Submission submission;
 
@@ -28,7 +39,6 @@ public class Provider {
 
     public Provider() {
     }
-
 
 
     public long getId() {
@@ -79,5 +89,43 @@ public class Provider {
         this.campuses = campuses;
     }
 
+    public String getProviderURL() {
+        return providerURL;
+    }
 
+    public void setProviderURL(String providerURL) {
+        this.providerURL = providerURL;
+    }
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getInstitutionType() {
+        return institutionType;
+    }
+
+    public void setInstitutionType(String institutionType) {
+        this.institutionType = institutionType;
+    }
+
+    public long getWda() {
+        return wda;
+    }
+
+    public void setWda(long wda) {
+        this.wda = wda;
+    }
 }
