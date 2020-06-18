@@ -4,10 +4,7 @@ import com.etps.etps.models.Campus;
 import com.etps.etps.models.Program;
 import com.etps.etps.models.Provider;
 import com.etps.etps.models.User;
-import com.etps.etps.repositories.Campuses;
-import com.etps.etps.repositories.Programs;
-import com.etps.etps.repositories.Providers;
-import com.etps.etps.repositories.Submissions;
+import com.etps.etps.repositories.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -23,7 +20,43 @@ public class WriteToExcel {
     private Programs programDao;
     private Submissions submissionDao;
 
-    public WriteToExcel(Providers providerDao, Campuses campusDao, Programs programDao, Submissions submissionDao) {
+    //Additional
+    //additions
+    private IdsAndAckses idsAndAcksesDao;
+    private CampusAdditionalContacts campusAdditionalContactsDao;
+    private CampusAdditionalInformation campusAdditionalInformationDao;
+    private CampusContacts campusContactsDao;
+    private CampusAddresses campusAddressesDao;
+    private ProgramAdditionalInformation programAdditionalInformationDao;
+    private ProviderAdditionalContacts providerAdditionalContactsDao;
+    private ProviderAddresses providerAddressesDao;
+    private ProviderAdminContacts providerAdminContactsDao;
+    private ProviderFinancialContacts providerFinancialContactsDao;
+
+//    public WriteToExcel(Providers providerDao, Campuses campusDao, Programs programDao, Submissions submissionDao,
+//                        IdsAndAckses idsAndAcksesDao, CampusAdditionalContacts campusAdditionalContactsDao,
+//                        CampusAdditionalInformation campusAdditionalInformationDao, CampusContacts campusContactsDao,
+//                        CampusAddresses campusAddressesDao, ProgramAdditionalInformation programAdditionalInformationDao,
+//                        ProviderAdditionalContacts providerAdditionalContactsDao, ProviderAddresses providerAddressesDao,
+//                        ProviderAdminContacts providerAdminContactsDao,
+//                        ProviderFinancialContacts providerFinancialContactsDao) {
+//        this.providerDao = providerDao;
+//        this.campusDao = campusDao;
+//        this.programDao = programDao;
+//        this.submissionDao = submissionDao;
+//        this.idsAndAcksesDao = idsAndAcksesDao;
+//        this.campusAdditionalContactsDao = campusAdditionalContactsDao;
+//        this.campusAdditionalInformationDao = campusAdditionalInformationDao;
+//        this.campusContactsDao = campusContactsDao;
+//        this.campusAddressesDao = campusAddressesDao;
+//        this.programAdditionalInformationDao = programAdditionalInformationDao;
+//        this.providerAdditionalContactsDao = providerAdditionalContactsDao;
+//        this.providerAddressesDao = providerAddressesDao;
+//        this.providerAdminContactsDao = providerAdminContactsDao;
+//        this.providerFinancialContactsDao = providerFinancialContactsDao;
+//    }
+
+        public WriteToExcel(Providers providerDao, Campuses campusDao, Programs programDao, Submissions submissionDao) {
         this.providerDao = providerDao;
         this.campusDao = campusDao;
         this.programDao = programDao;
